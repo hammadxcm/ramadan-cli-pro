@@ -1,0 +1,28 @@
+{
+	"app": {
+		"name": "Ramazan CLI Pro",
+		"tagline": "Sahur, iftar ve Ramazan vakitleri"
+	},
+	"table": {
+		"roza": "Oruc",
+		"sehar": "Sahur",
+		"iftar": "iftar",
+		"date": "Tarih",
+		"hijri": "Hicri"
+	},
+	"status": {
+		"beforeRozaDay": "Oruc gunundan once",
+		"firstSehar": "ilk Sahur",
+		"seharWindowOpen": "Sahur vakti acik",
+		"rozaStartsFajr": "Oruc basliyor (imsak)",
+		"rozaInProgress": "Oruc devam ediyor",
+		"iftarTime": "iftar vakti",
+		"nextDaySehar": "Ertesi gun Sahur"
+	},
+	"notification": {
+		"seharReminder": "Sahur Hatirlatmasi",
+		"seharIn": "Sahur {{minutes}} dakika icinde",
+		"iftarReminder": "iftar Hatirlatmasi",
+		"iftarIn": "iftar {{minutes}} dakika icinde"
+	}
+}

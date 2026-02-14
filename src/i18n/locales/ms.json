@@ -1,0 +1,28 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Waktu sahur, berbuka dan Ramadan"
+	},
+	"table": {
+		"roza": "Puasa",
+		"sehar": "Sahur",
+		"iftar": "Berbuka",
+		"date": "Tarikh",
+		"hijri": "Hijri"
+	},
+	"status": {
+		"beforeRozaDay": "Sebelum hari puasa",
+		"firstSehar": "Sahur pertama",
+		"seharWindowOpen": "Waktu sahur dibuka",
+		"rozaStartsFajr": "Puasa bermula (Subuh)",
+		"rozaInProgress": "Puasa sedang berjalan",
+		"iftarTime": "Waktu berbuka",
+		"nextDaySehar": "Sahur esok"
+	},
+	"notification": {
+		"seharReminder": "Peringatan Sahur",
+		"seharIn": "Sahur dalam {{minutes}} minit",
+		"iftarReminder": "Peringatan Berbuka",
+		"iftarIn": "Berbuka dalam {{minutes}} minit"
+	}
+}

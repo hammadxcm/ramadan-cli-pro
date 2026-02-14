@@ -1,0 +1,59 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Sehar, Iftar & Ramadan timings"
+	},
+	"table": {
+		"roza": "Roza",
+		"sehar": "Sehar",
+		"iftar": "Iftar",
+		"date": "Date",
+		"hijri": "Hijri"
+	},
+	"status": {
+		"beforeRozaDay": "Before roza day",
+		"firstSehar": "First Sehar",
+		"seharWindowOpen": "Sehar window open",
+		"rozaStartsFajr": "Roza starts (Fajr)",
+		"rozaInProgress": "Roza in progress",
+		"iftarTime": "Iftar time",
+		"nextDaySehar": "Next day Sehar"
+	},
+	"mode": {
+		"today": "Today Sehar/Iftar",
+		"all": "Ramadan {{year}} (All Days)",
+		"number": "Roza {{roza}} Sehar/Iftar"
+	},
+	"highlight": {
+		"status": "Status:",
+		"upNext": "Up next:",
+		"in": "in"
+	},
+	"footer": {
+		"note": "Sehar uses Fajr. Iftar uses Maghrib.",
+		"credits": "Powered by Aladhan API"
+	},
+	"setup": {
+		"title": "Ramadan CLI Pro Setup",
+		"detecting": "Detecting your location...",
+		"detected": "Detected: {{city}}, {{country}}",
+		"notDetected": "Could not detect location",
+		"enterCity": "Enter your city",
+		"enterCountry": "Enter your country",
+		"selectMethod": "Select calculation method",
+		"selectSchool": "Select Asr school",
+		"timezonePref": "Timezone preference",
+		"complete": "Setup complete."
+	},
+	"notification": {
+		"seharReminder": "Sehar Reminder",
+		"seharIn": "Sehar in {{minutes}} minutes",
+		"iftarReminder": "Iftar Reminder",
+		"iftarIn": "Iftar in {{minutes}} minutes"
+	},
+	"error": {
+		"locationFailed": "Could not detect location. Pass a city like `ramadan-cli-pro \"Lahore\"`.",
+		"invalidDate": "Invalid first roza date. Use YYYY-MM-DD.",
+		"flagConflict": "Use either --all or --number, not both."
+	}
+}

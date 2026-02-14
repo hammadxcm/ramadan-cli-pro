@@ -1,0 +1,28 @@
+{
+	"app": {
+		"name": "رمضان CLI پرو",
+		"tagline": "سحری، افطار اور رمضان کے اوقات"
+	},
+	"table": {
+		"roza": "روزہ",
+		"sehar": "سحری",
+		"iftar": "افطار",
+		"date": "تاریخ",
+		"hijri": "ہجری"
+	},
+	"status": {
+		"beforeRozaDay": "روزے کے دن سے پہلے",
+		"firstSehar": "پہلی سحری",
+		"seharWindowOpen": "سحری کا وقت",
+		"rozaStartsFajr": "روزہ شروع (فجر)",
+		"rozaInProgress": "روزہ جاری ہے",
+		"iftarTime": "افطار کا وقت",
+		"nextDaySehar": "اگلے دن کی سحری"
+	},
+	"notification": {
+		"seharReminder": "سحری کی یاد دہانی",
+		"seharIn": "سحری {{minutes}} منٹ میں",
+		"iftarReminder": "افطار کی یاد دہانی",
+		"iftarIn": "افطار {{minutes}} منٹ میں"
+	}
+}
