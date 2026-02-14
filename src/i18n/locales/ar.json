@@ -1,0 +1,33 @@
+{
+	"app": {
+		"name": "رمضان CLI برو",
+		"tagline": "مواقيت السحور والإفطار ورمضان"
+	},
+	"table": {
+		"roza": "الصوم",
+		"sehar": "السحور",
+		"iftar": "الإفطار",
+		"date": "التاريخ",
+		"hijri": "هجري"
+	},
+	"status": {
+		"beforeRozaDay": "قبل يوم الصيام",
+		"firstSehar": "أول سحور",
+		"seharWindowOpen": "وقت السحور مفتوح",
+		"rozaStartsFajr": "يبدأ الصوم (الفجر)",
+		"rozaInProgress": "الصوم جارٍ",
+		"iftarTime": "وقت الإفطار",
+		"nextDaySehar": "سحور اليوم التالي"
+	},
+	"mode": {
+		"today": "سحور/إفطار اليوم",
+		"all": "رمضان {{year}} (جميع الأيام)",
+		"number": "صوم {{roza}} سحور/إفطار"
+	},
+	"notification": {
+		"seharReminder": "تذكير السحور",
+		"seharIn": "السحور بعد {{minutes}} دقيقة",
+		"iftarReminder": "تذكير الإفطار",
+		"iftarIn": "الإفطار بعد {{minutes}} دقيقة"
+	}
+}
