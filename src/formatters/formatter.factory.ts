@@ -40,6 +40,7 @@ export class FormatterFactory {
 	get(name: string): IOutputFormatter {
 		const formatter = this.formatters.get(name);
 		if (!formatter) {
+			// biome-ignore lint/style/noNonNullAssertion: "table" is always registered in the constructor
 			return this.formatters.get("table")!;
 		}
 		return formatter;
