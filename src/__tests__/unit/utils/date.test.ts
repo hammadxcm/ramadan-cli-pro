@@ -24,9 +24,9 @@ describe("parseIsoDate", () => {
 	it("parses valid YYYY-MM-DD", () => {
 		const result = parseIsoDate("2026-03-01");
 		expect(result).not.toBeNull();
-		expect(result!.getFullYear()).toBe(2026);
-		expect(result!.getMonth()).toBe(2);
-		expect(result!.getDate()).toBe(1);
+		expect(result?.getFullYear()).toBe(2026);
+		expect(result?.getMonth()).toBe(2);
+		expect(result?.getDate()).toBe(1);
 	});
 
 	it("returns null for invalid format", () => {
@@ -45,9 +45,9 @@ describe("parseGregorianDate", () => {
 	it("parses valid DD-MM-YYYY", () => {
 		const result = parseGregorianDate("01-03-2026");
 		expect(result).not.toBeNull();
-		expect(result!.getFullYear()).toBe(2026);
-		expect(result!.getMonth()).toBe(2);
-		expect(result!.getDate()).toBe(1);
+		expect(result?.getFullYear()).toBe(2026);
+		expect(result?.getMonth()).toBe(2);
+		expect(result?.getDate()).toBe(1);
 	});
 
 	it("returns null for invalid format", () => {

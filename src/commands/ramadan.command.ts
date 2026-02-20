@@ -5,6 +5,7 @@
  * (table, JSON, plain, status-line).
  */
 
+import type { Ora } from "ora";
 import type { AppError } from "../errors/base.error.js";
 import type { FormatterFactory } from "../formatters/formatter.factory.js";
 import type { ConfigRepository } from "../repositories/config.repository.js";
@@ -17,7 +18,12 @@ import type { FirstRunSetup } from "../setup/first-run.setup.js";
 import { canPromptInteractively } from "../setup/setup.utils.js";
 import type { CommandContext } from "../types/command.js";
 import type { PrayerData } from "../types/prayer.js";
-import type { RamadanOutput, RamadanRow, RowAnnotationKind } from "../types/ramadan.js";
+import type {
+	RamadanOutput,
+	RamadanQuery,
+	RamadanRow,
+	RowAnnotationKind,
+} from "../types/ramadan.js";
 import { createSpinner } from "../ui/spinner.js";
 import type { ICommand } from "./command.interface.js";
 
@@ -201,13 +207,14 @@ export class RamadanCommand implements ICommand {
 
 	private async handleRozaNumber(
 		context: CommandContext,
-		query: any,
+		query: RamadanQuery,
 		today: PrayerData,
 		targetYear: number,
 		configuredFirstRozaDate: Date | null,
 		hasCustomFirstRozaDate: boolean,
-		spinner: any,
+		spinner: Ora | null,
 	): Promise<void> {
+		// biome-ignore lint/style/noNonNullAssertion: rozaNumber is validated before calling this method
 		const rozaNumber = context.rozaNumber!;
 		let row: RamadanRow;
 		let hijriYear = targetYear;
@@ -254,13 +261,13 @@ export class RamadanCommand implements ICommand {
 
 	private async handleToday(
 		context: CommandContext,
-		query: any,
+		query: RamadanQuery,
 		today: PrayerData,
 		todayGregorianDate: Date,
 		targetYear: number,
 		configuredFirstRozaDate: Date | null,
 		hasCustomFirstRozaDate: boolean,
-		spinner: any,
+		spinner: Ora | null,
 	): Promise<void> {
 		let row: RamadanRow | null = null;
 		let outputHijriYear = targetYear;
@@ -328,13 +335,13 @@ export class RamadanCommand implements ICommand {
 
 	private async handleAll(
 		context: CommandContext,
-		query: any,
+		query: RamadanQuery,
 		today: PrayerData,
 		todayGregorianDate: Date,
 		targetYear: number,
 		configuredFirstRozaDate: Date | null,
 		hasCustomFirstRozaDate: boolean,
-		spinner: any,
+		spinner: Ora | null,
 	): Promise<void> {
 		let rows: ReadonlyArray<RamadanRow> = [];
 		let hijriYear = targetYear;

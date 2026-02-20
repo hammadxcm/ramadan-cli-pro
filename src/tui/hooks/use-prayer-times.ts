@@ -48,7 +48,7 @@ export const usePrayerTimes = (fetchFn: () => Promise<PrayerData>): UsePrayerTim
 		return () => {
 			cancelled = true;
 		};
-	}, []);
+	}, [fetchFn]);
 
 	return state;
 };

@@ -23,7 +23,7 @@ export const useI18n = () => {
 
 	useEffect(() => {
 		i18nService.init().then(() => setReady(true));
-	}, []);
+	}, [i18nService]);
 
 	return {
 		t: i18nService.t.bind(i18nService),
