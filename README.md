@@ -15,6 +15,7 @@
   <img src="https://img.shields.io/badge/Node-%3E%3D20-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node >= 20" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <a href="#contributing"><img src="https://img.shields.io/badge/PRs-Welcome-2E7D32?style=for-the-badge" alt="PRs Welcome" /></a>
+  <a href="https://github.com/hammadxcm/ramadan-cli-pro/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/hammadxcm/ramadan-cli-pro/ci.yml?style=for-the-badge&logo=github&label=CI" alt="CI" /></a>
 </p>
 
 ---
