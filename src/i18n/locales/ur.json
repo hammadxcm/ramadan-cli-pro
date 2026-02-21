@@ -19,10 +19,41 @@
 		"iftarTime": "افطار کا وقت",
 		"nextDaySehar": "اگلے دن کی سحری"
 	},
+	"mode": {
+		"today": "آج کی سحری/افطار",
+		"all": "رمضان {{year}} (تمام دن)",
+		"number": "روزہ {{roza}} سحری/افطار"
+	},
+	"highlight": {
+		"status": "حالت:",
+		"upNext": "اگلا:",
+		"in": "میں"
+	},
+	"footer": {
+		"note": "سحری فجر کا وقت استعمال کرتی ہے۔ افطار مغرب کا وقت استعمال کرتا ہے۔",
+		"credits": "Aladhan API سے تقویت یافتہ"
+	},
+	"setup": {
+		"title": "رمضان CLI پرو سیٹ اپ",
+		"detecting": "آپ کا مقام تلاش کیا جا رہا ہے...",
+		"detected": "پتہ چلا: {{city}}، {{country}}",
+		"notDetected": "مقام کا پتہ نہیں چل سکا",
+		"enterCity": "اپنا شہر درج کریں",
+		"enterCountry": "اپنا ملک درج کریں",
+		"selectMethod": "حساب کا طریقہ منتخب کریں",
+		"selectSchool": "عصر کا مکتب فکر منتخب کریں",
+		"timezonePref": "ٹائم زون کی ترجیح",
+		"complete": "سیٹ اپ مکمل۔"
+	},
 	"notification": {
 		"seharReminder": "سحری کی یاد دہانی",
 		"seharIn": "سحری {{minutes}} منٹ میں",
 		"iftarReminder": "افطار کی یاد دہانی",
 		"iftarIn": "افطار {{minutes}} منٹ میں"
+	},
+	"error": {
+		"locationFailed": "مقام کا پتہ نہیں چل سکا۔ شہر درج کریں جیسے `ramadan-cli-pro \"لاہور\"`۔",
+		"invalidDate": "پہلے روزے کی تاریخ غلط ہے۔ YYYY-MM-DD استعمال کریں۔",
+		"flagConflict": "--all یا --number میں سے ایک استعمال کریں، دونوں نہیں۔"
 	}
 }
