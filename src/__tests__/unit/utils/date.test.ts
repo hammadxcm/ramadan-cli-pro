@@ -89,6 +89,32 @@ describe("getRozaNumberFromStartDate", () => {
 	});
 });
 
+describe("parseGregorianDate – invalid date values", () => {
+	it("returns null for Feb 30 (invalid day for month)", () => {
+		expect(parseGregorianDate("30-02-2026")).toBeNull();
+	});
+
+	it("returns null for month 13 (invalid month)", () => {
+		expect(parseGregorianDate("15-13-2026")).toBeNull();
+	});
+
+	it("returns null for day 31 in a 30-day month", () => {
+		// April has 30 days
+		expect(parseGregorianDate("31-04-2026")).toBeNull();
+	});
+
+	it("returns null for Feb 29 in a non-leap year", () => {
+		expect(parseGregorianDate("29-02-2025")).toBeNull();
+	});
+
+	it("accepts Feb 29 in a leap year", () => {
+		const result = parseGregorianDate("29-02-2024");
+		expect(result).not.toBeNull();
+		expect(result?.getDate()).toBe(29);
+		expect(result?.getMonth()).toBe(1);
+	});
+});
+
 describe("parseGregorianDay", () => {
 	it("parses valid DD-MM-YYYY to parts", () => {
 		const result = parseGregorianDay("15-03-2026");
@@ -98,5 +124,21 @@ describe("parseGregorianDay", () => {
 	it("returns null for invalid input", () => {
 		expect(parseGregorianDay("invalid")).toBeNull();
 		expect(parseGregorianDay("2026-03-15")).toBeNull();
+	});
+
+	it("returns null when day exceeds 31", () => {
+		expect(parseGregorianDay("32-03-2026")).toBeNull();
+	});
+
+	it("returns null when month exceeds 12", () => {
+		expect(parseGregorianDay("15-13-2026")).toBeNull();
+	});
+
+	it("returns null when day is 0", () => {
+		expect(parseGregorianDay("00-03-2026")).toBeNull();
+	});
+
+	it("returns null when month is 0", () => {
+		expect(parseGregorianDay("15-00-2026")).toBeNull();
 	});
 });
