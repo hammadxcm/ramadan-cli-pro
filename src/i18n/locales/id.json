@@ -1,0 +1,59 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Jadwal sahur, buka puasa, dan Ramadan"
+	},
+	"table": {
+		"roza": "Puasa",
+		"sehar": "Sahur",
+		"iftar": "Buka Puasa",
+		"date": "Tanggal",
+		"hijri": "Hijriah"
+	},
+	"status": {
+		"beforeRozaDay": "Sebelum hari puasa",
+		"firstSehar": "Sahur pertama",
+		"seharWindowOpen": "Waktu sahur terbuka",
+		"rozaStartsFajr": "Puasa dimulai (Subuh)",
+		"rozaInProgress": "Puasa sedang berlangsung",
+		"iftarTime": "Waktu buka puasa",
+		"nextDaySehar": "Sahur hari berikutnya"
+	},
+	"mode": {
+		"today": "Sahur/Buka Puasa Hari Ini",
+		"all": "Ramadan {{year}} (Semua Hari)",
+		"number": "Puasa {{roza}} Sahur/Buka Puasa"
+	},
+	"highlight": {
+		"status": "Status:",
+		"upNext": "Berikutnya:",
+		"in": "dalam"
+	},
+	"footer": {
+		"note": "Sahur menggunakan waktu Subuh. Buka puasa menggunakan waktu Maghrib.",
+		"credits": "Didukung oleh Aladhan API"
+	},
+	"setup": {
+		"title": "Pengaturan Ramadan CLI Pro",
+		"detecting": "Mendeteksi lokasi Anda...",
+		"detected": "Terdeteksi: {{city}}, {{country}}",
+		"notDetected": "Tidak dapat mendeteksi lokasi",
+		"enterCity": "Masukkan kota Anda",
+		"enterCountry": "Masukkan negara Anda",
+		"selectMethod": "Pilih metode perhitungan",
+		"selectSchool": "Pilih mazhab Ashar",
+		"timezonePref": "Preferensi zona waktu",
+		"complete": "Pengaturan selesai."
+	},
+	"notification": {
+		"seharReminder": "Pengingat Sahur",
+		"seharIn": "Sahur dalam {{minutes}} menit",
+		"iftarReminder": "Pengingat Buka Puasa",
+		"iftarIn": "Buka puasa dalam {{minutes}} menit"
+	},
+	"error": {
+		"locationFailed": "Tidak dapat mendeteksi lokasi. Masukkan kota seperti `ramadan-cli-pro \"Jakarta\"`.",
+		"invalidDate": "Tanggal puasa pertama tidak valid. Gunakan YYYY-MM-DD.",
+		"flagConflict": "Gunakan --all atau --number, bukan keduanya."
+	}
+}
