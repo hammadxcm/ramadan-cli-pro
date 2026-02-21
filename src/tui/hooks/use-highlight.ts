@@ -4,7 +4,7 @@
  * (current phase and countdown) every 60 seconds.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DateService } from "../../services/date.service.js";
 import { HighlightService } from "../../services/highlight.service.js";
 import { TimeFormatService } from "../../services/time-format.service.js";
@@ -20,12 +20,14 @@ import type { HighlightState } from "../../types/ramadan.js";
 export const useHighlight = (day: PrayerData | null): HighlightState | null => {
 	const [highlight, setHighlight] = useState<HighlightState | null>(null);
 
-	useEffect(() => {
-		if (!day) return;
-
+	const highlightService = useMemo(() => {
 		const dateService = new DateService();
 		const timeFormatService = new TimeFormatService();
-		const highlightService = new HighlightService(dateService, timeFormatService);
+		return new HighlightService(dateService, timeFormatService);
+	}, []);
+
+	useEffect(() => {
+		if (!day) return;
 
 		const update = () => {
 			setHighlight(highlightService.getHighlightState(day));
@@ -34,7 +36,7 @@ export const useHighlight = (day: PrayerData | null): HighlightState | null => {
 		update();
 		const interval = setInterval(update, 60_000);
 		return () => clearInterval(interval);
-	}, [day]);
+	}, [day, highlightService]);
 
 	return highlight;
 };
