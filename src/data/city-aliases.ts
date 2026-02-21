@@ -9,21 +9,84 @@
  * @readonly
  */
 const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
+	// Americas
 	sf: "San Francisco",
 	nyc: "New York",
 	la: "Los Angeles",
 	dc: "Washington",
 	chi: "Chicago",
+	tor: "Toronto",
+	hou: "Houston",
+	det: "Detroit",
+
+	// South Asia
 	lhr: "Lahore",
 	isb: "Islamabad",
 	khi: "Karachi",
+	mum: "Mumbai",
+	del: "Delhi",
+	dhk: "Dhaka",
+	cmb: "Colombo",
+	hyd: "Hyderabad",
+
+	// Middle East
 	dxb: "Dubai",
 	jed: "Jeddah",
+	ruh: "Riyadh",
+	mak: "Makkah, Saudi Arabia",
+	makkah: "Makkah, Saudi Arabia",
+	mecca: "Makkah, Saudi Arabia",
+	mad: "Madinah, Saudi Arabia",
+	madinah: "Madinah, Saudi Arabia",
+	medina: "Madinah, Saudi Arabia",
+	doh: "Doha",
+	kwt: "Kuwait City",
+	mus: "Muscat",
+	amm: "Amman",
+	bgd: "Baghdad",
+	bei: "Beirut",
+	dam: "Damascus",
+
+	// Turkey
 	ist: "Istanbul",
+
+	// North Africa
 	cai: "Cairo",
+	tun: "Tunis",
+	alg: "Algiers",
+	cas: "Casablanca",
+	rab: "Rabat",
+	tri: "Tripoli",
+
+	// Sub-Saharan Africa
+	lag: "Lagos",
+	abj: "Abuja",
+	nbo: "Nairobi",
+	dar: "Dar es Salaam",
+	mgq: "Mogadishu",
+
+	// Europe
+	lon: "London",
+	par: "Paris",
+	ber: "Berlin",
+	ams: "Amsterdam",
+	bru: "Brussels",
+	osl: "Oslo",
+	sto: "Stockholm",
+
+	// Southeast Asia
 	kul: "Kuala Lumpur",
 	jkt: "Jakarta",
-	lon: "London",
+	sg: "Singapore",
+
+	// Central Asia
+	tsh: "Tashkent",
+	ala: "Almaty",
+	bak: "Baku",
+
+	// Oceania
+	syd: "Sydney",
+	mel: "Melbourne",
 };
 
 /**
