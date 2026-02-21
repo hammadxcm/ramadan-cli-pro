@@ -18,6 +18,6 @@
 		"lineWidth": 100
 	},
 	"files": {
-		"ignore": ["dist", "node_modules", "*.json"]
+		"ignore": ["dist", "node_modules", "coverage", "*.json"]
 	}
 }
