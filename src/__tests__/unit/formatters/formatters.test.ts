@@ -98,4 +98,18 @@ describe("FormatterFactory", () => {
 		const formatter = factory.select({});
 		expect(formatter.name).toBe("table");
 	});
+
+	it("falls back to table formatter when get() receives an unknown name", () => {
+		const factory = new FormatterFactory();
+		const formatter = factory.get("nonexistent-formatter");
+		expect(formatter.name).toBe("table");
+	});
+
+	it("returns the correct formatter when get() receives a known name", () => {
+		const factory = new FormatterFactory();
+		expect(factory.get("json").name).toBe("json");
+		expect(factory.get("plain").name).toBe("plain");
+		expect(factory.get("status-line").name).toBe("status-line");
+		expect(factory.get("table").name).toBe("table");
+	});
 });
