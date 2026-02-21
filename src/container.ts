@@ -7,9 +7,12 @@
 import { CommandFactory } from "./commands/command.factory.js";
 import { ConfigCommand } from "./commands/config.command.js";
 import { DashboardCommand } from "./commands/dashboard.command.js";
+import { DuaCommand } from "./commands/dua.command.js";
 import { NotifyCommand } from "./commands/notify.command.js";
+import { QiblaCommand } from "./commands/qibla.command.js";
 import { RamadanCommand } from "./commands/ramadan.command.js";
 import { ResetCommand } from "./commands/reset.command.js";
+import { TrackCommand } from "./commands/track.command.js";
 import { FormatterFactory } from "./formatters/formatter.factory.js";
 import { GeoProviderFactory } from "./providers/geo/geo-provider.factory.js";
 import { IpApiProvider } from "./providers/geo/ip-api.provider.js";
@@ -143,12 +146,18 @@ export function createContainer(options?: {
 	const resetCommand = new ResetCommand(configRepository);
 	const dashboardCommand = new DashboardCommand();
 	const notifyCommand = new NotifyCommand(notificationService);
+	const qiblaCommand = new QiblaCommand(locationService, prayerApiRepository);
+	const duaCommand = new DuaCommand();
+	const trackCommand = new TrackCommand(configRepository);
 	const commandFactory = new CommandFactory(
 		ramadanCommand,
 		configCommand,
 		resetCommand,
 		dashboardCommand,
 		notifyCommand,
+		qiblaCommand,
+		duaCommand,
+		trackCommand,
 	);
 
 	return {
