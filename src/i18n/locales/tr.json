@@ -19,10 +19,41 @@
 		"iftarTime": "iftar vakti",
 		"nextDaySehar": "Ertesi gun Sahur"
 	},
+	"mode": {
+		"today": "Bugunun Sahur/iftar",
+		"all": "Ramazan {{year}} (Tum Gunler)",
+		"number": "Oruc {{roza}} Sahur/iftar"
+	},
+	"highlight": {
+		"status": "Durum:",
+		"upNext": "Siradaki:",
+		"in": "icinde"
+	},
+	"footer": {
+		"note": "Sahur, Fecir vaktini kullanir. iftar, Aksam vaktini kullanir.",
+		"credits": "Aladhan API ile guclendirilmistir"
+	},
+	"setup": {
+		"title": "Ramazan CLI Pro Kurulum",
+		"detecting": "Konumunuz tespit ediliyor...",
+		"detected": "Tespit edildi: {{city}}, {{country}}",
+		"notDetected": "Konum tespit edilemedi",
+		"enterCity": "Sehrinizi girin",
+		"enterCountry": "Ulkenizi girin",
+		"selectMethod": "Hesaplama yontemini secin",
+		"selectSchool": "Ikindi mezhebini secin",
+		"timezonePref": "Saat dilimi tercihi",
+		"complete": "Kurulum tamamlandi."
+	},
 	"notification": {
 		"seharReminder": "Sahur Hatirlatmasi",
 		"seharIn": "Sahur {{minutes}} dakika icinde",
 		"iftarReminder": "iftar Hatirlatmasi",
 		"iftarIn": "iftar {{minutes}} dakika icinde"
+	},
+	"error": {
+		"locationFailed": "Konum tespit edilemedi. Sehir girin: `ramadan-cli-pro \"Istanbul\"`.",
+		"invalidDate": "Gecersiz ilk oruc tarihi. YYYY-MM-DD kullanin.",
+		"flagConflict": "--all veya --number kullanin, ikisini birden degil."
 	}
 }
