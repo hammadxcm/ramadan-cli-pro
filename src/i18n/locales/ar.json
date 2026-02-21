@@ -24,10 +24,36 @@
 		"all": "رمضان {{year}} (جميع الأيام)",
 		"number": "صوم {{roza}} سحور/إفطار"
 	},
+	"highlight": {
+		"status": "الحالة:",
+		"upNext": "التالي:",
+		"in": "في"
+	},
+	"footer": {
+		"note": "السحور يستخدم وقت الفجر. الإفطار يستخدم وقت المغرب.",
+		"credits": "مدعوم من Aladhan API"
+	},
+	"setup": {
+		"title": "إعداد رمضان CLI برو",
+		"detecting": "جاري تحديد موقعك...",
+		"detected": "تم الكشف: {{city}}، {{country}}",
+		"notDetected": "تعذر تحديد الموقع",
+		"enterCity": "أدخل مدينتك",
+		"enterCountry": "أدخل بلدك",
+		"selectMethod": "اختر طريقة الحساب",
+		"selectSchool": "اختر المذهب لصلاة العصر",
+		"timezonePref": "تفضيل المنطقة الزمنية",
+		"complete": "اكتمل الإعداد."
+	},
 	"notification": {
 		"seharReminder": "تذكير السحور",
 		"seharIn": "السحور بعد {{minutes}} دقيقة",
 		"iftarReminder": "تذكير الإفطار",
 		"iftarIn": "الإفطار بعد {{minutes}} دقيقة"
+	},
+	"error": {
+		"locationFailed": "تعذر تحديد الموقع. أدخل مدينة مثل `ramadan-cli-pro \"القاهرة\"`.",
+		"invalidDate": "تاريخ أول صوم غير صالح. استخدم YYYY-MM-DD.",
+		"flagConflict": "استخدم إما --all أو --number، وليس كليهما."
 	}
 }
