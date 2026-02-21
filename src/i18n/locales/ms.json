@@ -19,10 +19,41 @@
 		"iftarTime": "Waktu berbuka",
 		"nextDaySehar": "Sahur esok"
 	},
+	"mode": {
+		"today": "Sahur/Berbuka Hari Ini",
+		"all": "Ramadan {{year}} (Semua Hari)",
+		"number": "Puasa {{roza}} Sahur/Berbuka"
+	},
+	"highlight": {
+		"status": "Status:",
+		"upNext": "Seterusnya:",
+		"in": "dalam"
+	},
+	"footer": {
+		"note": "Sahur menggunakan waktu Subuh. Berbuka menggunakan waktu Maghrib.",
+		"credits": "Dikuasakan oleh Aladhan API"
+	},
+	"setup": {
+		"title": "Persediaan Ramadan CLI Pro",
+		"detecting": "Mengesan lokasi anda...",
+		"detected": "Dikesan: {{city}}, {{country}}",
+		"notDetected": "Tidak dapat mengesan lokasi",
+		"enterCity": "Masukkan bandar anda",
+		"enterCountry": "Masukkan negara anda",
+		"selectMethod": "Pilih kaedah pengiraan",
+		"selectSchool": "Pilih mazhab Asar",
+		"timezonePref": "Keutamaan zon waktu",
+		"complete": "Persediaan selesai."
+	},
 	"notification": {
 		"seharReminder": "Peringatan Sahur",
 		"seharIn": "Sahur dalam {{minutes}} minit",
 		"iftarReminder": "Peringatan Berbuka",
 		"iftarIn": "Berbuka dalam {{minutes}} minit"
+	},
+	"error": {
+		"locationFailed": "Tidak dapat mengesan lokasi. Masukkan bandar seperti `ramadan-cli-pro \"Kuala Lumpur\"`.",
+		"invalidDate": "Tarikh puasa pertama tidak sah. Gunakan YYYY-MM-DD.",
+		"flagConflict": "Gunakan sama ada --all atau --number, bukan kedua-duanya."
 	}
 }
