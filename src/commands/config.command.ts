@@ -4,8 +4,9 @@
  * persisted settings (location, method, school, timezone).
  */
 
+import { readFileSync } from "node:fs";
 import pc from "picocolors";
-import type { z } from "zod";
+import { type z, z as zod } from "zod";
 import type { ConfigRepository } from "../repositories/config.repository.js";
 import {
 	LatitudeSchema,
@@ -13,6 +14,16 @@ import {
 	MethodSchema,
 	SchoolSchema,
 } from "../schemas/config.schema.js";
+
+const ImportConfigSchema = zod.object({
+	city: zod.string().optional(),
+	country: zod.string().optional(),
+	latitude: LatitudeSchema.optional(),
+	longitude: LongitudeSchema.optional(),
+	method: MethodSchema.optional(),
+	school: SchoolSchema.optional(),
+	timezone: zod.string().optional(),
+});
 
 /**
  * Options parsed from `ramadan-cli-pro config` flags.
@@ -27,6 +38,8 @@ export interface ConfigCommandOptions {
 	readonly timezone?: string | undefined;
 	readonly show?: boolean | undefined;
 	readonly clear?: boolean | undefined;
+	readonly export?: boolean | undefined;
+	readonly import?: string | undefined;
 }
 
 interface ParsedConfigUpdates {
@@ -78,6 +91,16 @@ export class ConfigCommand {
 		if (options.clear) {
 			this.configRepository.clearAll();
 			console.log(pc.green("Configuration cleared."));
+			return;
+		}
+
+		if (options.export) {
+			this.exportConfig();
+			return;
+		}
+
+		if (options.import) {
+			this.importConfig(options.import);
 			return;
 		}
 
@@ -142,6 +165,61 @@ export class ConfigCommand {
 				options.school !== undefined ||
 				options.timezone,
 		);
+	}
+
+	private exportConfig(): void {
+		const location = this.configRepository.getStoredLocation();
+		const settings = this.configRepository.getStoredPrayerSettings();
+		const exported = {
+			...(location.city ? { city: location.city } : {}),
+			...(location.country ? { country: location.country } : {}),
+			...(location.latitude !== undefined ? { latitude: location.latitude } : {}),
+			...(location.longitude !== undefined ? { longitude: location.longitude } : {}),
+			method: settings.method,
+			school: settings.school,
+			...(settings.timezone ? { timezone: settings.timezone } : {}),
+		};
+		console.log(JSON.stringify(exported, null, 2));
+	}
+
+	private importConfig(filePath: string): void {
+		let raw: string;
+		try {
+			raw = readFileSync(filePath, "utf-8");
+		} catch {
+			console.error(pc.red(`Could not read file: ${filePath}`));
+			process.exit(1);
+		}
+
+		let parsed: unknown;
+		try {
+			parsed = JSON.parse(raw);
+		} catch {
+			console.error(pc.red("Invalid JSON in config file."));
+			process.exit(1);
+		}
+
+		const result = ImportConfigSchema.safeParse(parsed);
+		if (!result.success) {
+			console.error(pc.red("Invalid config format:"));
+			for (const issue of result.error.issues) {
+				console.error(pc.dim(`  ${issue.path.join(".")}: ${issue.message}`));
+			}
+			process.exit(1);
+		}
+
+		const data = result.data;
+		this.configRepository.setStoredLocation({
+			city: data.city,
+			country: data.country,
+			latitude: data.latitude,
+			longitude: data.longitude,
+		});
+		if (data.method !== undefined) this.configRepository.setStoredMethod(data.method);
+		if (data.school !== undefined) this.configRepository.setStoredSchool(data.school);
+		if (data.timezone) this.configRepository.setStoredTimezone(data.timezone);
+
+		console.log(pc.green("Configuration imported successfully."));
 	}
 
 	private printCurrentConfig(): void {
