@@ -1,0 +1,59 @@
+{
+	"app": {
+		"name": "রমজান CLI প্রো",
+		"tagline": "সেহরি, ইফতার ও রমজানের সময়সূচী"
+	},
+	"table": {
+		"roza": "রোজা",
+		"sehar": "সেহরি",
+		"iftar": "ইফতার",
+		"date": "তারিখ",
+		"hijri": "হিজরি"
+	},
+	"status": {
+		"beforeRozaDay": "রোজার দিনের আগে",
+		"firstSehar": "প্রথম সেহরি",
+		"seharWindowOpen": "সেহরির সময় চলছে",
+		"rozaStartsFajr": "রোজা শুরু (ফজর)",
+		"rozaInProgress": "রোজা চলছে",
+		"iftarTime": "ইফতারের সময়",
+		"nextDaySehar": "পরের দিনের সেহরি"
+	},
+	"mode": {
+		"today": "আজকের সেহরি/ইফতার",
+		"all": "রমজান {{year}} (সব দিন)",
+		"number": "রোজা {{roza}} সেহরি/ইফতার"
+	},
+	"highlight": {
+		"status": "অবস্থা:",
+		"upNext": "পরবর্তী:",
+		"in": "এ"
+	},
+	"footer": {
+		"note": "সেহরি ফজরের সময় ব্যবহার করে। ইফতার মাগরিবের সময় ব্যবহার করে।",
+		"credits": "Aladhan API দ্বারা চালিত"
+	},
+	"setup": {
+		"title": "রমজান CLI প্রো সেটআপ",
+		"detecting": "আপনার অবস্থান সনাক্ত করা হচ্ছে...",
+		"detected": "সনাক্ত হয়েছে: {{city}}, {{country}}",
+		"notDetected": "অবস্থান সনাক্ত করা যায়নি",
+		"enterCity": "আপনার শহর লিখুন",
+		"enterCountry": "আপনার দেশ লিখুন",
+		"selectMethod": "গণনা পদ্ধতি নির্বাচন করুন",
+		"selectSchool": "আসরের মাযহাব নির্বাচন করুন",
+		"timezonePref": "টাইমজোন পছন্দ",
+		"complete": "সেটআপ সম্পন্ন।"
+	},
+	"notification": {
+		"seharReminder": "সেহরির অনুস্মারক",
+		"seharIn": "সেহরি {{minutes}} মিনিটে",
+		"iftarReminder": "ইফতারের অনুস্মারক",
+		"iftarIn": "ইফতার {{minutes}} মিনিটে"
+	},
+	"error": {
+		"locationFailed": "অবস্থান সনাক্ত করা যায়নি। একটি শহর দিন যেমন `ramadan-cli-pro \"ঢাকা\"`।",
+		"invalidDate": "প্রথম রোজার তারিখ অবৈধ। YYYY-MM-DD ব্যবহার করুন।",
+		"flagConflict": "--all অথবা --number ব্যবহার করুন, দুটি একসাথে নয়।"
+	}
+}
