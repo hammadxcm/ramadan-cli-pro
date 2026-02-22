@@ -138,8 +138,14 @@ describe("LocationService + ConfigRepository + GeoProviders", () => {
 		);
 	});
 
-	it("resolves city,country format without geocoding", async () => {
-		const geocoding = createMockGeocodingProvider();
+	it("geocodes city,country format to obtain coordinates", async () => {
+		const geocoding = createMockGeocodingProvider({
+			city: "Lahore",
+			country: "Pakistan",
+			latitude: 31.5204,
+			longitude: 74.3587,
+			timezone: "Asia/Karachi",
+		});
 		const geoFactory = new GeoProviderFactory([]);
 		const service = new LocationService(
 			mockConfigRepo as unknown as ConfigRepository,
@@ -152,8 +158,10 @@ describe("LocationService + ConfigRepository + GeoProviders", () => {
 			allowInteractiveSetup: false,
 		});
 
-		expect(geocoding.search).not.toHaveBeenCalled();
+		expect(geocoding.search).toHaveBeenCalledWith("Lahore, Pakistan");
 		expect(query.city).toBe("Lahore");
 		expect(query.country).toBe("Pakistan");
+		expect(query.latitude).toBe(31.5204);
+		expect(query.longitude).toBe(74.3587);
 	});
 });
