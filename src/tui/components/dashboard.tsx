@@ -13,6 +13,7 @@ import { Footer } from "./footer.js";
 import { Header } from "./header.js";
 import { LoadingSpinner } from "./loading-spinner.js";
 import { PrayerTimesTable } from "./prayer-times-table.js";
+import { ProgressBar } from "./progress-bar.js";
 
 /**
  * Main dashboard layout component. Shows a loading spinner, error display,
@@ -34,11 +35,18 @@ export const Dashboard: React.FC = () => {
 		? `${data.date.hijri.day} ${data.date.hijri.month.en} ${data.date.hijri.year}`
 		: undefined;
 
+	const isRamadan = data?.date.hijri.month.number === 9;
+	const ramadanDay = isRamadan ? Number.parseInt(data.date.hijri.day, 10) : 0;
+	const ramadanProgress = isRamadan ? Math.round((ramadanDay / 30) * 100) : 0;
+
 	return (
 		<Box flexDirection="column">
 			<Header location={location} hijriDate={hijriDate} />
 			<PrayerTimesTable timings={data?.timings ?? null} />
 			<CountdownTimer highlight={highlight} />
+			{isRamadan && (
+				<ProgressBar percent={ramadanProgress} label={`Ramadan Day ${ramadanDay}/30`} />
+			)}
 			<Footer />
 		</Box>
 	);

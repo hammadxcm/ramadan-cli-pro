@@ -4,7 +4,7 @@
  * loading/error state.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PrayerData } from "../../types/prayer.js";
 
 interface UsePrayerTimesState {
@@ -15,6 +15,7 @@ interface UsePrayerTimesState {
 
 /**
  * Fetches prayer data on mount using the provided async function.
+ * Uses a ref to stabilize the fetchFn reference and prevent infinite re-renders.
  *
  * @param fetchFn - Async function that returns prayer data.
  * @returns An object with `data`, `loading`, and `error` state.
@@ -26,10 +27,14 @@ export const usePrayerTimes = (fetchFn: () => Promise<PrayerData>): UsePrayerTim
 		error: null,
 	});
 
+	const fetchRef = useRef(fetchFn);
+	fetchRef.current = fetchFn;
+
 	useEffect(() => {
 		let cancelled = false;
 
-		fetchFn()
+		fetchRef
+			.current()
 			.then((data) => {
 				if (!cancelled) {
 					setState({ data, loading: false, error: null });
@@ -48,7 +53,7 @@ export const usePrayerTimes = (fetchFn: () => Promise<PrayerData>): UsePrayerTim
 		return () => {
 			cancelled = true;
 		};
-	}, [fetchFn]);
+	}, []);
 
 	return state;
 };

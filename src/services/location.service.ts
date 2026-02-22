@@ -50,7 +50,7 @@ export class LocationService {
 			return null;
 		}
 
-		const city = normalizeCityAlias(parts[0] ?? "");
+		const city = (parts[0] ?? "").trim();
 		if (!city) {
 			return null;
 		}
@@ -142,13 +142,16 @@ export class LocationService {
 		const normalizedInput = normalizeCityAlias(city);
 		const parsed = this.parseCityCountry(normalizedInput);
 		if (parsed) {
+			const geocoded = await this.geocodingProvider.search(`${parsed.city}, ${parsed.country}`);
 			return this.withCountryAwareSettings(
 				{
 					address: `${parsed.city}, ${parsed.country}`,
 					city: parsed.city,
 					country: parsed.country,
+					...(geocoded ? { latitude: geocoded.latitude, longitude: geocoded.longitude } : {}),
 				},
 				parsed.country,
+				geocoded?.timezone,
 			);
 		}
 

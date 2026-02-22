@@ -1,0 +1,59 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Horaires du Suhoor, Iftar et Ramadan"
+	},
+	"table": {
+		"roza": "Jeune",
+		"sehar": "Suhoor",
+		"iftar": "Iftar",
+		"date": "Date",
+		"hijri": "Hijri"
+	},
+	"status": {
+		"beforeRozaDay": "Avant le jour de jeune",
+		"firstSehar": "Premier Suhoor",
+		"seharWindowOpen": "Fenetre du Suhoor ouverte",
+		"rozaStartsFajr": "Jeune commence (Fajr)",
+		"rozaInProgress": "Jeune en cours",
+		"iftarTime": "Heure de l'Iftar",
+		"nextDaySehar": "Suhoor du lendemain"
+	},
+	"mode": {
+		"today": "Suhoor/Iftar du jour",
+		"all": "Ramadan {{year}} (Tous les jours)",
+		"number": "Jeune {{roza}} Suhoor/Iftar"
+	},
+	"highlight": {
+		"status": "Statut :",
+		"upNext": "Suivant :",
+		"in": "dans"
+	},
+	"footer": {
+		"note": "Le Suhoor utilise l'heure du Fajr. L'Iftar utilise l'heure du Maghrib.",
+		"credits": "Propulse par Aladhan API"
+	},
+	"setup": {
+		"title": "Configuration Ramadan CLI Pro",
+		"detecting": "Detection de votre emplacement...",
+		"detected": "Detecte : {{city}}, {{country}}",
+		"notDetected": "Impossible de detecter l'emplacement",
+		"enterCity": "Entrez votre ville",
+		"enterCountry": "Entrez votre pays",
+		"selectMethod": "Selectionnez la methode de calcul",
+		"selectSchool": "Selectionnez l'ecole pour Asr",
+		"timezonePref": "Preference de fuseau horaire",
+		"complete": "Configuration terminee."
+	},
+	"notification": {
+		"seharReminder": "Rappel du Suhoor",
+		"seharIn": "Suhoor dans {{minutes}} minutes",
+		"iftarReminder": "Rappel de l'Iftar",
+		"iftarIn": "Iftar dans {{minutes}} minutes"
+	},
+	"error": {
+		"locationFailed": "Impossible de detecter l'emplacement. Passez une ville comme `ramadan-cli-pro \"Paris\"`.",
+		"invalidDate": "Date du premier jeune invalide. Utilisez YYYY-MM-DD.",
+		"flagConflict": "Utilisez soit --all soit --number, pas les deux."
+	}
+}

@@ -6,6 +6,8 @@
 
 import { createRequire } from "node:module";
 import { InvalidArgumentError, program } from "commander";
+import updateNotifier from "update-notifier";
+import { generateCompletion } from "./commands/completion.command.js";
 import type { ConfigCommandOptions } from "./commands/config.command.js";
 import type { NotifyCommandOptions } from "./commands/notify.command.js";
 import { createContainer } from "./container.js";
@@ -27,7 +29,9 @@ interface RootOptions {
 }
 
 const require = createRequire(import.meta.url);
-const pkg = require("../package.json") as { readonly version: string };
+const pkg = require("../package.json") as { readonly name: string; readonly version: string };
+
+updateNotifier({ pkg }).notify();
 
 /**
  * Commander argument parser for the `--number` flag.
@@ -62,7 +66,7 @@ program
 	.option("-j, --json", "JSON output")
 	.option("-s, --status", "Status line output (next event only, for status bars)")
 	.option("-t, --tui", "Launch TUI dashboard")
-	.option("-l, --locale <locale>", "Language (en, ar, ur, tr, ms)")
+	.option("-l, --locale <locale>", "Language (en, ar, ur, tr, ms, bn, fr, id)")
 	.option("--first-roza-date <YYYY-MM-DD>", "Set and use a custom first roza date")
 	.option("--clear-first-roza-date", "Clear custom first roza date and use API Ramadan date")
 	.action(async (cityArg: string | undefined, opts: RootOptions) => {
@@ -107,6 +111,8 @@ program
 	.option("--timezone <timezone>", "Save timezone (e.g., America/Los_Angeles)")
 	.option("--show", "Show current configuration")
 	.option("--clear", "Clear saved configuration")
+	.option("--export", "Export configuration as JSON to stdout")
+	.option("--import <file>", "Import configuration from a JSON file")
 	.action(async (opts: ConfigCommandOptions) => {
 		await container.commandFactory.config.execute(opts);
 	});
@@ -135,5 +141,64 @@ program
 	.action(async (opts: NotifyCommandOptions) => {
 		await container.commandFactory.notify.execute(opts);
 	});
+
+program
+	.command("qibla")
+	.description("Show Qibla direction for your location")
+	.argument("[city]", "City name or alias")
+	.action(async (city: string | undefined) => {
+		await container.commandFactory.qibla.execute({ city });
+	});
+
+program
+	.command("dua")
+	.description("Show the dua of the day for Ramadan")
+	.option("-d, --day <number>", "Show dua for a specific day (1-30)", (v: string) => {
+		const n = Number.parseInt(v, 10);
+		if (Number.isNaN(n) || n < 1 || n > 30) {
+			throw new InvalidArgumentError("Day number must be between 1 and 30.");
+		}
+		return n;
+	})
+	.action(async (opts: { day?: number }) => {
+		await container.commandFactory.dua.execute({ dayNumber: opts.day });
+	});
+
+program
+	.command("track")
+	.description("Track daily prayer completion")
+	.option("--show", "Show today's prayer tracking status")
+	.option("--date <YYYY-MM-DD>", "Track for a specific date")
+	.argument("[prayer]", "Prayer to mark as complete (fajr, dhuhr, asr, maghrib, isha)")
+	.action(async (prayer: string | undefined, opts: { show?: boolean; date?: string }) => {
+		await container.commandFactory.track.execute({
+			prayer: prayer as "fajr" | "dhuhr" | "asr" | "maghrib" | "isha" | undefined,
+			show: opts.show,
+			date: opts.date,
+		});
+	});
+
+program
+	.command("completion")
+	.description("Output shell completion script")
+	.argument("<shell>", "Shell type (bash, zsh, fish)")
+	.action((shell: string) => {
+		generateCompletion(shell);
+	});
+
+program
+	.command("profile")
+	.description("Manage location profiles")
+	.argument("<action>", "Action (add, use, list, delete)")
+	.argument("[name]", "Profile name")
+	.option("--city <city>", "City for the profile")
+	.option("--country <country>", "Country for the profile")
+	.action(
+		async (action: string, name: string | undefined, opts: { city?: string; country?: string }) => {
+			const { ProfileCommand } = await import("./commands/profile.command.js");
+			const cmd = new ProfileCommand(container.configRepository);
+			await cmd.execute({ action: action as "add" | "use" | "list" | "delete", name, ...opts });
+		},
+	);
 
 program.parse();
