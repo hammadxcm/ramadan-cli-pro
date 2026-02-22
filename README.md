@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+i18n+%7C+Notifications;15+City+Aliases+%7C+24+Calc+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+Qibla+%7C+Duas+%7C+Tracking;50%2B+City+Aliases+%7C+8+Languages+%7C+24+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
   </a>
 </p>
 
@@ -28,6 +28,11 @@
   - [Root Command](#root-command)
   - [Config](#config)
   - [Notify](#notify)
+  - [Qibla](#qibla)
+  - [Dua](#dua)
+  - [Track](#track)
+  - [Profile](#profile)
+  - [Completion](#completion)
   - [Reset](#reset)
   - [Dashboard](#dashboard)
 - [Output Formats](#output-formats)
@@ -40,27 +45,36 @@
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
 - [Contributing](#contributing)
+- [Changelog](#changelog)
 - [License](#license)
 - [Author](#author)
+- [Credits](#credits)
 
 ---
 
 ## Features
 
 - **Prayer Times** — Sehar & Iftar times for any city worldwide via the Aladhan API
-- **TUI Dashboard** — Interactive React/Ink terminal dashboard with live countdown
-- **15 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb` for quick lookups
+- **TUI Dashboard** — Interactive React/Ink terminal dashboard with live countdown and Ramadan progress bar
+- **Qibla Direction** — ASCII compass showing the direction to Makkah from your location
+- **Dua of the Day** — 30 daily Ramadan duas with Arabic text, transliteration, and English translation
+- **Prayer Tracking** — Mark daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) as complete
+- **Location Profiles** — Save and switch between multiple named location configurations
+- **53 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb`, `makkah` for quick lookups
 - **24 Calculation Methods** — Region-specific methods including ISNA, MWL, Umm al-Qura, and more
 - **2 Juristic Schools** — Shafi (standard) and Hanafi Asr calculation
-- **5 Languages** — English, Arabic, Urdu, Turkish, and Malay via i18next
+- **8 Languages** — English, Arabic, Urdu, Turkish, Malay, Bengali, French, and Indonesian
 - **4 Output Formats** — Table, JSON, plain text, and status-line for tmux/polybar
+- **Shell Completions** — Tab-completion scripts for Bash, Zsh, and Fish
 - **Desktop Notifications** — Native OS alerts for Sehar & Iftar via node-notifier
 - **Smart Geolocation** — Auto-detect location with 3 fallback geo-IP providers
-- **Persistent Config** — Save city, method, school, and timezone preferences
+- **Persistent Config** — Save city, method, school, and timezone preferences with export/import support
 - **File-based Caching** — Minimize API calls with intelligent TTL caching
 - **Hijri Dates** — Full Hijri calendar alongside Gregorian dates
 - **Custom Roza Date** — Override the first day of Ramadan manually
 - **First-Run Setup** — Interactive wizard for initial configuration
+- **Update Notifier** — Automatic notification when a new version is available on npm
+- **5 CLI Aliases** — Run as `ramadan-cli-pro`, `ramadan-pro`, `ramadan`, `ramzan`, or `roza`
 - **Zod Validated** — Runtime type safety with branded types throughout
 
 <details>
@@ -70,6 +84,7 @@
 - **PrayerTimesTable** — All 5 prayer times with Sehar/Iftar highlights
 - **CountdownTimer** — Live countdown to the next prayer event
 - **ProgressBar** — Visual progress through the fasting day
+- **Ramadan Progress** — Day X of 30 progress indicator
 - **StatusBadge** — Current fasting status indicator
 - **Footer** — Methodology and attribution info
 
@@ -92,13 +107,19 @@ npx ramadan-cli-pro
 
 ```bash
 # Show today's times (auto-detects your city)
-ramadan-pro
+ramadan
 
 # Show times for a specific city
-ramadan-pro sf
+ramadan sf
+
+# Show Qibla direction
+ramadan qibla
+
+# Show today's dua
+ramadan dua
 ```
 
-> **Tip:** `ramadan-pro` is a shorthand alias for `ramadan-cli-pro`.
+> **Tip:** You can use any of these aliases: `ramadan-cli-pro`, `ramadan-pro`, `ramadan`, `ramzan`, or `roza`.
 
 ---
 
@@ -107,7 +128,7 @@ ramadan-pro sf
 ### Root Command
 
 ```
-ramadan-cli-pro [city] [options]
+ramadan [city] [options]
 ```
 
 | Flag | Description |
@@ -119,7 +140,7 @@ ramadan-cli-pro [city] [options]
 | `-j, --json` | JSON output |
 | `-s, --status` | Status-line output (for status bars) |
 | `-t, --tui` | Launch TUI dashboard |
-| `-l, --locale <locale>` | Language: `en`, `ar`, `ur`, `tr`, `ms` |
+| `-l, --locale <locale>` | Language: `en`, `ar`, `ur`, `tr`, `ms`, `bn`, `fr`, `id` |
 | `--first-roza-date <YYYY-MM-DD>` | Set custom first roza date |
 | `--clear-first-roza-date` | Clear custom first roza date |
 | `-v, --version` | Show version |
@@ -128,25 +149,28 @@ ramadan-cli-pro [city] [options]
 
 ```bash
 # Today's Sehar & Iftar
-ramadan-pro
+ramadan
 
 # Full Ramadan schedule
-ramadan-pro --all
+ramadan --all
 
 # Specific roza day
-ramadan-pro --number 15
+ramadan --number 15
 
 # JSON output
-ramadan-pro --json
+ramadan --json
 
 # Status-line for tmux/polybar
-ramadan-pro --status
+ramadan --status
 
 # Launch TUI dashboard
-ramadan-pro --tui
+ramadan --tui
 
 # Arabic locale
-ramadan-pro --locale ar
+ramadan --locale ar
+
+# Bengali locale
+ramadan --locale bn
 ```
 
 ---
@@ -154,7 +178,7 @@ ramadan-pro --locale ar
 ### Config
 
 ```
-ramadan-cli-pro config [options]
+ramadan config [options]
 ```
 
 | Flag | Description |
@@ -168,24 +192,32 @@ ramadan-cli-pro config [options]
 | `--timezone <tz>` | Save timezone (e.g., `America/Los_Angeles`) |
 | `--show` | Show current configuration |
 | `--clear` | Clear all saved configuration |
+| `--export` | Export configuration as JSON to stdout |
+| `--import <file>` | Import configuration from a JSON file |
 
 **Examples:**
 
 ```bash
 # Save city and country
-ramadan-pro config --city "San Francisco" --country US
+ramadan config --city "San Francisco" --country US
 
 # Save calculation method and school
-ramadan-pro config --method 2 --school 1
+ramadan config --method 2 --school 1
 
 # Save exact coordinates and timezone
-ramadan-pro config --latitude 37.7749 --longitude -122.4194 --timezone America/Los_Angeles
+ramadan config --latitude 37.7749 --longitude -122.4194 --timezone America/Los_Angeles
 
 # Show current config
-ramadan-pro config --show
+ramadan config --show
+
+# Export config to a file
+ramadan config --export > my-config.json
+
+# Import config from a file
+ramadan config --import my-config.json
 
 # Clear all config
-ramadan-pro config --clear
+ramadan config --clear
 ```
 
 ---
@@ -193,7 +225,7 @@ ramadan-pro config --clear
 ### Notify
 
 ```
-ramadan-cli-pro notify [options]
+ramadan notify [options]
 ```
 
 | Flag | Description |
@@ -208,22 +240,156 @@ ramadan-cli-pro notify [options]
 
 ```bash
 # Enable notifications
-ramadan-pro notify --enable
-
-# Disable notifications
-ramadan-pro notify --disable
-
-# Toggle Sehar reminder
-ramadan-pro notify --sehar
-
-# Toggle Iftar reminder
-ramadan-pro notify --iftar
+ramadan notify --enable
 
 # Set reminder to 10 minutes before
-ramadan-pro notify --minutes 10
+ramadan notify --minutes 10
 
 # Enable with custom timing
-ramadan-pro notify --enable --minutes 30
+ramadan notify --enable --minutes 30
+```
+
+---
+
+### Qibla
+
+```
+ramadan qibla [city]
+```
+
+Shows the Qibla direction (direction to Makkah) with an ASCII compass and bearing in degrees.
+
+**Examples:**
+
+```bash
+# Qibla direction for saved/detected location
+ramadan qibla
+
+# Qibla direction for a specific city
+ramadan qibla lhr
+
+# Using full city name
+ramadan qibla "New York"
+```
+
+---
+
+### Dua
+
+```
+ramadan dua [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `-d, --day <number>` | Show dua for a specific day (1-30) |
+
+Displays the Ramadan dua of the day with Arabic text, transliteration, and English translation.
+
+**Examples:**
+
+```bash
+# Today's dua
+ramadan dua
+
+# Dua for a specific day
+ramadan dua --day 15
+
+# Short flag
+ramadan dua -d 27
+```
+
+---
+
+### Track
+
+```
+ramadan track [prayer] [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--show` | Show today's prayer tracking status |
+| `--date <YYYY-MM-DD>` | Track for a specific date |
+
+Track daily prayer completion. Prayers: `fajr`, `dhuhr`, `asr`, `maghrib`, `isha`.
+
+**Examples:**
+
+```bash
+# Mark Fajr as complete
+ramadan track fajr
+
+# Mark Maghrib as complete
+ramadan track maghrib
+
+# Show today's tracking status
+ramadan track --show
+
+# Track for a specific date
+ramadan track fajr --date 2026-03-01
+```
+
+---
+
+### Profile
+
+```
+ramadan profile <action> [name] [options]
+```
+
+| Action | Description |
+|--------|-------------|
+| `add` | Create a new location profile |
+| `use` | Switch to a saved profile |
+| `list` | List all saved profiles |
+| `delete` | Delete a saved profile |
+
+| Flag | Description |
+|------|-------------|
+| `--city <city>` | City for the profile |
+| `--country <country>` | Country for the profile |
+
+**Examples:**
+
+```bash
+# Add a profile
+ramadan profile add home --city Lahore --country Pakistan
+
+# Add another profile
+ramadan profile add work --city "San Francisco" --country US
+
+# Switch profiles
+ramadan profile use home
+
+# List all profiles
+ramadan profile list
+
+# Delete a profile
+ramadan profile delete work
+```
+
+---
+
+### Completion
+
+```
+ramadan completion <shell>
+```
+
+Generate shell completion scripts for tab-completion of commands, flags, and city aliases.
+
+**Examples:**
+
+```bash
+# Bash
+ramadan completion bash >> ~/.bashrc
+
+# Zsh
+ramadan completion zsh >> ~/.zshrc
+
+# Fish
+ramadan completion fish > ~/.config/fish/completions/ramadan.fish
 ```
 
 ---
@@ -232,7 +398,7 @@ ramadan-pro notify --enable --minutes 30
 
 ```bash
 # Clear all saved configuration
-ramadan-cli-pro reset
+ramadan reset
 ```
 
 ---
@@ -241,10 +407,10 @@ ramadan-cli-pro reset
 
 ```bash
 # Launch interactive TUI dashboard
-ramadan-cli-pro dashboard
+ramadan dashboard
 
 # Or use the flag
-ramadan-pro --tui
+ramadan --tui
 ```
 
 ---
@@ -254,7 +420,7 @@ ramadan-pro --tui
 ### Table (default)
 
 ```bash
-ramadan-pro
+ramadan
 ```
 
 Displays a colored table with ASCII banner, prayer times (Roza, Sehar, Iftar, Date, Hijri), current status, and next event countdown.
@@ -262,7 +428,7 @@ Displays a colored table with ASCII banner, prayer times (Roza, Sehar, Iftar, Da
 ### JSON
 
 ```bash
-ramadan-pro --json
+ramadan --json
 ```
 
 ```json
@@ -287,7 +453,7 @@ ramadan-pro --json
 ### Plain
 
 ```bash
-ramadan-pro --plain
+ramadan --plain
 ```
 
 Text-only output with no colors or ASCII art — suitable for piping and scripting.
@@ -295,7 +461,7 @@ Text-only output with no colors or ASCII art — suitable for piping and scripti
 ### Status-line
 
 ```bash
-ramadan-pro --status
+ramadan --status
 ```
 
 ```
@@ -308,7 +474,10 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 
 ## City Aliases
 
-Use short codes instead of full city names:
+53 short codes covering major cities across 9 regions:
+
+<details>
+<summary><strong>Americas (8)</strong></summary>
 
 | Alias | City |
 |-------|------|
@@ -317,21 +486,128 @@ Use short codes instead of full city names:
 | `la` | Los Angeles |
 | `dc` | Washington |
 | `chi` | Chicago |
+| `tor` | Toronto |
+| `hou` | Houston |
+| `det` | Detroit |
+
+</details>
+
+<details>
+<summary><strong>South Asia (8)</strong></summary>
+
+| Alias | City |
+|-------|------|
 | `lhr` | Lahore |
 | `isb` | Islamabad |
 | `khi` | Karachi |
+| `mum` | Mumbai |
+| `del` | Delhi |
+| `dhk` | Dhaka |
+| `cmb` | Colombo |
+| `hyd` | Hyderabad |
+
+</details>
+
+<details>
+<summary><strong>Middle East (17)</strong></summary>
+
+| Alias | City |
+|-------|------|
 | `dxb` | Dubai |
 | `jed` | Jeddah |
+| `ruh` | Riyadh |
+| `mak` / `makkah` / `mecca` | Makkah |
+| `mad` / `madinah` / `medina` | Madinah |
+| `doh` | Doha |
+| `kwt` | Kuwait City |
+| `mus` | Muscat |
+| `amm` | Amman |
+| `bgd` | Baghdad |
+| `bei` | Beirut |
+| `dam` | Damascus |
 | `ist` | Istanbul |
+
+</details>
+
+<details>
+<summary><strong>North Africa (6)</strong></summary>
+
+| Alias | City |
+|-------|------|
 | `cai` | Cairo |
+| `tun` | Tunis |
+| `alg` | Algiers |
+| `cas` | Casablanca |
+| `rab` | Rabat |
+| `tri` | Tripoli |
+
+</details>
+
+<details>
+<summary><strong>Sub-Saharan Africa (5)</strong></summary>
+
+| Alias | City |
+|-------|------|
+| `lag` | Lagos |
+| `abj` | Abuja |
+| `nbo` | Nairobi |
+| `dar` | Dar es Salaam |
+| `mgq` | Mogadishu |
+
+</details>
+
+<details>
+<summary><strong>Europe (7)</strong></summary>
+
+| Alias | City |
+|-------|------|
+| `lon` | London |
+| `par` | Paris |
+| `ber` | Berlin |
+| `ams` | Amsterdam |
+| `bru` | Brussels |
+| `osl` | Oslo |
+| `sto` | Stockholm |
+
+</details>
+
+<details>
+<summary><strong>Southeast Asia (3)</strong></summary>
+
+| Alias | City |
+|-------|------|
 | `kul` | Kuala Lumpur |
 | `jkt` | Jakarta |
-| `lon` | London |
+| `sg` | Singapore |
+
+</details>
+
+<details>
+<summary><strong>Central Asia (3)</strong></summary>
+
+| Alias | City |
+|-------|------|
+| `tsh` | Tashkent |
+| `ala` | Almaty |
+| `bak` | Baku |
+
+</details>
+
+<details>
+<summary><strong>Oceania (2)</strong></summary>
+
+| Alias | City |
+|-------|------|
+| `syd` | Sydney |
+| `mel` | Melbourne |
+
+</details>
 
 ```bash
-ramadan-pro sf     # San Francisco
-ramadan-pro lhr    # Lahore
-ramadan-pro dxb    # Dubai
+ramadan sf       # San Francisco
+ramadan lhr      # Lahore
+ramadan makkah   # Makkah, Saudi Arabia
+ramadan ist      # Istanbul
 ```
 
 ---
@@ -351,6 +627,16 @@ All settings are persisted to your OS config directory via [`conf`](https://gith
 | School | `--school` | `--school 1` |
 
 **Defaults:** Method `2` (ISNA), School `0` (Shafi).
+
+**Export/Import:**
+
+```bash
+# Export your config
+ramadan config --export > my-settings.json
+
+# Import on another machine
+ramadan config --import my-settings.json
+```
 
 ---
 
@@ -376,19 +662,20 @@ An interactive terminal dashboard built with [React](https://react.dev) and [Ink
 - **Header** with location and Hijri date
 - **Prayer Times Table** with all 5 daily prayers
 - **Live Countdown** to the next Sehar or Iftar
+- **Ramadan Progress** showing day X of 30
 - **Progress Bar** showing fasting day progression
 - **Status Badges** for current fasting state
 
 ```bash
-ramadan-pro dashboard
-ramadan-pro --tui
+ramadan dashboard
+ramadan --tui
 ```
 
 ---
 
 ## Internationalization
 
-5 languages supported via [i18next](https://www.i18next.com):
+8 languages supported via [i18next](https://www.i18next.com):
 
 | Code | Language |
 |------|----------|
@@ -397,10 +684,15 @@ ramadan-pro --tui
 | `ur` | Urdu (اردو) |
 | `tr` | Turkish (Turkce) |
 | `ms` | Malay (Bahasa Melayu) |
+| `bn` | Bengali (বাংলা) |
+| `fr` | French (Francais) |
+| `id` | Indonesian (Bahasa Indonesia) |
 
 ```bash
-ramadan-pro --locale ur
-ramadan-pro --locale ar
+ramadan --locale ur
+ramadan --locale ar
+ramadan --locale bn
+ramadan --locale fr
 ```
 
 ---
@@ -408,7 +700,7 @@ ramadan-pro --locale ar
 ## Calculation Methods
 
 <details>
-<summary><strong>All 22 Calculation Methods (click to expand)</strong></summary>
+<summary><strong>All 24 Calculation Methods (click to expand)</strong></summary>
 
 | ID | Method |
 |----|--------|
@@ -446,7 +738,7 @@ ramadan-pro --locale ar
 | 1 | Hanafi |
 
 ```bash
-ramadan-pro config --method 4 --school 1
+ramadan config --method 4 --school 1
 ```
 
 ---
@@ -455,13 +747,15 @@ ramadan-pro config --method 4 --school 1
 
 - **DI Container** — Centralized dependency injection wiring all services
 - **Command Pattern** — Each CLI command implements `validate()` + `execute()`
-- **Formatter Strategy** — Pluggable output formatters (Table, JSON, Plain, Status-line)
+- **Formatter Strategy** — Pluggable output formatters (Table, JSON, Plain, Status-line, Qibla)
 - **3 Geo-IP Providers** — Fallback chain for automatic location detection
+- **Geocoding** — Open Meteo geocoding for city name resolution with timezone detection
 - **File-based Caching** — TTL-based cache to minimize API calls
 - **Zod Validation** — Runtime schema validation with branded types (`Latitude`, `Longitude`, `MethodId`, `SchoolId`, `RozaNumber`)
 - **React/Ink TUI** — Terminal UI components with hooks (`use-prayer-times`, `use-countdown`, `use-highlight`, `use-i18n`)
-- **i18next Integration** — Dynamic language switching with interpolation
+- **i18next Integration** — Dynamic language switching with 8 locales and interpolation
 - **Custom Error Hierarchy** — Typed errors with error codes for programmatic handling
+- **Country-Aware Defaults** — Automatic calculation method and school recommendations per country
 
 ---
 
@@ -512,6 +806,12 @@ pnpm check
 ```
 
 PRs are welcome! Please open an issue first to discuss what you'd like to change.
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a detailed list of changes in each release.
 
 ---
 
