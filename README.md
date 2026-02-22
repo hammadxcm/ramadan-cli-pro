@@ -533,6 +533,12 @@ PRs are welcome! Please open an issue first to discuss what you'd like to change
   </a>
 </p>
 
+---
+
+## Credits
+
+This project is inspired by [ramadan-cli](https://github.com/ahmadawais/ramadan-cli) by [@ahmadawais](https://github.com/ahmadawais).
+
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=2&height=120&section=footer" width="100%" alt="Footer" />
 </p>
