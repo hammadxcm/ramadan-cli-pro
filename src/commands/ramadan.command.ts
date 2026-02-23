@@ -7,6 +7,7 @@
 
 import type { Ora } from "ora";
 import type { AppError } from "../errors/base.error.js";
+import { CommandError } from "../errors/command.error.js";
 import type { FormatterFactory } from "../formatters/formatter.factory.js";
 import type { ConfigRepository } from "../repositories/config.repository.js";
 import type { DateService } from "../services/date.service.js";
@@ -25,6 +26,7 @@ import type {
 	RowAnnotationKind,
 } from "../types/ramadan.js";
 import { createSpinner } from "../ui/spinner.js";
+import { getErrorMessage } from "../utils/error.js";
 import type { ICommand } from "./command.interface.js";
 
 interface JsonErrorPayload {
@@ -34,13 +36,6 @@ interface JsonErrorPayload {
 		readonly message: string;
 	};
 }
-
-const getErrorMessage = (error: unknown): string => {
-	if (error instanceof Error) {
-		return error.message;
-	}
-	return "unknown error";
-};
 
 const getJsonErrorCode = (message: string): string => {
 	if (message.startsWith("Invalid first roza date")) return "INVALID_FIRST_ROZA_DATE";
@@ -172,11 +167,12 @@ export class RamadanCommand implements ICommand {
 		} catch (error) {
 			if (context.json) {
 				process.stderr.write(`${JSON.stringify(toJsonErrorPayload(error))}\n`);
-				process.exit(1);
+			} else {
+				spinner?.fail(error instanceof Error ? error.message : "Failed to fetch Ramadan timings");
 			}
-
-			spinner?.fail(error instanceof Error ? error.message : "Failed to fetch Ramadan timings");
-			process.exit(1);
+			throw new CommandError(
+				error instanceof Error ? error.message : "Failed to fetch Ramadan timings",
+			);
 		}
 	}
 
