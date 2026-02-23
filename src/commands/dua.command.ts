@@ -5,6 +5,7 @@
 
 import pc from "picocolors";
 import { RAMADAN_DUAS } from "../data/duas.js";
+import { CommandError } from "../errors/command.error.js";
 
 export interface DuaCommandOptions {
 	readonly dayNumber?: number | undefined;
@@ -19,8 +20,7 @@ export class DuaCommand {
 		const dua = RAMADAN_DUAS.find((d) => d.day === dayNumber);
 
 		if (!dua) {
-			console.error(pc.red(`No dua found for day ${dayNumber}.`));
-			process.exit(1);
+			throw new CommandError(`No dua found for day ${dayNumber}.`);
 		}
 
 		const lines = [
