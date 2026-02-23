@@ -41,12 +41,10 @@ export const typedFetch = async <T>(url: string, options?: TypedFetchOptions): P
 	let lastError: Error | null = null;
 
 	for (let attempt = 0; attempt <= retries; attempt++) {
+		const controller = new AbortController();
+		const timeoutId = setTimeout(() => controller.abort(), timeout);
 		try {
-			const controller = new AbortController();
-			const timeoutId = setTimeout(() => controller.abort(), timeout);
-
 			const response = await fetch(url, { signal: controller.signal });
-			clearTimeout(timeoutId);
 
 			if (!response.ok) {
 				throw new ApiNetworkError(`HTTP ${response.status}: ${response.statusText}`, url);
@@ -58,6 +56,8 @@ export const typedFetch = async <T>(url: string, options?: TypedFetchOptions): P
 			if (attempt < retries) {
 				await delay(RETRY_DELAY);
 			}
+		} finally {
+			clearTimeout(timeoutId);
 		}
 	}
 
