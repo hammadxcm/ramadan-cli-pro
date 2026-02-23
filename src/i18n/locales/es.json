@@ -1,0 +1,174 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Horarios de Sehar, Iftar y Ramadan"
+	},
+	"table": {
+		"roza": "Roza",
+		"sehar": "Sehar",
+		"iftar": "Iftar",
+		"date": "Fecha",
+		"hijri": "Hijri"
+	},
+	"status": {
+		"beforeRozaDay": "Antes del dia de roza",
+		"firstSehar": "Primer Sehar",
+		"seharWindowOpen": "Ventana de Sehar abierta",
+		"rozaStartsFajr": "Roza comienza (Fajr)",
+		"rozaInProgress": "Roza en progreso",
+		"iftarTime": "Hora de Iftar",
+		"nextDaySehar": "Sehar del dia siguiente"
+	},
+	"mode": {
+		"today": "Sehar/Iftar de hoy",
+		"all": "Ramadan {{year}} (Todos los dias)",
+		"number": "Roza {{roza}} Sehar/Iftar"
+	},
+	"highlight": {
+		"status": "Estado:",
+		"upNext": "Siguiente:",
+		"in": "en"
+	},
+	"footer": {
+		"note": "Sehar usa Fajr. Iftar usa Maghrib.",
+		"credits": "Impulsado por Aladhan API"
+	},
+	"setup": {
+		"title": "Configuracion de Ramadan CLI Pro",
+		"detecting": "Detectando tu ubicacion...",
+		"detected": "Detectado: {{city}}, {{country}}",
+		"notDetected": "No se pudo detectar la ubicacion",
+		"enterCity": "Ingresa tu ciudad",
+		"enterCountry": "Ingresa tu pais",
+		"selectMethod": "Selecciona metodo de calculo",
+		"selectSchool": "Selecciona escuela de Asr",
+		"timezonePref": "Preferencia de zona horaria",
+		"complete": "Configuracion completa."
+	},
+	"notification": {
+		"seharReminder": "Recordatorio de Sehar",
+		"seharIn": "Sehar en {{minutes}} minutos",
+		"iftarReminder": "Recordatorio de Iftar",
+		"iftarIn": "Iftar en {{minutes}} minutos"
+	},
+	"error": {
+		"locationFailed": "No se pudo detectar la ubicacion. Pasa una ciudad como `ramadan-cli-pro \"Madrid\"`.",
+		"invalidDate": "Fecha invalida. Usa YYYY-MM-DD.",
+		"flagConflict": "Usa --all o --number, no ambos."
+	},
+	"track": {
+		"invalidPrayer": "Oracion invalida: {{prayer}}. Usa: {{list}}",
+		"marked": "{{prayer}} marcada como completada para el {{date}}",
+		"fastingMarked": "Ayuno registrado para el {{date}}",
+		"streak": "Racha actual: {{count}} dias",
+		"title": "Seguimiento de oraciones - {{date}}",
+		"completed": "{{completed}}/{{total}} oraciones completadas",
+		"allComplete": "Todas las oraciones completadas! MashaAllah!",
+		"vacationMarked": "Vacaciones marcadas para el {{date}} (racha preservada)"
+	},
+	"goal": {
+		"invalidAction": "Accion invalida. Usa: add, update, list, delete",
+		"requiredAdd": "Requerido: --title, --target, --unit",
+		"added": "Meta agregada: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Requerido: --id, --progress",
+		"notFound": "Meta \"{{id}}\" no encontrada.",
+		"updated": "Meta actualizada: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "No hay metas definidas. Usa `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Metas de Ramadan",
+		"requiredDelete": "Se requiere el ID de la meta",
+		"deleted": "Meta \"{{id}}\" eliminada."
+	},
+	"stats": {
+		"title": "Estadisticas de Ramadan",
+		"prayerCompletion": "Oraciones completadas:",
+		"prayersCompleted": "{{completed}}/{{total}} oraciones completadas",
+		"fastingStreak": "Racha de ayuno:",
+		"streakDetails": "Mayor: {{longest}} dias | Total de ayuno: {{total}} dias",
+		"goals": "Metas:",
+		"goalsCompleted": "{{completed}}/{{total}} completadas",
+		"noGoals": "No hay metas definidas.",
+		"badgesEarned": "Insignias ganadas:",
+		"noBadges": "Aun no hay insignias ganadas."
+	},
+	"charity": {
+		"invalidAction": "Accion invalida. Usa: add, list, summary",
+		"requiredAdd": "Requerido: --amount, --description",
+		"recorded": "Donacion registrada: ${{amount}} — {{description}}",
+		"noEntries": "No hay donaciones registradas. Usa `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Registro de caridad/Sadaqah",
+		"total": "Total:",
+		"summaryTitle": "Resumen de caridad",
+		"totalDonated": "Total donado:",
+		"entries": "Entradas:"
+	},
+	"zakat": {
+		"title": "Calculadora de Zakat",
+		"totalWealth": "Patrimonio total:",
+		"deductions": "Deducciones:",
+		"netWorth": "Patrimonio neto:",
+		"nisabGold": "Nisab (Oro):",
+		"nisabSilver": "Nisab (Plata):",
+		"zakatDue": "Zakat a pagar:",
+		"belowNisab": "El patrimonio neto esta por debajo del umbral de nisab. No se debe Zakat."
+	},
+	"compare": {
+		"needCities": "Proporciona de 2 a 4 ciudades para comparar.",
+		"title": "Comparacion de horarios de oracion",
+		"prayer": "Oracion",
+		"na": "N/A",
+		"fetchFailed": "Error al obtener datos"
+	},
+	"widget": {
+		"title": "Widget de Ramadan",
+		"seharIftar": "{{address}} | Sehar: {{sehar}} | Iftar: {{iftar}}",
+		"exitHint": "Presiona Ctrl+C para salir",
+		"error": "Error del widget: no se pudieron obtener los horarios de oracion."
+	},
+	"export": {
+		"unsupportedFormat": "Formato no compatible: {{format}}. Usa \"ical\", \"csv\" o \"json\".",
+		"exported": "Exportado a {{path}}"
+	},
+	"config": {
+		"cleared": "Configuracion borrada.",
+		"noUpdates": "No se proporcionaron actualizaciones. Usa `ramadan-cli-pro config --show` para inspeccionar.",
+		"updated": "Configuracion actualizada.",
+		"invalidFile": "No se pudo leer el archivo: {{path}}",
+		"invalidJson": "JSON invalido en el archivo de configuracion.",
+		"invalidFormat": "Formato de configuracion invalido: {{details}}",
+		"imported": "Configuracion importada correctamente.",
+		"currentTitle": "Configuracion actual:",
+		"city": "Ciudad:",
+		"country": "Pais:",
+		"latitude": "Latitud:",
+		"longitude": "Longitud:",
+		"method": "Metodo:",
+		"school": "Escuela:",
+		"timezone": "Zona horaria:",
+		"firstRozaDate": "Fecha del primer ayuno:"
+	},
+	"notify": {
+		"enabled": "Notificaciones activadas.",
+		"disabled": "Notificaciones desactivadas.",
+		"seharOn": "Recordatorio de Sehar activado.",
+		"seharOff": "Recordatorio de Sehar desactivado.",
+		"iftarOn": "Recordatorio de Iftar activado.",
+		"iftarOff": "Recordatorio de Iftar desactivado.",
+		"minutesSet": "Recordatorio configurado a {{minutes}} minutos antes.",
+		"title": "Preferencias de notificacion",
+		"usage": "Usa --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "Configuracion restablecida."
+	},
+	"profile": {
+		"invalidAction": "Accion invalida. Usa: add, use, list, delete",
+		"nameRequired": "El nombre del perfil es obligatorio.",
+		"cityRequired": "La ciudad es obligatoria. Usa --city <city>",
+		"saved": "Perfil \"{{name}}\" guardado ({{location}}).",
+		"notFound": "Perfil \"{{name}}\" no encontrado.",
+		"switched": "Cambiado al perfil \"{{name}}\" ({{location}}).",
+		"noProfiles": "No hay perfiles guardados. Usa `ramadan-pro profile add <name> --city <city>` para crear uno.",
+		"title": "Perfiles de ubicacion",
+		"deleted": "Perfil \"{{name}}\" eliminado."
+	}
+}
