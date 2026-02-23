@@ -30,6 +30,8 @@ export const createMockConfigRepository = (): {
 		reminderMinutesBefore: 15,
 	}),
 	setNotificationPreferences: vi.fn(),
+	getStoredTheme: vi.fn().mockReturnValue(undefined),
+	setStoredTheme: vi.fn(),
 	clearAll: vi.fn(),
 	shouldApplyRecommendedMethod: vi.fn().mockReturnValue(true),
 	shouldApplyRecommendedSchool: vi.fn().mockReturnValue(true),
