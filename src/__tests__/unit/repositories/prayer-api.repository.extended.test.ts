@@ -9,7 +9,8 @@ const createApiEnvelope = (data: unknown, code = 200, status = "OK") => ({
 	data,
 });
 
-const createMockFetchResponse = (body: unknown) => ({
+const createMockFetchResponse = (body: unknown, ok = true) => ({
+	ok,
 	json: vi.fn().mockResolvedValue(body),
 });
 
@@ -212,6 +213,7 @@ describe("PrayerApiRepository – extended coverage", () => {
 
 		it("throws ApiError when response.json() rejects", async () => {
 			mockFetch.mockResolvedValue({
+				ok: true,
 				json: vi.fn().mockRejectedValue(new SyntaxError("Unexpected token")),
 			});
 
