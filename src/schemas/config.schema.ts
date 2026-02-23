@@ -28,6 +28,7 @@ export const SharedConfigSchema = z.object({
 	notifySehar: z.boolean().optional(),
 	notifyIftar: z.boolean().optional(),
 	notifyMinutesBefore: z.number().int().min(1).max(120).optional(),
+	theme: z.string().optional(),
 });
 
 /**

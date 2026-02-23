@@ -5,16 +5,10 @@ import { RAMADAN_DUAS } from "../../../data/duas.js";
 describe("DuaCommand", () => {
 	let command: DuaCommand;
 	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		command = new DuaCommand();
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-		exitSpy = vi.spyOn(process, "exit").mockImplementation(((code?: number) => {
-			throw new Error(`process.exit(${code})`);
-		}) as never) as unknown as ReturnType<typeof vi.fn>;
 	});
 
 	afterEach(() => {
@@ -113,40 +107,20 @@ describe("DuaCommand", () => {
 	});
 
 	describe("execute with invalid dayNumber", () => {
-		it("should exit with error for day 0", async () => {
-			await expect(command.execute({ dayNumber: 0 })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("No dua found for day 0");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error for day 0", async () => {
+			await expect(command.execute({ dayNumber: 0 })).rejects.toThrow("No dua found for day 0");
 		});
 
-		it("should exit with error for day 31", async () => {
-			await expect(command.execute({ dayNumber: 31 })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("No dua found for day 31");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error for day 31", async () => {
+			await expect(command.execute({ dayNumber: 31 })).rejects.toThrow("No dua found for day 31");
 		});
 
-		it("should exit with error for negative day", async () => {
-			await expect(command.execute({ dayNumber: -5 })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("No dua found for day -5");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error for negative day", async () => {
+			await expect(command.execute({ dayNumber: -5 })).rejects.toThrow("No dua found for day -5");
 		});
 
-		it("should exit with error for day 100", async () => {
-			await expect(command.execute({ dayNumber: 100 })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("No dua found for day 100");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error for day 100", async () => {
+			await expect(command.execute({ dayNumber: 100 })).rejects.toThrow("No dua found for day 100");
 		});
 	});
 
@@ -161,10 +135,10 @@ describe("DuaCommand", () => {
 		});
 
 		it("should not call console.error for valid day", async () => {
+			const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 			await command.execute({ dayNumber: 1 });
 
 			expect(errorSpy).not.toHaveBeenCalled();
-			expect(exitSpy).not.toHaveBeenCalled();
 		});
 	});
 });

@@ -264,6 +264,25 @@ export class ConfigRepository {
 	}
 
 	/**
+	 * Returns the stored theme identifier, if any.
+	 *
+	 * @returns A theme ID string or `undefined`.
+	 */
+	getStoredTheme(): string | undefined {
+		const store = this.getValidatedStore();
+		return store.theme;
+	}
+
+	/**
+	 * Persists a theme identifier.
+	 *
+	 * @param theme - Theme ID string.
+	 */
+	setStoredTheme(theme: string): void {
+		this.config.set("theme", theme);
+	}
+
+	/**
 	 * Clears all configuration, including legacy config.
 	 */
 	clearAll(): void {

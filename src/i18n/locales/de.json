@@ -1,0 +1,174 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "Sehar, Iftar & Ramadan Zeiten"
+	},
+	"table": {
+		"roza": "Roza",
+		"sehar": "Sehar",
+		"iftar": "Iftar",
+		"date": "Datum",
+		"hijri": "Hijri"
+	},
+	"status": {
+		"beforeRozaDay": "Vor dem Roza-Tag",
+		"firstSehar": "Erster Sehar",
+		"seharWindowOpen": "Sehar-Fenster offen",
+		"rozaStartsFajr": "Roza beginnt (Fajr)",
+		"rozaInProgress": "Roza läuft",
+		"iftarTime": "Iftar-Zeit",
+		"nextDaySehar": "Nächster Tag Sehar"
+	},
+	"mode": {
+		"today": "Heute Sehar/Iftar",
+		"all": "Ramadan {{year}} (Alle Tage)",
+		"number": "Roza {{roza}} Sehar/Iftar"
+	},
+	"highlight": {
+		"status": "Status:",
+		"upNext": "Als Nächstes:",
+		"in": "in"
+	},
+	"footer": {
+		"note": "Sehar nutzt Fajr. Iftar nutzt Maghrib.",
+		"credits": "Powered by Aladhan API"
+	},
+	"setup": {
+		"title": "Ramadan CLI Pro Einrichtung",
+		"detecting": "Standort wird erkannt...",
+		"detected": "Erkannt: {{city}}, {{country}}",
+		"notDetected": "Standort konnte nicht erkannt werden",
+		"enterCity": "Stadt eingeben",
+		"enterCountry": "Land eingeben",
+		"selectMethod": "Berechnungsmethode wählen",
+		"selectSchool": "Asr-Schule wählen",
+		"timezonePref": "Zeitzone",
+		"complete": "Einrichtung abgeschlossen."
+	},
+	"notification": {
+		"seharReminder": "Sehar-Erinnerung",
+		"seharIn": "Sehar in {{minutes}} Minuten",
+		"iftarReminder": "Iftar-Erinnerung",
+		"iftarIn": "Iftar in {{minutes}} Minuten"
+	},
+	"error": {
+		"locationFailed": "Standort konnte nicht erkannt werden.",
+		"invalidDate": "Ungültiges Datum. Verwende YYYY-MM-DD.",
+		"flagConflict": "Verwende --all oder --number, nicht beides."
+	},
+	"track": {
+		"invalidPrayer": "Ungültiges Gebet: {{prayer}}. Verwende: {{list}}",
+		"marked": "{{prayer}} als erledigt markiert für {{date}}",
+		"fastingMarked": "Fasten für {{date}} eingetragen",
+		"streak": "Aktuelle Serie: {{count}} Tage",
+		"title": "Gebetsverfolgung - {{date}}",
+		"completed": "{{completed}}/{{total}} Gebete erledigt",
+		"allComplete": "Alle Gebete erledigt! MaschaAllah!",
+		"vacationMarked": "Urlaub markiert fur {{date}} (Serie beibehalten)"
+	},
+	"goal": {
+		"invalidAction": "Ungültige Aktion. Verwende: add, update, list, delete",
+		"requiredAdd": "Erforderlich: --title, --target, --unit",
+		"added": "Ziel hinzugefügt: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Erforderlich: --id, --progress",
+		"notFound": "Ziel \"{{id}}\" nicht gefunden.",
+		"updated": "Ziel aktualisiert: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "Keine Ziele gesetzt. Verwende `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Ramadan-Ziele",
+		"requiredDelete": "Erforderlich: Ziel-ID",
+		"deleted": "Ziel \"{{id}}\" gelöscht."
+	},
+	"stats": {
+		"title": "Ramadan-Statistiken",
+		"prayerCompletion": "Gebetserfüllung:",
+		"prayersCompleted": "{{completed}}/{{total}} Gebete erledigt",
+		"fastingStreak": "Fasten-Serie:",
+		"streakDetails": "Längste: {{longest}} Tage | Gesamt gefastet: {{total}} Tage",
+		"goals": "Ziele:",
+		"goalsCompleted": "{{completed}}/{{total}} abgeschlossen",
+		"noGoals": "Keine Ziele gesetzt.",
+		"badgesEarned": "Verdiente Abzeichen:",
+		"noBadges": "Noch keine Abzeichen verdient."
+	},
+	"charity": {
+		"invalidAction": "Ungültige Aktion. Verwende: add, list, summary",
+		"requiredAdd": "Erforderlich: --amount, --description",
+		"recorded": "Spende erfasst: ${{amount}} — {{description}}",
+		"noEntries": "Keine Spendeneinträge. Verwende `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Spenden-/Sadaqah-Protokoll",
+		"total": "Gesamt:",
+		"summaryTitle": "Spendenübersicht",
+		"totalDonated": "Gesamt gespendet:",
+		"entries": "Einträge:"
+	},
+	"zakat": {
+		"title": "Zakat-Rechner",
+		"totalWealth": "Gesamtvermögen:",
+		"deductions": "Abzüge:",
+		"netWorth": "Nettovermögen:",
+		"nisabGold": "Nisab (Gold):",
+		"nisabSilver": "Nisab (Silber):",
+		"zakatDue": "Fällige Zakat:",
+		"belowNisab": "Das Nettovermögen liegt unter dem Nisab-Schwellenwert. Keine Zakat fällig."
+	},
+	"compare": {
+		"needCities": "Gib 2-4 Städte zum Vergleich an.",
+		"title": "Gebetszeiten-Vergleich",
+		"prayer": "Gebet",
+		"na": "k. A.",
+		"fetchFailed": "Abruf fehlgeschlagen"
+	},
+	"widget": {
+		"title": "Ramadan-Widget",
+		"seharIftar": "{{address}} | Sehar: {{sehar}} | Iftar: {{iftar}}",
+		"exitHint": "Drücke Strg+C zum Beenden",
+		"error": "Widget-Fehler: Gebetszeiten konnten nicht abgerufen werden."
+	},
+	"export": {
+		"unsupportedFormat": "Nicht unterstütztes Format: {{format}}. Verwende \"ical\", \"csv\" oder \"json\".",
+		"exported": "Exportiert nach {{path}}"
+	},
+	"config": {
+		"cleared": "Konfiguration gelöscht.",
+		"noUpdates": "Keine Änderungen angegeben. Verwende `ramadan-cli-pro config --show` zum Anzeigen.",
+		"updated": "Konfiguration aktualisiert.",
+		"invalidFile": "Datei konnte nicht gelesen werden: {{path}}",
+		"invalidJson": "Ungültiges JSON in der Konfigurationsdatei.",
+		"invalidFormat": "Ungültiges Konfigurationsformat: {{details}}",
+		"imported": "Konfiguration erfolgreich importiert.",
+		"currentTitle": "Aktuelle Konfiguration:",
+		"city": "Stadt:",
+		"country": "Land:",
+		"latitude": "Breitengrad:",
+		"longitude": "Längengrad:",
+		"method": "Methode:",
+		"school": "Schule:",
+		"timezone": "Zeitzone:",
+		"firstRozaDate": "Erstes Roza-Datum:"
+	},
+	"notify": {
+		"enabled": "Benachrichtigungen aktiviert.",
+		"disabled": "Benachrichtigungen deaktiviert.",
+		"seharOn": "Sehar-Erinnerung aktiviert.",
+		"seharOff": "Sehar-Erinnerung deaktiviert.",
+		"iftarOn": "Iftar-Erinnerung aktiviert.",
+		"iftarOff": "Iftar-Erinnerung deaktiviert.",
+		"minutesSet": "Erinnerung auf {{minutes}} Minuten vorher gesetzt.",
+		"title": "Benachrichtigungseinstellungen",
+		"usage": "Verwende --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "Konfiguration zurückgesetzt."
+	},
+	"profile": {
+		"invalidAction": "Ungültige Aktion. Verwende: add, use, list, delete",
+		"nameRequired": "Profilname ist erforderlich.",
+		"cityRequired": "Stadt ist erforderlich. Verwende --city <city>",
+		"saved": "Profil \"{{name}}\" gespeichert ({{location}}).",
+		"notFound": "Profil \"{{name}}\" nicht gefunden.",
+		"switched": "Gewechselt zu Profil \"{{name}}\" ({{location}}).",
+		"noProfiles": "Keine Profile gespeichert. Verwende `ramadan-pro profile add <name> --city <city>` um eines zu erstellen.",
+		"title": "Standortprofile",
+		"deleted": "Profil \"{{name}}\" gelöscht."
+	}
+}

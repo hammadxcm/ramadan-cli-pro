@@ -18,6 +18,12 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	tor: "Toronto",
 	hou: "Houston",
 	det: "Detroit",
+	phi: "Philadelphia",
+	bos: "Boston",
+	mia: "Miami",
+	atl: "Atlanta",
+	van: "Vancouver",
+	mtl: "Montreal",
 
 	// South Asia
 	lhr: "Lahore",
@@ -28,6 +34,10 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	dhk: "Dhaka",
 	cmb: "Colombo",
 	hyd: "Hyderabad",
+	pew: "Peshawar",
+	fsd: "Faisalabad",
+	rwp: "Rawalpindi",
+	ktm: "Kathmandu",
 
 	// Middle East
 	dxb: "Dubai",
@@ -64,6 +74,9 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	nbo: "Nairobi",
 	dar: "Dar es Salaam",
 	mgq: "Mogadishu",
+	acc: "Accra",
+	kmp: "Kampala",
+	dkr: "Dakar",
 
 	// Europe
 	lon: "London",
@@ -73,11 +86,23 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	bru: "Brussels",
 	osl: "Oslo",
 	sto: "Stockholm",
+	mdr: "Madrid",
+	rom: "Rome",
+	mun: "Munich",
+	vie: "Vienna",
+	cop: "Copenhagen",
 
 	// Southeast Asia
 	kul: "Kuala Lumpur",
 	jkt: "Jakarta",
 	sg: "Singapore",
+
+	// East Asia
+	bkk: "Bangkok",
+	hcm: "Ho Chi Minh City",
+	tok: "Tokyo",
+	pek: "Beijing",
+	seo: "Seoul",
 
 	// Central Asia
 	tsh: "Tashkent",

@@ -1,30 +1,48 @@
 /**
  * @module commands/command-factory
- * @description Factory that holds references to all command instances,
- * wired by the dependency injection container.
+ * @description Pure map-based command registry. All commands are registered
+ * via `register()` and looked up via `get()`. No constructor params needed.
  */
 
-import type { ConfigCommand } from "./config.command.js";
-import type { DashboardCommand } from "./dashboard.command.js";
-import type { DuaCommand } from "./dua.command.js";
-import type { NotifyCommand } from "./notify.command.js";
-import type { QiblaCommand } from "./qibla.command.js";
-import type { RamadanCommand } from "./ramadan.command.js";
-import type { ResetCommand } from "./reset.command.js";
-import type { TrackCommand } from "./track.command.js";
+/**
+ * Union of all known command instances.
+ */
+// biome-ignore lint/suspicious/noExplicitAny: command instances have heterogeneous signatures
+type AnyCommand = any;
 
 /**
  * Central registry of all CLI command instances.
+ * Supports dynamic registration via `register()` and lookup via `get()`.
  */
 export class CommandFactory {
-	constructor(
-		readonly ramadan: RamadanCommand,
-		readonly config: ConfigCommand,
-		readonly reset: ResetCommand,
-		readonly dashboard: DashboardCommand,
-		readonly notify: NotifyCommand,
-		readonly qibla: QiblaCommand,
-		readonly dua: DuaCommand,
-		readonly track: TrackCommand,
-	) {}
+	private readonly commands = new Map<string, AnyCommand>();
+
+	/**
+	 * Registers a command instance under a given name.
+	 *
+	 * @param name - The command name.
+	 * @param command - The command instance.
+	 */
+	register(name: string, command: AnyCommand): void {
+		this.commands.set(name, command);
+	}
+
+	/**
+	 * Retrieves a registered command by name.
+	 *
+	 * @param name - The command name.
+	 * @returns The command instance, or `undefined` if not found.
+	 */
+	get<T = AnyCommand>(name: string): T | undefined {
+		return this.commands.get(name) as T | undefined;
+	}
+
+	/**
+	 * Returns all registered command names.
+	 *
+	 * @returns Array of command name strings.
+	 */
+	list(): ReadonlyArray<string> {
+		return [...this.commands.keys()];
+	}
 }

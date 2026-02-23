@@ -7,15 +7,32 @@
 import i18next from "i18next";
 import ar from "../i18n/locales/ar.json" with { type: "json" };
 import bn from "../i18n/locales/bn.json" with { type: "json" };
+import de from "../i18n/locales/de.json" with { type: "json" };
 import en from "../i18n/locales/en.json" with { type: "json" };
+import es from "../i18n/locales/es.json" with { type: "json" };
+import fa from "../i18n/locales/fa.json" with { type: "json" };
 import fr from "../i18n/locales/fr.json" with { type: "json" };
+import hi from "../i18n/locales/hi.json" with { type: "json" };
 import id from "../i18n/locales/id.json" with { type: "json" };
 import ms from "../i18n/locales/ms.json" with { type: "json" };
 import tr from "../i18n/locales/tr.json" with { type: "json" };
 import ur from "../i18n/locales/ur.json" with { type: "json" };
 import type { ConfigRepository } from "../repositories/config.repository.js";
 
-const SUPPORTED_LOCALES = ["en", "ar", "ur", "tr", "ms", "bn", "fr", "id"] as const;
+const SUPPORTED_LOCALES = [
+	"en",
+	"ar",
+	"ur",
+	"tr",
+	"ms",
+	"bn",
+	"fr",
+	"id",
+	"es",
+	"de",
+	"hi",
+	"fa",
+] as const;
 
 /**
  * Union of locale codes supported by the application.
@@ -63,6 +80,10 @@ export class I18nService {
 				bn: { translation: bn },
 				fr: { translation: fr },
 				id: { translation: id },
+				es: { translation: es },
+				de: { translation: de },
+				hi: { translation: hi },
+				fa: { translation: fa },
 			},
 			interpolation: {
 				escapeValue: false,

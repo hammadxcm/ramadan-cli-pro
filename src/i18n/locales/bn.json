@@ -55,5 +55,120 @@
 		"locationFailed": "অবস্থান সনাক্ত করা যায়নি। একটি শহর দিন যেমন `ramadan-cli-pro \"ঢাকা\"`।",
 		"invalidDate": "প্রথম রোজার তারিখ অবৈধ। YYYY-MM-DD ব্যবহার করুন।",
 		"flagConflict": "--all অথবা --number ব্যবহার করুন, দুটি একসাথে নয়।"
+	},
+	"track": {
+		"invalidPrayer": "অবৈধ নামাজ: {{prayer}}। ব্যবহার করুন: {{list}}",
+		"marked": "{{prayer}} {{date}} তারিখে সম্পন্ন হিসেবে চিহ্নিত",
+		"fastingMarked": "{{date}} তারিখে রোজা চিহ্নিত হয়েছে",
+		"streak": "বর্তমান ধারা: {{count}} দিন",
+		"title": "নামাজ ট্র্যাকিং - {{date}}",
+		"completed": "{{completed}}/{{total}} নামাজ সম্পন্ন",
+		"allComplete": "সব নামাজ সম্পন্ন! মাশাআল্লাহ!",
+		"vacationMarked": "{{date}} তারিখে ছুটি চিহ্নিত হয়েছে (ধারা সংরক্ষিত)"
+	},
+	"goal": {
+		"invalidAction": "অবৈধ কাজ। ব্যবহার করুন: add, update, list, delete",
+		"requiredAdd": "প্রয়োজন: --title, --target, --unit",
+		"added": "লক্ষ্য যোগ হয়েছে: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "প্রয়োজন: --id, --progress",
+		"notFound": "\"{{id}}\" লক্ষ্য পাওয়া যায়নি।",
+		"updated": "লক্ষ্য আপডেট হয়েছে: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "কোনো লক্ষ্য নির্ধারণ করা হয়নি। ব্যবহার করুন `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "রমজানের লক্ষ্যসমূহ",
+		"requiredDelete": "লক্ষ্য ID প্রয়োজন",
+		"deleted": "\"{{id}}\" লক্ষ্য মুছে ফেলা হয়েছে।"
+	},
+	"stats": {
+		"title": "রমজানের পরিসংখ্যান",
+		"prayerCompletion": "নামাজ সম্পন্নতা:",
+		"prayersCompleted": "{{completed}}/{{total}} নামাজ সম্পন্ন",
+		"fastingStreak": "রোজার ধারা:",
+		"streakDetails": "সর্বোচ্চ: {{longest}} দিন | মোট রোজা: {{total}} দিন",
+		"goals": "লক্ষ্যসমূহ:",
+		"goalsCompleted": "{{completed}}/{{total}} সম্পন্ন",
+		"noGoals": "কোনো লক্ষ্য নির্ধারণ করা হয়নি।",
+		"badgesEarned": "অর্জিত ব্যাজ:",
+		"noBadges": "এখনও কোনো ব্যাজ অর্জিত হয়নি।"
+	},
+	"charity": {
+		"invalidAction": "অবৈধ কাজ। ব্যবহার করুন: add, list, summary",
+		"requiredAdd": "প্রয়োজন: --amount, --description",
+		"recorded": "দান রেকর্ড করা হয়েছে: ${{amount}} — {{description}}",
+		"noEntries": "কোনো দানের তথ্য নেই। ব্যবহার করুন `ramadan charity add --amount ... --description ...`",
+		"logTitle": "দান/সাদাকাহ তালিকা",
+		"total": "মোট:",
+		"summaryTitle": "দানের সারসংক্ষেপ",
+		"totalDonated": "মোট দান:",
+		"entries": "এন্ট্রি:"
+	},
+	"zakat": {
+		"title": "যাকাত ক্যালকুলেটর",
+		"totalWealth": "মোট সম্পদ:",
+		"deductions": "বাদ:",
+		"netWorth": "নিট সম্পদ:",
+		"nisabGold": "নিসাব (স্বর্ণ):",
+		"nisabSilver": "নিসাব (রৌপ্য):",
+		"zakatDue": "প্রদেয় যাকাত:",
+		"belowNisab": "নিট সম্পদ নিসাবের নিচে। যাকাত প্রযোজ্য নয়।"
+	},
+	"compare": {
+		"needCities": "তুলনা করতে ২-৪টি শহর দিন।",
+		"title": "নামাজের সময় তুলনা",
+		"prayer": "নামাজ",
+		"na": "N/A",
+		"fetchFailed": "তথ্য আনতে ব্যর্থ"
+	},
+	"widget": {
+		"title": "রমজান উইজেট",
+		"seharIftar": "{{address}} | সেহরি: {{sehar}} | ইফতার: {{iftar}}",
+		"exitHint": "বের হতে Ctrl+C চাপুন",
+		"error": "উইজেট ত্রুটি: নামাজের সময় আনা যায়নি।"
+	},
+	"export": {
+		"unsupportedFormat": "অসমর্থিত ফরম্যাট: {{format}}। \"ical\", \"csv\", বা \"json\" ব্যবহার করুন।",
+		"exported": "{{path}}-এ এক্সপোর্ট করা হয়েছে"
+	},
+	"config": {
+		"cleared": "কনফিগারেশন মুছে ফেলা হয়েছে।",
+		"noUpdates": "কোনো কনফিগ আপডেট দেওয়া হয়নি। পরীক্ষা করতে `ramadan-cli-pro config --show` ব্যবহার করুন।",
+		"updated": "কনফিগারেশন আপডেট হয়েছে।",
+		"invalidFile": "ফাইল পড়া যায়নি: {{path}}",
+		"invalidJson": "কনফিগ ফাইলে অবৈধ JSON।",
+		"invalidFormat": "অবৈধ কনফিগ ফরম্যাট: {{details}}",
+		"imported": "কনফিগারেশন সফলভাবে ইমপোর্ট হয়েছে।",
+		"currentTitle": "বর্তমান কনফিগারেশন:",
+		"city": "শহর:",
+		"country": "দেশ:",
+		"latitude": "অক্ষাংশ:",
+		"longitude": "দ্রাঘিমাংশ:",
+		"method": "পদ্ধতি:",
+		"school": "মাযহাব:",
+		"timezone": "টাইমজোন:",
+		"firstRozaDate": "প্রথম রোজার তারিখ:"
+	},
+	"notify": {
+		"enabled": "বিজ্ঞপ্তি সক্রিয় করা হয়েছে।",
+		"disabled": "বিজ্ঞপ্তি নিষ্ক্রিয় করা হয়েছে।",
+		"seharOn": "সেহরির অনুস্মারক সক্রিয়।",
+		"seharOff": "সেহরির অনুস্মারক নিষ্ক্রিয়।",
+		"iftarOn": "ইফতারের অনুস্মারক সক্রিয়।",
+		"iftarOff": "ইফতারের অনুস্মারক নিষ্ক্রিয়।",
+		"minutesSet": "অনুস্মারক {{minutes}} মিনিট আগে সেট করা হয়েছে।",
+		"title": "বিজ্ঞপ্তি পছন্দসমূহ",
+		"usage": "ব্যবহার করুন --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "কনফিগারেশন রিসেট হয়েছে।"
+	},
+	"profile": {
+		"invalidAction": "অবৈধ কাজ। ব্যবহার করুন: add, use, list, delete",
+		"nameRequired": "প্রোফাইলের নাম প্রয়োজন।",
+		"cityRequired": "শহর প্রয়োজন। --city <city> ব্যবহার করুন",
+		"saved": "\"{{name}}\" প্রোফাইল সংরক্ষিত ({{location}})।",
+		"notFound": "\"{{name}}\" প্রোফাইল পাওয়া যায়নি।",
+		"switched": "\"{{name}}\" প্রোফাইলে পরিবর্তন হয়েছে ({{location}})।",
+		"noProfiles": "কোনো প্রোফাইল সংরক্ষিত নেই। তৈরি করতে `ramadan-pro profile add <name> --city <city>` ব্যবহার করুন।",
+		"title": "অবস্থান প্রোফাইলসমূহ",
+		"deleted": "\"{{name}}\" প্রোফাইল মুছে ফেলা হয়েছে।"
 	}
 }

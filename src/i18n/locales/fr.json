@@ -55,5 +55,120 @@
 		"locationFailed": "Impossible de detecter l'emplacement. Passez une ville comme `ramadan-cli-pro \"Paris\"`.",
 		"invalidDate": "Date du premier jeune invalide. Utilisez YYYY-MM-DD.",
 		"flagConflict": "Utilisez soit --all soit --number, pas les deux."
+	},
+	"track": {
+		"invalidPrayer": "Priere invalide : {{prayer}}. Utilisez : {{list}}",
+		"marked": "{{prayer}} marque comme accomplie pour le {{date}}",
+		"fastingMarked": "Jeune enregistre pour le {{date}}",
+		"streak": "Serie en cours : {{count}} jours",
+		"title": "Suivi des prieres - {{date}}",
+		"completed": "{{completed}}/{{total}} prieres accomplies",
+		"allComplete": "Toutes les prieres accomplies ! MashaAllah !",
+		"vacationMarked": "Vacances marquees pour le {{date}} (serie preservee)"
+	},
+	"goal": {
+		"invalidAction": "Action invalide. Utilisez : add, update, list, delete",
+		"requiredAdd": "Requis : --title, --target, --unit",
+		"added": "Objectif ajoute : \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Requis : --id, --progress",
+		"notFound": "Objectif \"{{id}}\" introuvable.",
+		"updated": "Objectif mis a jour : \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "Aucun objectif defini. Utilisez `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Objectifs du Ramadan",
+		"requiredDelete": "ID de l'objectif requis",
+		"deleted": "Objectif \"{{id}}\" supprime."
+	},
+	"stats": {
+		"title": "Statistiques du Ramadan",
+		"prayerCompletion": "Prieres accomplies :",
+		"prayersCompleted": "{{completed}}/{{total}} prieres accomplies",
+		"fastingStreak": "Serie de jeune :",
+		"streakDetails": "Plus longue : {{longest}} jours | Total jeune : {{total}} jours",
+		"goals": "Objectifs :",
+		"goalsCompleted": "{{completed}}/{{total}} accomplis",
+		"noGoals": "Aucun objectif defini.",
+		"badgesEarned": "Badges obtenus :",
+		"noBadges": "Aucun badge obtenu pour le moment."
+	},
+	"charity": {
+		"invalidAction": "Action invalide. Utilisez : add, list, summary",
+		"requiredAdd": "Requis : --amount, --description",
+		"recorded": "Don enregistre : ${{amount}} — {{description}}",
+		"noEntries": "Aucun don enregistre. Utilisez `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Journal des dons/Sadaqah",
+		"total": "Total :",
+		"summaryTitle": "Resume des dons",
+		"totalDonated": "Total des dons :",
+		"entries": "Entrees :"
+	},
+	"zakat": {
+		"title": "Calculateur de Zakat",
+		"totalWealth": "Patrimoine total :",
+		"deductions": "Deductions :",
+		"netWorth": "Valeur nette :",
+		"nisabGold": "Nisab (Or) :",
+		"nisabSilver": "Nisab (Argent) :",
+		"zakatDue": "Zakat due :",
+		"belowNisab": "La valeur nette est inferieure au seuil du nisab. Pas de Zakat due."
+	},
+	"compare": {
+		"needCities": "Indiquez 2 a 4 villes a comparer.",
+		"title": "Comparaison des horaires de priere",
+		"prayer": "Priere",
+		"na": "N/A",
+		"fetchFailed": "Echec de la recuperation"
+	},
+	"widget": {
+		"title": "Widget Ramadan",
+		"seharIftar": "{{address}} | Suhoor : {{sehar}} | Iftar : {{iftar}}",
+		"exitHint": "Appuyez sur Ctrl+C pour quitter",
+		"error": "Erreur du widget : impossible de recuperer les horaires de priere."
+	},
+	"export": {
+		"unsupportedFormat": "Format non supporte : {{format}}. Utilisez \"ical\", \"csv\" ou \"json\".",
+		"exported": "Exporte vers {{path}}"
+	},
+	"config": {
+		"cleared": "Configuration effacee.",
+		"noUpdates": "Aucune mise a jour de la configuration. Utilisez `ramadan-cli-pro config --show` pour inspecter.",
+		"updated": "Configuration mise a jour.",
+		"invalidFile": "Impossible de lire le fichier : {{path}}",
+		"invalidJson": "JSON invalide dans le fichier de configuration.",
+		"invalidFormat": "Format de configuration invalide : {{details}}",
+		"imported": "Configuration importee avec succes.",
+		"currentTitle": "Configuration actuelle :",
+		"city": "Ville :",
+		"country": "Pays :",
+		"latitude": "Latitude :",
+		"longitude": "Longitude :",
+		"method": "Methode :",
+		"school": "Ecole :",
+		"timezone": "Fuseau horaire :",
+		"firstRozaDate": "Date du premier jeune :"
+	},
+	"notify": {
+		"enabled": "Notifications activees.",
+		"disabled": "Notifications desactivees.",
+		"seharOn": "Rappel du Suhoor active.",
+		"seharOff": "Rappel du Suhoor desactive.",
+		"iftarOn": "Rappel de l'Iftar active.",
+		"iftarOff": "Rappel de l'Iftar desactive.",
+		"minutesSet": "Rappel defini a {{minutes}} minutes avant.",
+		"title": "Preferences de notification",
+		"usage": "Utilisez --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "Configuration reinitialisee."
+	},
+	"profile": {
+		"invalidAction": "Action invalide. Utilisez : add, use, list, delete",
+		"nameRequired": "Le nom du profil est requis.",
+		"cityRequired": "La ville est requise. Utilisez --city <city>",
+		"saved": "Profil \"{{name}}\" enregistre ({{location}}).",
+		"notFound": "Profil \"{{name}}\" introuvable.",
+		"switched": "Bascule vers le profil \"{{name}}\" ({{location}}).",
+		"noProfiles": "Aucun profil enregistre. Utilisez `ramadan-pro profile add <name> --city <city>` pour en creer un.",
+		"title": "Profils de localisation",
+		"deleted": "Profil \"{{name}}\" supprime."
 	}
 }

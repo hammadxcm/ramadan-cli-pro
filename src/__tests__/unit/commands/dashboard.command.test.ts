@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DashboardCommand } from "../../../commands/dashboard.command.js";
+import { CommandError } from "../../../errors/command.error.js";
 import type { CommandContext } from "../../../types/command.js";
 
 const mockRender = vi.fn();
@@ -23,15 +24,9 @@ vi.mock("../../../tui/app.js", () => ({
 
 describe("DashboardCommand", () => {
 	let command: DashboardCommand;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		command = new DashboardCommand();
-		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-		exitSpy = vi
-			.spyOn(process, "exit")
-			.mockImplementation((() => {}) as never) as unknown as ReturnType<typeof vi.fn>;
 		mockRender.mockReset();
 		mockCreateElement.mockReset().mockReturnValue("mock-element");
 	});
@@ -79,14 +74,8 @@ describe("DashboardCommand", () => {
 			throw new Error("ink not available");
 		});
 
-		await command.execute({});
-
-		expect(errorSpy).toHaveBeenCalledWith("Failed to start TUI dashboard.");
-		expect(errorSpy).toHaveBeenCalledWith(
-			"Make sure ink and react are installed: pnpm add ink react",
-		);
-		expect(errorSpy).toHaveBeenCalledWith("ink not available");
-		expect(exitSpy).toHaveBeenCalledWith(1);
+		await expect(command.execute({})).rejects.toThrow(CommandError);
+		await expect(command.execute({})).rejects.toThrow("Failed to start TUI dashboard");
 	});
 
 	it("handles non-Error exceptions in the catch block", async () => {
@@ -94,16 +83,7 @@ describe("DashboardCommand", () => {
 			throw "string error";
 		});
 
-		await command.execute({});
-
-		expect(errorSpy).toHaveBeenCalledWith("Failed to start TUI dashboard.");
-		expect(errorSpy).toHaveBeenCalledWith(
-			"Make sure ink and react are installed: pnpm add ink react",
-		);
-		expect(exitSpy).toHaveBeenCalledWith(1);
-		// Should NOT call console.error with the string error since it's not an Error instance
-		const errorCalls = errorSpy.mock.calls.map((call) => call[0]);
-		expect(errorCalls).not.toContain("string error");
+		await expect(command.execute({})).rejects.toThrow(CommandError);
 	});
 
 	it("passes empty context through to the App component", async () => {

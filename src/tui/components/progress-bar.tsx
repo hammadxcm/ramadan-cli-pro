@@ -1,6 +1,6 @@
 import { Box, Text } from "ink";
 import type React from "react";
-import { colors } from "../theme/colors.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface ProgressBarProps {
 	readonly percent: number;
@@ -9,6 +9,7 @@ interface ProgressBarProps {
 }
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({ percent, width = 30, label }) => {
+	const colors = useThemeColors();
 	const clamped = Math.max(0, Math.min(100, percent));
 	const filled = Math.round((clamped / 100) * width);
 	const empty = width - filled;

@@ -3,9 +3,11 @@
  * @description Manages named location profiles for quick switching.
  */
 
-import Conf from "conf";
 import pc from "picocolors";
+import { CommandError } from "../errors/command.error.js";
 import type { ConfigRepository } from "../repositories/config.repository.js";
+import type { I18nService } from "../services/i18n.service.js";
+import { createConfStore } from "../utils/store.js";
 
 interface LocationProfile {
 	readonly city: string;
@@ -25,18 +27,24 @@ export interface ProfileCommandOptions {
  * Manages named location profiles for quick city switching.
  */
 export class ProfileCommand {
-	private readonly store: Conf<{ profiles: ProfileStore }>;
+	private readonly store;
+	private readonly i18n: I18nService | undefined;
 
 	constructor(
 		private readonly configRepository: ConfigRepository,
 		storeCwd?: string,
+		i18nService?: I18nService,
 	) {
-		const isTestRuntime = process.env.VITEST === "true" || process.env.NODE_ENV === "test";
-		this.store = new Conf<{ profiles: ProfileStore }>({
+		this.i18n = i18nService;
+		this.store = createConfStore<{ profiles: ProfileStore }>({
 			projectName: "ramadan-cli-pro-profiles",
-			...(storeCwd ? { cwd: storeCwd } : isTestRuntime ? { cwd: "/tmp" } : {}),
+			cwd: storeCwd,
 			defaults: { profiles: {} },
 		});
+	}
+
+	private t(key: string, fallback: string, options?: Record<string, unknown>): string {
+		return this.i18n ? this.i18n.t(key, options) : fallback;
 	}
 
 	async execute(options: ProfileCommandOptions): Promise<void> {
@@ -54,21 +62,18 @@ export class ProfileCommand {
 				this.deleteProfile(options.name);
 				break;
 			default:
-				console.error(pc.red("Invalid action. Use: add, use, list, delete"));
-				process.exit(1);
+				throw new CommandError(
+					this.t("profile.invalidAction", "Invalid action. Use: add, use, list, delete"),
+				);
 		}
 	}
 
 	private addProfile(options: ProfileCommandOptions): void {
 		if (!options.name) {
-			console.error(pc.red("Profile name is required."));
-			process.exit(1);
-			return;
+			throw new CommandError(this.t("profile.nameRequired", "Profile name is required."));
 		}
 		if (!options.city) {
-			console.error(pc.red("City is required. Use --city <city>"));
-			process.exit(1);
-			return;
+			throw new CommandError(this.t("profile.cityRequired", "City is required. Use --city <city>"));
 		}
 
 		const profiles = this.store.get("profiles");
@@ -78,26 +83,26 @@ export class ProfileCommand {
 		};
 		this.store.set("profiles", profiles);
 
+		const location = `${options.city}${options.country ? `, ${options.country}` : ""}`;
 		console.log(
 			pc.green(
-				`Profile "${options.name}" saved (${options.city}${options.country ? `, ${options.country}` : ""}).`,
+				this.t("profile.saved", `Profile "${options.name}" saved (${location}).`, {
+					name: options.name,
+					location,
+				}),
 			),
 		);
 	}
 
 	private useProfile(name: string | undefined): void {
 		if (!name) {
-			console.error(pc.red("Profile name is required."));
-			process.exit(1);
-			return;
+			throw new CommandError(this.t("profile.nameRequired", "Profile name is required."));
 		}
 
 		const profiles = this.store.get("profiles");
 		const profile = profiles[name];
 		if (!profile) {
-			console.error(pc.red(`Profile "${name}" not found.`));
-			process.exit(1);
-			return;
+			throw new CommandError(this.t("profile.notFound", `Profile "${name}" not found.`, { name }));
 		}
 
 		this.configRepository.setStoredLocation({
@@ -105,9 +110,13 @@ export class ProfileCommand {
 			country: profile.country,
 		});
 
+		const location = `${profile.city}${profile.country ? `, ${profile.country}` : ""}`;
 		console.log(
 			pc.green(
-				`Switched to profile "${name}" (${profile.city}${profile.country ? `, ${profile.country}` : ""}).`,
+				this.t("profile.switched", `Switched to profile "${name}" (${location}).`, {
+					name,
+					location,
+				}),
 			),
 		);
 	}
@@ -119,14 +128,17 @@ export class ProfileCommand {
 		if (entries.length === 0) {
 			console.log(
 				pc.dim(
-					"No profiles saved. Use `ramadan-pro profile add <name> --city <city>` to create one.",
+					this.t(
+						"profile.noProfiles",
+						"No profiles saved. Use `ramadan-pro profile add <name> --city <city>` to create one.",
+					),
 				),
 			);
 			return;
 		}
 
 		console.log("");
-		console.log(pc.bold("  Location Profiles"));
+		console.log(pc.bold(`  ${this.t("profile.title", "Location Profiles")}`));
 		console.log("");
 		for (const [name, profile] of entries) {
 			console.log(
@@ -138,20 +150,17 @@ export class ProfileCommand {
 
 	private deleteProfile(name: string | undefined): void {
 		if (!name) {
-			console.error(pc.red("Profile name is required."));
-			process.exit(1);
-			return;
+			throw new CommandError(this.t("profile.nameRequired", "Profile name is required."));
 		}
 
 		const profiles = this.store.get("profiles");
 		if (!profiles[name]) {
-			console.error(pc.red(`Profile "${name}" not found.`));
-			process.exit(1);
+			throw new CommandError(this.t("profile.notFound", `Profile "${name}" not found.`, { name }));
 		}
 
 		delete profiles[name];
 		this.store.set("profiles", profiles);
 
-		console.log(pc.green(`Profile "${name}" deleted.`));
+		console.log(pc.green(this.t("profile.deleted", `Profile "${name}" deleted.`, { name })));
 	}
 }

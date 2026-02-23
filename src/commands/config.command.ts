@@ -7,6 +7,7 @@
 import { readFileSync } from "node:fs";
 import pc from "picocolors";
 import { type z, z as zod } from "zod";
+import { CommandError } from "../errors/command.error.js";
 import type { ConfigRepository } from "../repositories/config.repository.js";
 import {
 	LatitudeSchema,
@@ -14,6 +15,7 @@ import {
 	MethodSchema,
 	SchoolSchema,
 } from "../schemas/config.schema.js";
+import type { I18nService } from "../services/i18n.service.js";
 
 const ImportConfigSchema = zod.object({
 	city: zod.string().optional(),
@@ -85,12 +87,23 @@ const parseConfigUpdates = (options: ConfigCommandOptions): ParsedConfigUpdates 
  * Handles the `config` subcommand: show, clear, or update persisted settings.
  */
 export class ConfigCommand {
-	constructor(private readonly configRepository: ConfigRepository) {}
+	private readonly i18n: I18nService | undefined;
+
+	constructor(
+		private readonly configRepository: ConfigRepository,
+		i18nService?: I18nService,
+	) {
+		this.i18n = i18nService;
+	}
+
+	private t(key: string, fallback: string, options?: Record<string, unknown>): string {
+		return this.i18n ? this.i18n.t(key, options) : fallback;
+	}
 
 	async execute(options: ConfigCommandOptions): Promise<void> {
 		if (options.clear) {
 			this.configRepository.clearAll();
-			console.log(pc.green("Configuration cleared."));
+			console.log(pc.green(this.t("config.cleared", "Configuration cleared.")));
 			return;
 		}
 
@@ -111,7 +124,12 @@ export class ConfigCommand {
 
 		if (!this.hasConfigUpdateFlags(options)) {
 			console.log(
-				pc.dim("No config updates provided. Use `ramadan-cli-pro config --show` to inspect."),
+				pc.dim(
+					this.t(
+						"config.noUpdates",
+						"No config updates provided. Use `ramadan-cli-pro config --show` to inspect.",
+					),
+				),
 			);
 			return;
 		}
@@ -152,7 +170,7 @@ export class ConfigCommand {
 			this.configRepository.setStoredTimezone(updates.timezone);
 		}
 
-		console.log(pc.green("Configuration updated."));
+		console.log(pc.green(this.t("config.updated", "Configuration updated.")));
 	}
 
 	private hasConfigUpdateFlags(options: ConfigCommandOptions): boolean {
@@ -187,25 +205,26 @@ export class ConfigCommand {
 		try {
 			raw = readFileSync(filePath, "utf-8");
 		} catch {
-			console.error(pc.red(`Could not read file: ${filePath}`));
-			process.exit(1);
+			throw new CommandError(
+				this.t("config.invalidFile", `Could not read file: ${filePath}`, { path: filePath }),
+			);
 		}
 
 		let parsed: unknown;
 		try {
 			parsed = JSON.parse(raw);
 		} catch {
-			console.error(pc.red("Invalid JSON in config file."));
-			process.exit(1);
+			throw new CommandError(this.t("config.invalidJson", "Invalid JSON in config file."));
 		}
 
 		const result = ImportConfigSchema.safeParse(parsed);
 		if (!result.success) {
-			console.error(pc.red("Invalid config format:"));
-			for (const issue of result.error.issues) {
-				console.error(pc.dim(`  ${issue.path.join(".")}: ${issue.message}`));
-			}
-			process.exit(1);
+			const details = result.error.issues
+				.map((i) => `${i.path.join(".")}: ${i.message}`)
+				.join("; ");
+			throw new CommandError(
+				this.t("config.invalidFormat", `Invalid config format: ${details}`, { details }),
+			);
 		}
 
 		const data = result.data;
@@ -219,7 +238,7 @@ export class ConfigCommand {
 		if (data.school !== undefined) this.configRepository.setStoredSchool(data.school);
 		if (data.timezone) this.configRepository.setStoredTimezone(data.timezone);
 
-		console.log(pc.green("Configuration imported successfully."));
+		console.log(pc.green(this.t("config.imported", "Configuration imported successfully.")));
 	}
 
 	private printCurrentConfig(): void {
@@ -227,14 +246,19 @@ export class ConfigCommand {
 		const settings = this.configRepository.getStoredPrayerSettings();
 		const firstRozaDate = this.configRepository.getStoredFirstRozaDate();
 
-		console.log(pc.dim("Current configuration:"));
-		if (location.city) console.log(`  City: ${location.city}`);
-		if (location.country) console.log(`  Country: ${location.country}`);
-		if (location.latitude !== undefined) console.log(`  Latitude: ${location.latitude}`);
-		if (location.longitude !== undefined) console.log(`  Longitude: ${location.longitude}`);
-		console.log(`  Method: ${settings.method}`);
-		console.log(`  School: ${settings.school}`);
-		if (settings.timezone) console.log(`  Timezone: ${settings.timezone}`);
-		if (firstRozaDate) console.log(`  First Roza Date: ${firstRozaDate}`);
+		console.log(pc.dim(this.t("config.currentTitle", "Current configuration:")));
+		if (location.city) console.log(`  ${this.t("config.city", "City:")} ${location.city}`);
+		if (location.country)
+			console.log(`  ${this.t("config.country", "Country:")} ${location.country}`);
+		if (location.latitude !== undefined)
+			console.log(`  ${this.t("config.latitude", "Latitude:")} ${location.latitude}`);
+		if (location.longitude !== undefined)
+			console.log(`  ${this.t("config.longitude", "Longitude:")} ${location.longitude}`);
+		console.log(`  ${this.t("config.method", "Method:")} ${settings.method}`);
+		console.log(`  ${this.t("config.school", "School:")} ${settings.school}`);
+		if (settings.timezone)
+			console.log(`  ${this.t("config.timezone", "Timezone:")} ${settings.timezone}`);
+		if (firstRozaDate)
+			console.log(`  ${this.t("config.firstRozaDate", "First Roza Date:")} ${firstRozaDate}`);
 	}
 }

@@ -10,8 +10,6 @@ describe("ConfigCommand", () => {
 	let configRepo: ConfigRepository;
 	let command: ConfigCommand;
 	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		tempDir = mkdtempSync(join(tmpdir(), "config-cmd-test-"));
@@ -22,10 +20,6 @@ describe("ConfigCommand", () => {
 		command = new ConfigCommand(configRepo);
 
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-		exitSpy = vi.spyOn(process, "exit").mockImplementation(((code?: number) => {
-			throw new Error(`process.exit(${code})`);
-		}) as never) as unknown as ReturnType<typeof vi.fn>;
 	});
 
 	afterEach(() => {
@@ -204,6 +198,28 @@ describe("ConfigCommand", () => {
 		});
 	});
 
+	describe("preserve existing location fields when updating other fields", () => {
+		it("should preserve stored city, country, latitude, longitude when updating only method", async () => {
+			configRepo.setStoredLocation({
+				city: "Karachi",
+				country: "Pakistan",
+				latitude: 24.86,
+				longitude: 67.0,
+			});
+
+			await command.execute({ method: "5" });
+
+			const location = configRepo.getStoredLocation();
+			expect(location.city).toBe("Karachi");
+			expect(location.country).toBe("Pakistan");
+			expect(location.latitude).toBeCloseTo(24.86);
+			expect(location.longitude).toBeCloseTo(67.0);
+
+			const settings = configRepo.getStoredPrayerSettings();
+			expect(settings.method).toBe(5);
+		});
+	});
+
 	describe("import", () => {
 		it("should read file, validate, and apply config", async () => {
 			const importData = {
@@ -236,39 +252,24 @@ describe("ConfigCommand", () => {
 			expect(settings.timezone).toBe("Africa/Cairo");
 		});
 
-		it("should error on non-existent file", async () => {
+		it("should throw error on non-existent file", async () => {
 			await expect(command.execute({ import: "/nonexistent/path.json" })).rejects.toThrow(
-				"process.exit(1)",
+				"Could not read file",
 			);
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Could not read file");
-			expect(exitSpy).toHaveBeenCalledWith(1);
 		});
 
-		it("should error on invalid JSON", async () => {
+		it("should throw error on invalid JSON", async () => {
 			const filePath = join(tempDir, "bad.json");
 			writeFileSync(filePath, "not json at all{{{", "utf-8");
 
-			await expect(command.execute({ import: filePath })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Invalid JSON");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			await expect(command.execute({ import: filePath })).rejects.toThrow("Invalid JSON");
 		});
 
-		it("should error on invalid config schema", async () => {
+		it("should throw error on invalid config schema", async () => {
 			const filePath = join(tempDir, "bad-schema.json");
 			writeFileSync(filePath, JSON.stringify({ method: "not-a-number" }), "utf-8");
 
-			await expect(command.execute({ import: filePath })).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Invalid config format");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			await expect(command.execute({ import: filePath })).rejects.toThrow("Invalid config format");
 		});
 	});
 });

@@ -55,5 +55,120 @@
 		"locationFailed": "Could not detect location. Pass a city like `ramadan-cli-pro \"Lahore\"`.",
 		"invalidDate": "Invalid first roza date. Use YYYY-MM-DD.",
 		"flagConflict": "Use either --all or --number, not both."
+	},
+	"track": {
+		"invalidPrayer": "Invalid prayer: {{prayer}}. Use: {{list}}",
+		"marked": "{{prayer}} marked as complete for {{date}}",
+		"fastingMarked": "Fasting marked for {{date}}",
+		"streak": "Current streak: {{count}} days",
+		"title": "Prayer Tracking - {{date}}",
+		"completed": "{{completed}}/{{total}} prayers completed",
+		"allComplete": "All prayers completed! MashaAllah!",
+		"vacationMarked": "Vacation marked for {{date}} (streak preserved)"
+	},
+	"goal": {
+		"invalidAction": "Invalid action. Use: add, update, list, delete",
+		"requiredAdd": "Required: --title, --target, --unit",
+		"added": "Goal added: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Required: --id, --progress",
+		"notFound": "Goal \"{{id}}\" not found.",
+		"updated": "Goal updated: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "No goals set. Use `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Ramadan Goals",
+		"requiredDelete": "Required: goal ID",
+		"deleted": "Goal \"{{id}}\" deleted."
+	},
+	"stats": {
+		"title": "Ramadan Statistics",
+		"prayerCompletion": "Prayer Completion:",
+		"prayersCompleted": "{{completed}}/{{total}} prayers completed",
+		"fastingStreak": "Fasting Streak:",
+		"streakDetails": "Longest: {{longest}} days | Total fasted: {{total}} days",
+		"goals": "Goals:",
+		"goalsCompleted": "{{completed}}/{{total}} completed",
+		"noGoals": "No goals set.",
+		"badgesEarned": "Badges Earned:",
+		"noBadges": "No badges earned yet."
+	},
+	"charity": {
+		"invalidAction": "Invalid action. Use: add, list, summary",
+		"requiredAdd": "Required: --amount, --description",
+		"recorded": "Charity recorded: ${{amount}} — {{description}}",
+		"noEntries": "No charity entries. Use `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Charity/Sadaqah Log",
+		"total": "Total:",
+		"summaryTitle": "Charity Summary",
+		"totalDonated": "Total donated:",
+		"entries": "Entries:"
+	},
+	"zakat": {
+		"title": "Zakat Calculator",
+		"totalWealth": "Total Wealth:",
+		"deductions": "Deductions:",
+		"netWorth": "Net Worth:",
+		"nisabGold": "Nisab (Gold):",
+		"nisabSilver": "Nisab (Silver):",
+		"zakatDue": "Zakat Due:",
+		"belowNisab": "Net worth is below nisab threshold. No Zakat due."
+	},
+	"compare": {
+		"needCities": "Provide 2-4 cities to compare.",
+		"title": "Prayer Time Comparison",
+		"prayer": "Prayer",
+		"na": "N/A",
+		"fetchFailed": "Failed to fetch"
+	},
+	"widget": {
+		"title": "Ramadan Widget",
+		"seharIftar": "{{address}} | Sehar: {{sehar}} | Iftar: {{iftar}}",
+		"exitHint": "Press Ctrl+C to exit",
+		"error": "Widget error: could not fetch prayer times."
+	},
+	"export": {
+		"unsupportedFormat": "Unsupported format: {{format}}. Use \"ical\", \"csv\", or \"json\".",
+		"exported": "Exported to {{path}}"
+	},
+	"config": {
+		"cleared": "Configuration cleared.",
+		"noUpdates": "No config updates provided. Use `ramadan-cli-pro config --show` to inspect.",
+		"updated": "Configuration updated.",
+		"invalidFile": "Could not read file: {{path}}",
+		"invalidJson": "Invalid JSON in config file.",
+		"invalidFormat": "Invalid config format: {{details}}",
+		"imported": "Configuration imported successfully.",
+		"currentTitle": "Current configuration:",
+		"city": "City:",
+		"country": "Country:",
+		"latitude": "Latitude:",
+		"longitude": "Longitude:",
+		"method": "Method:",
+		"school": "School:",
+		"timezone": "Timezone:",
+		"firstRozaDate": "First Roza Date:"
+	},
+	"notify": {
+		"enabled": "Notifications enabled.",
+		"disabled": "Notifications disabled.",
+		"seharOn": "Sehar reminder enabled.",
+		"seharOff": "Sehar reminder disabled.",
+		"iftarOn": "Iftar reminder enabled.",
+		"iftarOff": "Iftar reminder disabled.",
+		"minutesSet": "Reminder set to {{minutes}} minutes before.",
+		"title": "Notification Preferences",
+		"usage": "Use --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "Configuration reset."
+	},
+	"profile": {
+		"invalidAction": "Invalid action. Use: add, use, list, delete",
+		"nameRequired": "Profile name is required.",
+		"cityRequired": "City is required. Use --city <city>",
+		"saved": "Profile \"{{name}}\" saved ({{location}}).",
+		"notFound": "Profile \"{{name}}\" not found.",
+		"switched": "Switched to profile \"{{name}}\" ({{location}}).",
+		"noProfiles": "No profiles saved. Use `ramadan-pro profile add <name> --city <city>` to create one.",
+		"title": "Location Profiles",
+		"deleted": "Profile \"{{name}}\" deleted."
 	}
 }

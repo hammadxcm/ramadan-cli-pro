@@ -23,6 +23,8 @@ type NotificationListener = (event: NotificationEvent) => void;
  */
 export class NotificationService {
 	private listeners: Array<NotificationListener> = [];
+	private scheduledTimers: Array<NodeJS.Timeout> = [];
+	private notifierWarningShown = false;
 
 	/**
 	 * @param configRepository - For reading/writing notification preferences.
@@ -32,6 +34,16 @@ export class NotificationService {
 		private readonly configRepository: ConfigRepository,
 		private readonly i18nService: I18nService,
 	) {}
+
+	/**
+	 * Cancels all scheduled reminder timers.
+	 */
+	cancelAll(): void {
+		for (const timer of this.scheduledTimers) {
+			clearTimeout(timer);
+		}
+		this.scheduledTimers = [];
+	}
 
 	/**
 	 * Registers a listener that fires whenever a notification is emitted.
@@ -96,7 +108,10 @@ export class NotificationService {
 				message: event.message,
 			});
 		} catch {
-			// node-notifier not available, silent fail
+			if (!this.notifierWarningShown) {
+				this.notifierWarningShown = true;
+				console.debug("node-notifier not available — desktop notifications disabled.");
+			}
 		}
 	}
 
@@ -116,7 +131,8 @@ export class NotificationService {
 
 		if (delay <= 0) return;
 
-		setTimeout(() => {
+		const timer = setTimeout(() => {
+			this.scheduledTimers = this.scheduledTimers.filter((t) => t !== timer);
 			this.notify({
 				type: "reminder",
 				title: this.i18nService.t("notification.seharReminder"),
@@ -126,6 +142,7 @@ export class NotificationService {
 				scheduledAt: reminderTime,
 			});
 		}, delay);
+		this.scheduledTimers.push(timer);
 	}
 
 	/**
@@ -144,7 +161,8 @@ export class NotificationService {
 
 		if (delay <= 0) return;
 
-		setTimeout(() => {
+		const timer = setTimeout(() => {
+			this.scheduledTimers = this.scheduledTimers.filter((t) => t !== timer);
 			this.notify({
 				type: "reminder",
 				title: this.i18nService.t("notification.iftarReminder"),
@@ -154,5 +172,6 @@ export class NotificationService {
 				scheduledAt: reminderTime,
 			});
 		}, delay);
+		this.scheduledTimers.push(timer);
 	}
 }

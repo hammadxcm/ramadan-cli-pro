@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QiblaCommand } from "../../../commands/qibla.command.js";
+import { CommandError } from "../../../errors/command.error.js";
 import type { PrayerApiRepository } from "../../../repositories/prayer-api.repository.js";
 import type { LocationService } from "../../../services/location.service.js";
 
@@ -20,7 +21,6 @@ describe("QiblaCommand", () => {
 	let locationService: { [K in keyof LocationService]: ReturnType<typeof vi.fn> };
 	let prayerApiRepository: { [K in keyof PrayerApiRepository]: ReturnType<typeof vi.fn> };
 	let logSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	const mockLocation = {
 		address: "Lahore, Pakistan",
@@ -61,9 +61,6 @@ describe("QiblaCommand", () => {
 		);
 
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-		exitSpy = vi
-			.spyOn(process, "exit")
-			.mockImplementation((() => {}) as never) as unknown as ReturnType<typeof vi.fn>;
 	});
 
 	afterEach(() => {
@@ -115,20 +112,16 @@ describe("QiblaCommand", () => {
 	it("handles fetchQibla error gracefully", async () => {
 		prayerApiRepository.fetchQibla.mockRejectedValue(new Error("Network error"));
 
-		await command.execute({ city: "Lahore" });
-
+		await expect(command.execute({ city: "Lahore" })).rejects.toThrow(CommandError);
 		expect(logSpy).not.toHaveBeenCalled();
-		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
 	it("handles resolveQuery error gracefully", async () => {
 		locationService.resolveQuery.mockRejectedValue(new Error("Location not found"));
 
-		await command.execute({ city: "UnknownCity" });
-
+		await expect(command.execute({ city: "UnknownCity" })).rejects.toThrow(CommandError);
 		expect(prayerApiRepository.fetchQibla).not.toHaveBeenCalled();
 		expect(logSpy).not.toHaveBeenCalled();
-		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
 	it("throws error when coordinates are undefined", async () => {
@@ -140,10 +133,8 @@ describe("QiblaCommand", () => {
 			school: 1,
 		});
 
-		await command.execute({});
-
+		await expect(command.execute({})).rejects.toThrow(CommandError);
 		expect(prayerApiRepository.fetchQibla).not.toHaveBeenCalled();
-		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
 	it("does not call fetchQibla when only latitude is undefined", async () => {
@@ -155,10 +146,8 @@ describe("QiblaCommand", () => {
 			school: 1,
 		});
 
-		await command.execute({});
-
+		await expect(command.execute({})).rejects.toThrow(CommandError);
 		expect(prayerApiRepository.fetchQibla).not.toHaveBeenCalled();
-		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
 	it("does not call fetchQibla when only longitude is undefined", async () => {
@@ -170,17 +159,13 @@ describe("QiblaCommand", () => {
 			school: 1,
 		});
 
-		await command.execute({});
-
+		await expect(command.execute({})).rejects.toThrow(CommandError);
 		expect(prayerApiRepository.fetchQibla).not.toHaveBeenCalled();
-		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
 	it("handles non-Error exceptions gracefully", async () => {
 		prayerApiRepository.fetchQibla.mockRejectedValue("string error");
 
-		await command.execute({ city: "Lahore" });
-
-		expect(exitSpy).toHaveBeenCalledWith(1);
+		await expect(command.execute({ city: "Lahore" })).rejects.toThrow(CommandError);
 	});
 });

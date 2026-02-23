@@ -5,6 +5,7 @@
 
 export { AppError } from "./base.error.js";
 export { ApiError, ApiValidationError, ApiNetworkError } from "./api.error.js";
+export { CommandError } from "./command.error.js";
 export { GeoLocationError, GeoProviderError } from "./geo.error.js";
 export { ConfigError, ConfigValidationError } from "./config.error.js";
 export {

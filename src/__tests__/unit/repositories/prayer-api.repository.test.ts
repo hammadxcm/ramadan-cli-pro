@@ -9,7 +9,8 @@ const createApiEnvelope = (data: unknown, code = 200, status = "OK") => ({
 	data,
 });
 
-const createMockFetchResponse = (body: unknown) => ({
+const createMockFetchResponse = (body: unknown, ok = true) => ({
+	ok,
 	json: vi.fn().mockResolvedValue(body),
 });
 

@@ -412,6 +412,42 @@ describe("FirstRunSetup", () => {
 		});
 	});
 
+	describe("city validation callback", () => {
+		it("validate callback rejects empty city input", async () => {
+			setupHappyPathPrompts();
+
+			await setup.run();
+
+			// Extract the validate function from the first text() call (city prompt)
+			const cityCallArgs = mockedText.mock.calls[0]?.[0] as
+				| { validate?: (value: string) => string | undefined }
+				| undefined;
+			const validate = cityCallArgs?.validate;
+			expect(validate).toBeDefined();
+			expect(validate?.("")).toBe("City is required.");
+			expect(validate?.("   ")).toBe("City is required.");
+			expect(validate?.("Lahore")).toBeUndefined();
+		});
+	});
+
+	describe("country validation callback", () => {
+		it("validate callback rejects empty country input", async () => {
+			setupHappyPathPrompts();
+
+			await setup.run();
+
+			// Extract the validate function from the second text() call (country prompt)
+			const countryCallArgs = mockedText.mock.calls[1]?.[0] as
+				| { validate?: (value: string) => string | undefined }
+				| undefined;
+			const validate = countryCallArgs?.validate;
+			expect(validate).toBeDefined();
+			expect(validate?.("")).toBe("Country is required.");
+			expect(validate?.("   ")).toBe("Country is required.");
+			expect(validate?.("Pakistan")).toBeUndefined();
+		});
+	});
+
 	describe("custom timezone validation callback", () => {
 		it("validate callback rejects empty timezone input", async () => {
 			mockedText

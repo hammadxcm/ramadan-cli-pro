@@ -8,6 +8,13 @@ import type { RamadanRow, RowAnnotationKind } from "../types/ramadan.js";
 import { getBanner } from "../ui/banner.js";
 import { ramadanGreen } from "../ui/theme.js";
 import type { FormatContext, IOutputFormatter } from "./formatter.interface.js";
+import {
+	TABLE_HEADERS,
+	formatRowLine,
+	getFormatterTitle,
+	getTableDivider,
+	rowToColumns,
+} from "./formatter.utils.js";
 
 const formatRowAnnotation = (kind: RowAnnotationKind): string => {
 	if (kind === "current") {
@@ -33,12 +40,7 @@ export class TableFormatter implements IOutputFormatter {
 		const lines: Array<string> = [];
 		const { output, highlight, rowAnnotations = {}, plain } = ctx;
 
-		const title =
-			output.mode === "all"
-				? `Ramadan ${output.hijriYear} (All Days)`
-				: output.mode === "number"
-					? `Roza ${output.rows[0]?.roza ?? ""} Sehar/Iftar`
-					: "Today Sehar/Iftar";
+		const title = getFormatterTitle(output);
 
 		lines.push(plain ? "RAMADAN CLI" : getBanner());
 		lines.push(ramadanGreen(`  ${title}`));
@@ -65,20 +67,14 @@ export class TableFormatter implements IOutputFormatter {
 		rows: ReadonlyArray<RamadanRow>,
 		rowAnnotations: Readonly<Record<number, RowAnnotationKind>>,
 	): string {
-		const headers = ["Roza", "Sehar", "Iftar", "Date", "Hijri"];
-		const widths = [6, 8, 8, 14, 20] as const;
-		const pad = (value: string, index: number): string =>
-			value.padEnd(widths[index] ?? value.length);
-		const line = (columns: ReadonlyArray<string>): string =>
-			columns.map((column, index) => pad(column, index)).join("  ");
-		const divider = "-".repeat(line(headers).length);
+		const divider = getTableDivider();
 
 		const lines: Array<string> = [];
-		lines.push(pc.dim(`  ${line(headers)}`));
+		lines.push(pc.dim(`  ${formatRowLine([...TABLE_HEADERS])}`));
 		lines.push(pc.dim(`  ${divider}`));
 
 		for (const row of rows) {
-			const rowLine = line([String(row.roza), row.sehar, row.iftar, row.date, row.hijri]);
+			const rowLine = formatRowLine([...rowToColumns(row)]);
 			const annotation = rowAnnotations[row.roza];
 			if (!annotation) {
 				lines.push(`  ${rowLine}`);

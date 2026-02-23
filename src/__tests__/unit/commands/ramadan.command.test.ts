@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { RamadanCommand } from "../../../commands/ramadan.command.js";
+import { CommandError } from "../../../errors/command.error.js";
 import { PrayerTimeFetchError } from "../../../errors/prayer.error.js";
 import type { CommandContext } from "../../../types/command.js";
 import type { PrayerData } from "../../../types/prayer.js";
@@ -307,6 +308,35 @@ describe("RamadanCommand", () => {
 			expect(mockRamadanService.toRamadanRow).toHaveBeenCalledWith(firstRamadanDay, 1);
 		});
 
+		it("should throw when calendar returns empty array (no first Ramadan day)", async () => {
+			const nonRamadanData: PrayerData = {
+				...samplePrayerData,
+				date: {
+					...samplePrayerData.date,
+					hijri: {
+						...samplePrayerData.date.hijri,
+						month: {
+							number: 8,
+							en: "Shaban",
+							ar: "شعبان",
+						},
+					},
+				},
+			};
+			mockPrayerTimeService.fetchDay.mockResolvedValue(nonRamadanData);
+			mockPrayerTimeService.fetchCalendar.mockResolvedValue([]);
+			const context: CommandContext = {};
+
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
+		});
+
+		it("should throw when row is null after toRamadanRow", async () => {
+			mockRamadanService.toRamadanRow.mockReturnValue(null);
+			const context: CommandContext = {};
+
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
+		});
+
 		it("should output formatted result to console.log", async () => {
 			mockFormatter.format.mockReturnValue("table output for today");
 			const context: CommandContext = {};
@@ -436,13 +466,13 @@ describe("RamadanCommand", () => {
 	});
 
 	describe("JSON mode error handling", () => {
-		it("should output JSON error to stderr and exit with 1", async () => {
+		it("should output JSON error to stderr and throw CommandError", async () => {
 			mockLocationService.resolveQuery.mockRejectedValue(
 				new PrayerTimeFetchError("Could not fetch prayer times. timeout", ["timeout"]),
 			);
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			expect(stderrSpy).toHaveBeenCalledTimes(1);
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
@@ -454,7 +484,6 @@ describe("RamadanCommand", () => {
 					message: "Could not fetch prayer times. timeout",
 				},
 			});
-			expect(exitSpy).toHaveBeenCalledWith(1);
 		});
 
 		it("should use INVALID_FLAG_COMBINATION code for flag errors", async () => {
@@ -463,7 +492,7 @@ describe("RamadanCommand", () => {
 			);
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -474,7 +503,7 @@ describe("RamadanCommand", () => {
 			mockLocationService.resolveQuery.mockRejectedValue("string error");
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -488,7 +517,7 @@ describe("RamadanCommand", () => {
 			);
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -501,7 +530,7 @@ describe("RamadanCommand", () => {
 			);
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -512,7 +541,7 @@ describe("RamadanCommand", () => {
 			mockDateService.parseIso.mockReturnValue(null);
 			const context: CommandContext = { json: true, firstRozaDate: "invalid-date" };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -549,7 +578,7 @@ describe("RamadanCommand", () => {
 			mockDateService.parseIso.mockReturnValue(null);
 			const context: CommandContext = { firstRozaDate: "not-a-date" };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow("Invalid first roza date");
 		});
 
 		it("should use stored first roza date when no explicit one is provided", async () => {
@@ -601,36 +630,30 @@ describe("RamadanCommand", () => {
 	});
 
 	describe("error handling", () => {
-		it("should catch PrayerTimeFetchError, fail spinner, and exit", async () => {
-			const { createSpinner } = await import("../../../ui/spinner.js");
-			const spinnerInstance = (createSpinner as ReturnType<typeof vi.fn>)();
-
+		it("should catch PrayerTimeFetchError and throw CommandError", async () => {
 			mockPrayerTimeService.fetchDay.mockRejectedValue(
 				new PrayerTimeFetchError("Could not fetch prayer times. API down", ["API down"]),
 			);
 			const context: CommandContext = {};
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
-
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
+			await expect(command.execute(context)).rejects.toThrow(
+				"Could not fetch prayer times. API down",
+			);
 		});
 
 		it("should show generic message for non-Error throws", async () => {
 			mockPrayerTimeService.fetchDay.mockRejectedValue("string error");
 			const context: CommandContext = {};
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
-
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			await expect(command.execute(context)).rejects.toThrow("Failed to fetch Ramadan timings");
 		});
 
 		it("should show error message from Error objects", async () => {
 			mockPrayerTimeService.fetchDay.mockRejectedValue(new Error("Something went wrong"));
 			const context: CommandContext = {};
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
-
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			await expect(command.execute(context)).rejects.toThrow("Something went wrong");
 		});
 	});
 
@@ -759,7 +782,9 @@ describe("RamadanCommand", () => {
 			mockDateService.parseGregorian.mockReturnValue(null);
 			const context: CommandContext = {};
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(
+				"Could not parse Gregorian date from prayer response",
+			);
 		});
 	});
 
@@ -770,7 +795,7 @@ describe("RamadanCommand", () => {
 			);
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());
@@ -783,7 +808,7 @@ describe("RamadanCommand", () => {
 			mockLocationService.resolveQuery.mockRejectedValue(new Error("Some random error occurred"));
 			const context: CommandContext = { json: true };
 
-			await expect(command.execute(context)).rejects.toThrow("process.exit(1)");
+			await expect(command.execute(context)).rejects.toThrow(CommandError);
 
 			const written = stderrSpy.mock.calls[0]?.[0] as string;
 			const parsed = JSON.parse(written.trim());

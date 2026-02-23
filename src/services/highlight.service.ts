@@ -5,6 +5,7 @@
  * the next event.
  */
 
+import { getStatusLabel } from "../formatters/formatter.utils.js";
 import type { PrayerData } from "../types/prayer.js";
 import type { HighlightState } from "../types/ramadan.js";
 import type { DateService } from "./date.service.js";
@@ -98,17 +99,7 @@ export class HighlightService {
 	 * @returns A concise status string (e.g. `"Iftar in 2h 15m"`).
 	 */
 	formatStatusLine(highlight: HighlightState): string {
-		const label = (() => {
-			switch (highlight.next) {
-				case "First Sehar":
-				case "Next day Sehar":
-					return "Sehar";
-				case "Roza starts (Fajr)":
-					return "Fast starts";
-				default:
-					return highlight.next;
-			}
-		})();
+		const label = getStatusLabel(highlight.next);
 		return `${label} in ${highlight.countdown}`;
 	}
 }

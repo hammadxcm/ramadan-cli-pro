@@ -23,6 +23,7 @@ import type {
 	FetchHijriCalendarByCityOptions,
 } from "../types/prayer-api-options.js";
 import type { CalculationMethod, MethodsResponse, PrayerData, QiblaData } from "../types/prayer.js";
+import { formatDateForApi } from "../utils/date.js";
 
 export type {
 	FetchByAddressOptions,
@@ -35,13 +36,6 @@ export type {
 };
 
 const API_BASE = "https://api.aladhan.com/v1";
-
-const formatDate = (date: Date): string => {
-	const day = String(date.getDate()).padStart(2, "0");
-	const month = String(date.getMonth() + 1).padStart(2, "0");
-	const year = date.getFullYear();
-	return `${day}-${month}-${year}`;
-};
 
 const parseApiResponse = <T extends z.ZodTypeAny>(payload: unknown, dataSchema: T): z.infer<T> => {
 	const parsedEnvelope = ApiEnvelopeSchema.safeParse(payload);
@@ -77,6 +71,9 @@ const fetchAndParse = async <T extends z.ZodTypeAny>(
 	dataSchema: T,
 ): Promise<z.infer<T>> => {
 	const response = await fetch(url);
+	if (!response.ok) {
+		throw new ApiError(`HTTP ${response.status}: ${response.statusText}`);
+	}
 	const json = (await response.json()) as unknown;
 	return parseApiResponse(json, dataSchema);
 };
@@ -93,7 +90,7 @@ export class PrayerApiRepository {
 	 * @returns Validated prayer data for the requested day.
 	 */
 	async fetchTimingsByCity(opts: FetchByCityOptions): Promise<PrayerData> {
-		const date = formatDate(opts.date ?? new Date());
+		const date = formatDateForApi(opts.date ?? new Date());
 		const params = new URLSearchParams({
 			city: opts.city,
 			country: opts.country,
@@ -111,7 +108,7 @@ export class PrayerApiRepository {
 	 * @returns Validated prayer data for the requested day.
 	 */
 	async fetchTimingsByAddress(opts: FetchByAddressOptions): Promise<PrayerData> {
-		const date = formatDate(opts.date ?? new Date());
+		const date = formatDateForApi(opts.date ?? new Date());
 		const params = new URLSearchParams({ address: opts.address });
 		if (opts.method !== undefined) params.set("method", String(opts.method));
 		if (opts.school !== undefined) params.set("school", String(opts.school));
@@ -126,7 +123,7 @@ export class PrayerApiRepository {
 	 * @returns Validated prayer data for the requested day.
 	 */
 	async fetchTimingsByCoords(opts: FetchByCoordsOptions): Promise<PrayerData> {
-		const date = formatDate(opts.date ?? new Date());
+		const date = formatDateForApi(opts.date ?? new Date());
 		const params = new URLSearchParams({
 			latitude: String(opts.latitude),
 			longitude: String(opts.longitude),

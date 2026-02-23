@@ -3,6 +3,7 @@
  * @description Displays the Qibla (direction of Mecca) for a given location.
  */
 
+import { CommandError } from "../errors/command.error.js";
 import { formatQiblaOutput } from "../formatters/qibla.formatter.js";
 import type { PrayerApiRepository } from "../repositories/prayer-api.repository.js";
 import type { LocationService } from "../services/location.service.js";
@@ -53,7 +54,9 @@ export class QiblaCommand {
 			);
 		} catch (error) {
 			spinner.fail(error instanceof Error ? error.message : "Failed to fetch Qibla direction");
-			process.exit(1);
+			throw new CommandError(
+				error instanceof Error ? error.message : "Failed to fetch Qibla direction",
+			);
 		}
 	}
 }

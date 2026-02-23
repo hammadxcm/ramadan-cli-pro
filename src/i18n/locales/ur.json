@@ -55,5 +55,120 @@
 		"locationFailed": "مقام کا پتہ نہیں چل سکا۔ شہر درج کریں جیسے `ramadan-cli-pro \"لاہور\"`۔",
 		"invalidDate": "پہلے روزے کی تاریخ غلط ہے۔ YYYY-MM-DD استعمال کریں۔",
 		"flagConflict": "--all یا --number میں سے ایک استعمال کریں، دونوں نہیں۔"
+	},
+	"track": {
+		"invalidPrayer": "غلط نماز: {{prayer}}۔ استعمال کریں: {{list}}",
+		"marked": "{{prayer}} کو {{date}} کے لیے مکمل نشان زد کیا گیا",
+		"fastingMarked": "{{date}} کے لیے روزہ نشان زد کیا گیا",
+		"streak": "موجودہ سلسلہ: {{count}} دن",
+		"title": "نماز کی پیروی - {{date}}",
+		"completed": "{{completed}}/{{total}} نمازیں مکمل",
+		"allComplete": "تمام نمازیں مکمل! ماشاءاللہ!",
+		"vacationMarked": "{{date}} کے لیے چھٹی نشان زد کی گئی (سلسلہ محفوظ)"
+	},
+	"goal": {
+		"invalidAction": "غلط عمل۔ استعمال کریں: add، update، list، delete",
+		"requiredAdd": "ضروری: --title، --target، --unit",
+		"added": "ہدف شامل کیا گیا: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "ضروری: --id، --progress",
+		"notFound": "ہدف \"{{id}}\" نہیں ملا۔",
+		"updated": "ہدف اپ ڈیٹ ہوا: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "کوئی ہدف مقرر نہیں۔ استعمال کریں `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "رمضان کے اہداف",
+		"requiredDelete": "ضروری: ہدف کی ID",
+		"deleted": "ہدف \"{{id}}\" حذف ہو گیا۔"
+	},
+	"stats": {
+		"title": "رمضان کے اعداد و شمار",
+		"prayerCompletion": "نماز کی تکمیل:",
+		"prayersCompleted": "{{completed}}/{{total}} نمازیں مکمل",
+		"fastingStreak": "روزوں کا سلسلہ:",
+		"streakDetails": "طویل ترین: {{longest}} دن | کل روزے: {{total}} دن",
+		"goals": "اہداف:",
+		"goalsCompleted": "{{completed}}/{{total}} مکمل",
+		"noGoals": "کوئی ہدف مقرر نہیں۔",
+		"badgesEarned": "حاصل شدہ بیج:",
+		"noBadges": "ابھی تک کوئی بیج حاصل نہیں ہوا۔"
+	},
+	"charity": {
+		"invalidAction": "غلط عمل۔ استعمال کریں: add، list، summary",
+		"requiredAdd": "ضروری: --amount، --description",
+		"recorded": "صدقہ ریکارڈ ہوا: ${{amount}} — {{description}}",
+		"noEntries": "کوئی صدقہ ریکارڈ نہیں۔ استعمال کریں `ramadan charity add --amount ... --description ...`",
+		"logTitle": "صدقات کا ریکارڈ",
+		"total": "کل:",
+		"summaryTitle": "صدقات کا خلاصہ",
+		"totalDonated": "کل عطیات:",
+		"entries": "اندراجات:"
+	},
+	"zakat": {
+		"title": "زکوٰة کیلکولیٹر",
+		"totalWealth": "کل دولت:",
+		"deductions": "کٹوتیاں:",
+		"netWorth": "خالص مالیت:",
+		"nisabGold": "نصاب (سونا):",
+		"nisabSilver": "نصاب (چاندی):",
+		"zakatDue": "واجب زکوٰة:",
+		"belowNisab": "خالص مالیت نصاب کی حد سے کم ہے۔ زکوٰة واجب نہیں۔"
+	},
+	"compare": {
+		"needCities": "موازنے کے لیے 2 سے 4 شہر درج کریں۔",
+		"title": "نماز کے اوقات کا موازنہ",
+		"prayer": "نماز",
+		"na": "دستیاب نہیں",
+		"fetchFailed": "حاصل کرنے میں ناکامی"
+	},
+	"widget": {
+		"title": "رمضان وجٹ",
+		"seharIftar": "{{address}} | سحری: {{sehar}} | افطار: {{iftar}}",
+		"exitHint": "باہر نکلنے کے لیے Ctrl+C دبائیں",
+		"error": "وجٹ میں خرابی: نماز کے اوقات حاصل نہیں ہو سکے۔"
+	},
+	"export": {
+		"unsupportedFormat": "غیر معاون فارمیٹ: {{format}}۔ \"ical\"، \"csv\"، یا \"json\" استعمال کریں۔",
+		"exported": "{{path}} پر برآمد ہو گیا"
+	},
+	"config": {
+		"cleared": "ترتیبات صاف ہو گئیں۔",
+		"noUpdates": "کوئی تبدیلی فراہم نہیں کی گئی۔ دیکھنے کے لیے `ramadan-cli-pro config --show` استعمال کریں۔",
+		"updated": "ترتیبات اپ ڈیٹ ہو گئیں۔",
+		"invalidFile": "فائل پڑھ نہیں سکے: {{path}}",
+		"invalidJson": "ترتیبات کی فائل میں JSON غلط ہے۔",
+		"invalidFormat": "ترتیبات کی غلط شکل: {{details}}",
+		"imported": "ترتیبات کامیابی سے درآمد ہو گئیں۔",
+		"currentTitle": "موجودہ ترتیبات:",
+		"city": "شہر:",
+		"country": "ملک:",
+		"latitude": "عرض البلد:",
+		"longitude": "طول البلد:",
+		"method": "طریقہ:",
+		"school": "مکتب فکر:",
+		"timezone": "ٹائم زون:",
+		"firstRozaDate": "پہلے روزے کی تاریخ:"
+	},
+	"notify": {
+		"enabled": "اطلاعات فعال ہو گئیں۔",
+		"disabled": "اطلاعات غیر فعال ہو گئیں۔",
+		"seharOn": "سحری کی یاد دہانی فعال ہو گئی۔",
+		"seharOff": "سحری کی یاد دہانی غیر فعال ہو گئی۔",
+		"iftarOn": "افطار کی یاد دہانی فعال ہو گئی۔",
+		"iftarOff": "افطار کی یاد دہانی غیر فعال ہو گئی۔",
+		"minutesSet": "یاد دہانی {{minutes}} منٹ پہلے مقرر ہو گئی۔",
+		"title": "اطلاعات کی ترجیحات",
+		"usage": "استعمال کریں --enable/--disable، --sehar، --iftar، --minutes <n>"
+	},
+	"reset": {
+		"done": "ترتیبات دوبارہ مقرر ہو گئیں۔"
+	},
+	"profile": {
+		"invalidAction": "غلط عمل۔ استعمال کریں: add، use، list، delete",
+		"nameRequired": "پروفائل کا نام ضروری ہے۔",
+		"cityRequired": "شہر ضروری ہے۔ --city <city> استعمال کریں",
+		"saved": "پروفائل \"{{name}}\" محفوظ ہو گیا ({{location}})۔",
+		"notFound": "پروفائل \"{{name}}\" نہیں ملا۔",
+		"switched": "پروفائل \"{{name}}\" پر تبدیل ہو گیا ({{location}})۔",
+		"noProfiles": "کوئی پروفائل محفوظ نہیں۔ بنانے کے لیے `ramadan-pro profile add <name> --city <city>` استعمال کریں۔",
+		"title": "مقام کے پروفائلز",
+		"deleted": "پروفائل \"{{name}}\" حذف ہو گیا۔"
 	}
 }
