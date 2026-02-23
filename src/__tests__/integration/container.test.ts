@@ -37,11 +37,11 @@ describe("Container wiring", () => {
 
 	it("creates command factory with all commands", () => {
 		expect(container.commandFactory).toBeDefined();
-		expect(container.commandFactory.ramadan).toBeDefined();
-		expect(container.commandFactory.config).toBeDefined();
-		expect(container.commandFactory.reset).toBeDefined();
-		expect(container.commandFactory.dashboard).toBeDefined();
-		expect(container.commandFactory.notify).toBeDefined();
+		expect(container.commandFactory.get("ramadan")).toBeDefined();
+		expect(container.commandFactory.get("config")).toBeDefined();
+		expect(container.commandFactory.get("reset")).toBeDefined();
+		expect(container.commandFactory.get("dashboard")).toBeDefined();
+		expect(container.commandFactory.get("notify")).toBeDefined();
 	});
 
 	it("notification service reads preferences from config", () => {
