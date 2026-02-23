@@ -1,13 +1,15 @@
 import { Box, Text } from "ink";
 import type React from "react";
 import type { HighlightState } from "../../types/ramadan.js";
-import { colors } from "../theme/colors.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface CountdownTimerProps {
 	readonly highlight: HighlightState | null;
 }
 
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({ highlight }) => {
+	const colors = useThemeColors();
+
 	if (!highlight) {
 		return (
 			<Box paddingX={1}>
