@@ -55,5 +55,120 @@
 		"locationFailed": "Konum tespit edilemedi. Sehir girin: `ramadan-cli-pro \"Istanbul\"`.",
 		"invalidDate": "Gecersiz ilk oruc tarihi. YYYY-MM-DD kullanin.",
 		"flagConflict": "--all veya --number kullanin, ikisini birden degil."
+	},
+	"track": {
+		"invalidPrayer": "Gecersiz namaz: {{prayer}}. Kullanin: {{list}}",
+		"marked": "{{prayer}} namazı {{date}} icin tamamlandi olarak isaretlendi",
+		"fastingMarked": "{{date}} icin oruc isaretlendi",
+		"streak": "Mevcut seri: {{count}} gun",
+		"title": "Namaz Takibi - {{date}}",
+		"completed": "{{completed}}/{{total}} namaz tamamlandi",
+		"allComplete": "Tum namazlar tamamlandi! MasaAllah!",
+		"vacationMarked": "{{date}} icin tatil isaretlendi (seri korundu)"
+	},
+	"goal": {
+		"invalidAction": "Gecersiz islem. Kullanin: add, update, list, delete",
+		"requiredAdd": "Gerekli: --title, --target, --unit",
+		"added": "Hedef eklendi: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Gerekli: --id, --progress",
+		"notFound": "\"{{id}}\" hedefi bulunamadi.",
+		"updated": "Hedef guncellendi: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "Hedef belirlenmemis. Kullanin: `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Ramazan Hedefleri",
+		"requiredDelete": "Gerekli: hedef ID",
+		"deleted": "\"{{id}}\" hedefi silindi."
+	},
+	"stats": {
+		"title": "Ramazan Istatistikleri",
+		"prayerCompletion": "Namaz Tamamlanma:",
+		"prayersCompleted": "{{completed}}/{{total}} namaz tamamlandi",
+		"fastingStreak": "Oruc Serisi:",
+		"streakDetails": "En uzun: {{longest}} gun | Toplam oruc: {{total}} gun",
+		"goals": "Hedefler:",
+		"goalsCompleted": "{{completed}}/{{total}} tamamlandi",
+		"noGoals": "Hedef belirlenmemis.",
+		"badgesEarned": "Kazanilan Rozetler:",
+		"noBadges": "Henuz rozet kazanilmadi."
+	},
+	"charity": {
+		"invalidAction": "Gecersiz islem. Kullanin: add, list, summary",
+		"requiredAdd": "Gerekli: --amount, --description",
+		"recorded": "Sadaka kaydedildi: ${{amount}} — {{description}}",
+		"noEntries": "Sadaka kaydi yok. Kullanin: `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Sadaka Kayitlari",
+		"total": "Toplam:",
+		"summaryTitle": "Sadaka Ozeti",
+		"totalDonated": "Toplam bagis:",
+		"entries": "Kayitlar:"
+	},
+	"zakat": {
+		"title": "Zekat Hesaplayici",
+		"totalWealth": "Toplam Varlik:",
+		"deductions": "Kesintiler:",
+		"netWorth": "Net Deger:",
+		"nisabGold": "Nisab (Altin):",
+		"nisabSilver": "Nisab (Gumus):",
+		"zakatDue": "Odenecek Zekat:",
+		"belowNisab": "Net deger nisab esiginin altinda. Zekat gerektirmez."
+	},
+	"compare": {
+		"needCities": "Karsilastirmak icin 2-4 sehir girin.",
+		"title": "Namaz Vakti Karsilastirmasi",
+		"prayer": "Namaz",
+		"na": "Mevcut degil",
+		"fetchFailed": "Alinamadi"
+	},
+	"widget": {
+		"title": "Ramazan Widget",
+		"seharIftar": "{{address}} | Sahur: {{sehar}} | Iftar: {{iftar}}",
+		"exitHint": "Cikmak icin Ctrl+C basin",
+		"error": "Widget hatasi: namaz vakitleri alinamadi."
+	},
+	"export": {
+		"unsupportedFormat": "Desteklenmeyen format: {{format}}. \"ical\", \"csv\" veya \"json\" kullanin.",
+		"exported": "{{path}} konumuna aktarildi"
+	},
+	"config": {
+		"cleared": "Yapilandirma temizlendi.",
+		"noUpdates": "Guncelleme yapilmadi. Gormek icin `ramadan-cli-pro config --show` kullanin.",
+		"updated": "Yapilandirma guncellendi.",
+		"invalidFile": "Dosya okunamadi: {{path}}",
+		"invalidJson": "Yapilandirma dosyasinda gecersiz JSON.",
+		"invalidFormat": "Gecersiz yapilandirma formati: {{details}}",
+		"imported": "Yapilandirma basariyla icerildi.",
+		"currentTitle": "Mevcut yapilandirma:",
+		"city": "Sehir:",
+		"country": "Ulke:",
+		"latitude": "Enlem:",
+		"longitude": "Boylam:",
+		"method": "Yontem:",
+		"school": "Mezhep:",
+		"timezone": "Saat dilimi:",
+		"firstRozaDate": "Ilk Oruc Tarihi:"
+	},
+	"notify": {
+		"enabled": "Bildirimler etkinlestirildi.",
+		"disabled": "Bildirimler devre disi birakildi.",
+		"seharOn": "Sahur hatirlatmasi etkinlestirildi.",
+		"seharOff": "Sahur hatirlatmasi devre disi birakildi.",
+		"iftarOn": "Iftar hatirlatmasi etkinlestirildi.",
+		"iftarOff": "Iftar hatirlatmasi devre disi birakildi.",
+		"minutesSet": "Hatirlatma {{minutes}} dakika oncesine ayarlandi.",
+		"title": "Bildirim Tercihleri",
+		"usage": "--enable/--disable, --sehar, --iftar, --minutes <n> kullanin"
+	},
+	"reset": {
+		"done": "Yapilandirma sifirlandi."
+	},
+	"profile": {
+		"invalidAction": "Gecersiz islem. Kullanin: add, use, list, delete",
+		"nameRequired": "Profil adi gereklidir.",
+		"cityRequired": "Sehir gereklidir. --city <city> kullanin",
+		"saved": "\"{{name}}\" profili kaydedildi ({{location}}).",
+		"notFound": "\"{{name}}\" profili bulunamadi.",
+		"switched": "\"{{name}}\" profiline gecildi ({{location}}).",
+		"noProfiles": "Kayitli profil yok. Olusturmak icin `ramadan-pro profile add <name> --city <city>` kullanin.",
+		"title": "Konum Profilleri",
+		"deleted": "\"{{name}}\" profili silindi."
 	}
 }
