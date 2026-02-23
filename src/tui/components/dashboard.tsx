@@ -8,12 +8,14 @@ import { Box } from "ink";
 import type React from "react";
 import { usePrayerContext } from "../context/prayer-context.js";
 import { CountdownTimer } from "./countdown-timer.js";
+import { DuaCard } from "./dua-card.js";
 import { ErrorDisplay } from "./error-display.js";
 import { Footer } from "./footer.js";
 import { Header } from "./header.js";
 import { LoadingSpinner } from "./loading-spinner.js";
 import { PrayerTimesTable } from "./prayer-times-table.js";
 import { ProgressBar } from "./progress-bar.js";
+import { QuranVerseCard } from "./quran-verse-card.js";
 
 /**
  * Main dashboard layout component. Shows a loading spinner, error display,
@@ -47,6 +49,8 @@ export const Dashboard: React.FC = () => {
 			{isRamadan && (
 				<ProgressBar percent={ramadanProgress} label={`Ramadan Day ${ramadanDay}/30`} />
 			)}
+			{isRamadan && <DuaCard dayNumber={ramadanDay} />}
+			{isRamadan && <QuranVerseCard dayNumber={ramadanDay} />}
 			<Footer />
 		</Box>
 	);
