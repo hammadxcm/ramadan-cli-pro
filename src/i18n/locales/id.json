@@ -55,5 +55,120 @@
 		"locationFailed": "Tidak dapat mendeteksi lokasi. Masukkan kota seperti `ramadan-cli-pro \"Jakarta\"`.",
 		"invalidDate": "Tanggal puasa pertama tidak valid. Gunakan YYYY-MM-DD.",
 		"flagConflict": "Gunakan --all atau --number, bukan keduanya."
+	},
+	"track": {
+		"invalidPrayer": "Shalat tidak valid: {{prayer}}. Gunakan: {{list}}",
+		"marked": "{{prayer}} ditandai selesai untuk {{date}}",
+		"fastingMarked": "Puasa ditandai untuk {{date}}",
+		"streak": "Streak saat ini: {{count}} hari",
+		"title": "Pelacakan Shalat - {{date}}",
+		"completed": "{{completed}}/{{total}} shalat selesai",
+		"allComplete": "Semua shalat selesai! MasyaAllah!",
+		"vacationMarked": "Liburan ditandai untuk {{date}} (streak dipertahankan)"
+	},
+	"goal": {
+		"invalidAction": "Aksi tidak valid. Gunakan: add, update, list, delete",
+		"requiredAdd": "Diperlukan: --title, --target, --unit",
+		"added": "Tujuan ditambahkan: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "Diperlukan: --id, --progress",
+		"notFound": "Tujuan \"{{id}}\" tidak ditemukan.",
+		"updated": "Tujuan diperbarui: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "Belum ada tujuan. Gunakan `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "Tujuan Ramadan",
+		"requiredDelete": "ID tujuan diperlukan",
+		"deleted": "Tujuan \"{{id}}\" dihapus."
+	},
+	"stats": {
+		"title": "Statistik Ramadan",
+		"prayerCompletion": "Penyelesaian Shalat:",
+		"prayersCompleted": "{{completed}}/{{total}} shalat selesai",
+		"fastingStreak": "Streak Puasa:",
+		"streakDetails": "Terpanjang: {{longest}} hari | Total puasa: {{total}} hari",
+		"goals": "Tujuan:",
+		"goalsCompleted": "{{completed}}/{{total}} selesai",
+		"noGoals": "Belum ada tujuan.",
+		"badgesEarned": "Lencana yang Diraih:",
+		"noBadges": "Belum ada lencana yang diraih."
+	},
+	"charity": {
+		"invalidAction": "Aksi tidak valid. Gunakan: add, list, summary",
+		"requiredAdd": "Diperlukan: --amount, --description",
+		"recorded": "Sedekah dicatat: ${{amount}} — {{description}}",
+		"noEntries": "Belum ada catatan sedekah. Gunakan `ramadan charity add --amount ... --description ...`",
+		"logTitle": "Catatan Sedekah/Sadaqah",
+		"total": "Total:",
+		"summaryTitle": "Ringkasan Sedekah",
+		"totalDonated": "Total donasi:",
+		"entries": "Entri:"
+	},
+	"zakat": {
+		"title": "Kalkulator Zakat",
+		"totalWealth": "Total Kekayaan:",
+		"deductions": "Potongan:",
+		"netWorth": "Kekayaan Bersih:",
+		"nisabGold": "Nisab (Emas):",
+		"nisabSilver": "Nisab (Perak):",
+		"zakatDue": "Zakat yang Harus Dibayar:",
+		"belowNisab": "Kekayaan bersih di bawah ambang nisab. Tidak ada Zakat yang harus dibayar."
+	},
+	"compare": {
+		"needCities": "Masukkan 2-4 kota untuk dibandingkan.",
+		"title": "Perbandingan Waktu Shalat",
+		"prayer": "Shalat",
+		"na": "N/A",
+		"fetchFailed": "Gagal mengambil data"
+	},
+	"widget": {
+		"title": "Widget Ramadan",
+		"seharIftar": "{{address}} | Sahur: {{sehar}} | Buka Puasa: {{iftar}}",
+		"exitHint": "Tekan Ctrl+C untuk keluar",
+		"error": "Kesalahan widget: tidak dapat mengambil waktu shalat."
+	},
+	"export": {
+		"unsupportedFormat": "Format tidak didukung: {{format}}. Gunakan \"ical\", \"csv\", atau \"json\".",
+		"exported": "Diekspor ke {{path}}"
+	},
+	"config": {
+		"cleared": "Konfigurasi dihapus.",
+		"noUpdates": "Tidak ada pembaruan konfigurasi. Gunakan `ramadan-cli-pro config --show` untuk melihat.",
+		"updated": "Konfigurasi diperbarui.",
+		"invalidFile": "Tidak dapat membaca file: {{path}}",
+		"invalidJson": "JSON tidak valid dalam file konfigurasi.",
+		"invalidFormat": "Format konfigurasi tidak valid: {{details}}",
+		"imported": "Konfigurasi berhasil diimpor.",
+		"currentTitle": "Konfigurasi saat ini:",
+		"city": "Kota:",
+		"country": "Negara:",
+		"latitude": "Lintang:",
+		"longitude": "Bujur:",
+		"method": "Metode:",
+		"school": "Mazhab:",
+		"timezone": "Zona Waktu:",
+		"firstRozaDate": "Tanggal Puasa Pertama:"
+	},
+	"notify": {
+		"enabled": "Notifikasi diaktifkan.",
+		"disabled": "Notifikasi dinonaktifkan.",
+		"seharOn": "Pengingat sahur diaktifkan.",
+		"seharOff": "Pengingat sahur dinonaktifkan.",
+		"iftarOn": "Pengingat buka puasa diaktifkan.",
+		"iftarOff": "Pengingat buka puasa dinonaktifkan.",
+		"minutesSet": "Pengingat diatur {{minutes}} menit sebelumnya.",
+		"title": "Preferensi Notifikasi",
+		"usage": "Gunakan --enable/--disable, --sehar, --iftar, --minutes <n>"
+	},
+	"reset": {
+		"done": "Konfigurasi direset."
+	},
+	"profile": {
+		"invalidAction": "Aksi tidak valid. Gunakan: add, use, list, delete",
+		"nameRequired": "Nama profil diperlukan.",
+		"cityRequired": "Kota diperlukan. Gunakan --city <city>",
+		"saved": "Profil \"{{name}}\" disimpan ({{location}}).",
+		"notFound": "Profil \"{{name}}\" tidak ditemukan.",
+		"switched": "Beralih ke profil \"{{name}}\" ({{location}}).",
+		"noProfiles": "Belum ada profil. Gunakan `ramadan-pro profile add <name> --city <city>` untuk membuat.",
+		"title": "Profil Lokasi",
+		"deleted": "Profil \"{{name}}\" dihapus."
 	}
 }
