@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { MOON_EMOJI, ramadanGreen } from "../../../ui/theme.js";
+import { MOON_EMOJI, isNoColor, ramadanGreen, setActivePrimary } from "../../../ui/theme.js";
 
 describe("MOON_EMOJI", () => {
 	it("equals the crescent moon emoji", () => {
@@ -55,5 +55,95 @@ describe("ramadanGreen", () => {
 		expect(result).toContain("line1");
 		expect(result).toContain("line2");
 		expect(result).toContain("line3");
+	});
+});
+
+describe("ui/theme", () => {
+	it("ramadanGreen: applies default primary color", () => {
+		const result = ramadanGreen("hello");
+		expect(typeof result).toBe("string");
+		expect(result).toContain("hello");
+	});
+
+	it("setActivePrimary: overrides the primary color function", () => {
+		const custom = (text: string) => `[custom]${text}`;
+		setActivePrimary(custom);
+		const result = ramadanGreen("test");
+		expect(result).toBe("[custom]test");
+	});
+});
+
+describe("isNoColor", () => {
+	const originalEnv = process.env;
+
+	beforeEach(() => {
+		// Reset activePrimary back to the default before each NO_COLOR test
+		// by clearing module cache and re-importing would be complex,
+		// so we use setActivePrimary to reset to a known state after custom override tests
+	});
+
+	afterEach(() => {
+		// Restore original env
+		process.env = originalEnv;
+	});
+
+	it("returns true when NO_COLOR is set to a non-empty value", () => {
+		process.env = { ...originalEnv, NO_COLOR: "1" };
+		expect(isNoColor()).toBe(true);
+	});
+
+	it("returns true when NO_COLOR is set to an empty string", () => {
+		process.env = { ...originalEnv, NO_COLOR: "" };
+		expect(isNoColor()).toBe(true);
+	});
+
+	it("returns false when NO_COLOR is not set", () => {
+		const { NO_COLOR: _, ...envWithout } = originalEnv;
+		process.env = envWithout;
+		expect(isNoColor()).toBe(false);
+	});
+});
+
+describe("NO_COLOR integration with ramadanGreen", () => {
+	const originalEnv = process.env;
+
+	afterEach(() => {
+		process.env = originalEnv;
+	});
+
+	it("returns plain text when NO_COLOR is set", async () => {
+		process.env = { ...originalEnv, NO_COLOR: "1" };
+
+		// Need a fresh import so defaultPrimary reads the updated env
+		// Clear module cache to get a fresh defaultPrimary
+		vi.resetModules();
+		const { ramadanGreen: freshGreen } = await import("../../../ui/theme.js");
+
+		const result = freshGreen("no color text");
+		expect(result).toBe("no color text");
+	});
+
+	it("returns plain text when NO_COLOR is empty string", async () => {
+		process.env = { ...originalEnv, NO_COLOR: "" };
+
+		vi.resetModules();
+		const { ramadanGreen: freshGreen } = await import("../../../ui/theme.js");
+
+		const result = freshGreen("still no color");
+		expect(result).toBe("still no color");
+	});
+
+	it("returns colored text when NO_COLOR is not set", async () => {
+		const { NO_COLOR: _, ...envWithout } = originalEnv;
+		process.env = envWithout;
+
+		vi.resetModules();
+		const { ramadanGreen: freshGreen } = await import("../../../ui/theme.js");
+
+		// We can't assert the exact ANSI codes because it depends on terminal support,
+		// but we can verify the text is included and it's a valid string
+		const result = freshGreen("colored text");
+		expect(result).toContain("colored text");
+		expect(typeof result).toBe("string");
 	});
 });
