@@ -5,6 +5,7 @@
  */
 
 import type { FormatContext, IOutputFormatter } from "./formatter.interface.js";
+import { getStatusLabel } from "./formatter.utils.js";
 
 /**
  * Renders a single-line countdown string suitable for status bars.
@@ -24,18 +25,7 @@ export class StatusLineFormatter implements IOutputFormatter {
 			return "";
 		}
 
-		const label = (() => {
-			switch (ctx.highlight.next) {
-				case "First Sehar":
-				case "Next day Sehar":
-					return "Sehar";
-				case "Roza starts (Fajr)":
-					return "Fast starts";
-				default:
-					return ctx.highlight.next;
-			}
-		})();
-
+		const label = getStatusLabel(ctx.highlight.next);
 		return `${label} in ${ctx.highlight.countdown}`;
 	}
 }
