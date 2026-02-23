@@ -37,6 +37,8 @@ export interface RamadanConfigStore {
 	readonly notifyIftar?: boolean | undefined;
 	/** Minutes before the event to fire a reminder notification. */
 	readonly notifyMinutesBefore?: number | undefined;
+	/** Active theme identifier (e.g. `"ramadan-green"`, `"classic-gold"`). */
+	readonly theme?: string | undefined;
 }
 
 /**
