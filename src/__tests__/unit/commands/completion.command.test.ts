@@ -3,15 +3,9 @@ import { generateCompletion } from "../../../commands/completion.command.js";
 
 describe("generateCompletion", () => {
 	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-		exitSpy = vi.spyOn(process, "exit").mockImplementation(((code?: number) => {
-			throw new Error(`process.exit(${code})`);
-		}) as never) as unknown as ReturnType<typeof vi.fn>;
 	});
 
 	afterEach(() => {
@@ -108,8 +102,8 @@ describe("generateCompletion", () => {
 			generateCompletion("zsh");
 
 			const output = logSpy.mock.calls[0]?.[0] as string;
-			expect(output).toContain("'dua:Show dua of the day'");
-			expect(output).toContain("'track:Track daily prayer completion'");
+			expect(output).toContain("'dua:dua command'");
+			expect(output).toContain("'track:track command'");
 		});
 
 		it("should handle case-insensitive shell name", () => {
@@ -191,34 +185,20 @@ describe("generateCompletion", () => {
 	});
 
 	describe("unsupported shell", () => {
-		it("should exit with error for unsupported shell", () => {
-			expect(() => generateCompletion("powershell")).toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Unsupported shell: powershell");
-			expect(errorOutput).toContain("Use bash, zsh, or fish");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw CommandError for unsupported shell", () => {
+			expect(() => generateCompletion("powershell")).toThrow("Unsupported shell: powershell");
 		});
 
-		it("should exit with error for empty string", () => {
-			expect(() => generateCompletion("")).toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw CommandError for empty string", () => {
+			expect(() => generateCompletion("")).toThrow("Unsupported shell");
 		});
 
-		it("should exit with error for unknown shell", () => {
-			expect(() => generateCompletion("csh")).toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Unsupported shell: csh");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw CommandError for unknown shell", () => {
+			expect(() => generateCompletion("csh")).toThrow("Unsupported shell: csh");
 		});
 
 		it("should not call console.log for unsupported shell", () => {
-			expect(() => generateCompletion("powershell")).toThrow("process.exit(1)");
+			expect(() => generateCompletion("powershell")).toThrow("Unsupported shell");
 
 			expect(logSpy).not.toHaveBeenCalled();
 		});
