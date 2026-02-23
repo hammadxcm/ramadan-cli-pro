@@ -1,0 +1,174 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "اوقات سحری، افطار و رمضان"
+	},
+	"table": {
+		"roza": "روزه",
+		"sehar": "سحری",
+		"iftar": "افطار",
+		"date": "تاریخ",
+		"hijri": "هجری"
+	},
+	"status": {
+		"beforeRozaDay": "قبل از روز روزه",
+		"firstSehar": "اولین سحری",
+		"seharWindowOpen": "زمان سحری",
+		"rozaStartsFajr": "روزه شروع (فجر)",
+		"rozaInProgress": "روزه در جریان",
+		"iftarTime": "زمان افطار",
+		"nextDaySehar": "سحری روز بعد"
+	},
+	"mode": {
+		"today": "سحری/افطار امروز",
+		"all": "رمضان {{year}} (همه روزها)",
+		"number": "روزه {{roza}} سحری/افطار"
+	},
+	"highlight": {
+		"status": "وضعیت:",
+		"upNext": "بعدی:",
+		"in": "در"
+	},
+	"footer": {
+		"note": "سحری از فجر استفاده می‌کند. افطار از مغرب استفاده می‌کند.",
+		"credits": "توسط Aladhan API"
+	},
+	"setup": {
+		"title": "راه‌اندازی Ramadan CLI Pro",
+		"detecting": "در حال شناسایی مکان...",
+		"detected": "شناسایی شد: {{city}}، {{country}}",
+		"notDetected": "مکان شناسایی نشد",
+		"enterCity": "شهر خود را وارد کنید",
+		"enterCountry": "کشور خود را وارد کنید",
+		"selectMethod": "روش محاسبه را انتخاب کنید",
+		"selectSchool": "مکتب عصر را انتخاب کنید",
+		"timezonePref": "منطقه زمانی",
+		"complete": "راه‌اندازی کامل شد."
+	},
+	"notification": {
+		"seharReminder": "یادآوری سحری",
+		"seharIn": "سحری در {{minutes}} دقیقه",
+		"iftarReminder": "یادآوری افطار",
+		"iftarIn": "افطار در {{minutes}} دقیقه"
+	},
+	"error": {
+		"locationFailed": "مکان شناسایی نشد.",
+		"invalidDate": "تاریخ نامعتبر. از YYYY-MM-DD استفاده کنید.",
+		"flagConflict": "از --all یا --number استفاده کنید، نه هر دو."
+	},
+	"track": {
+		"invalidPrayer": "نماز نامعتبر: {{prayer}}. استفاده کنید: {{list}}",
+		"marked": "{{prayer}} برای {{date}} به عنوان انجام‌شده ثبت شد",
+		"fastingMarked": "روزه برای {{date}} ثبت شد",
+		"streak": "روزهای متوالی فعلی: {{count}} روز",
+		"title": "پیگیری نماز - {{date}}",
+		"completed": "{{completed}}/{{total}} نماز انجام شده",
+		"allComplete": "همه نمازها انجام شد! ماشاءالله!",
+		"vacationMarked": "مرخصی برای {{date}} ثبت شد (روزهای متوالی حفظ شد)"
+	},
+	"goal": {
+		"invalidAction": "عملیات نامعتبر. استفاده کنید: add, update, list, delete",
+		"requiredAdd": "الزامی: --title, --target, --unit",
+		"added": "هدف اضافه شد: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "الزامی: --id, --progress",
+		"notFound": "هدف \"{{id}}\" یافت نشد.",
+		"updated": "هدف به‌روز شد: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "هدفی تعیین نشده. از `ramadan goal add --title ... --target ... --unit ...` استفاده کنید",
+		"title": "اهداف رمضان",
+		"requiredDelete": "الزامی: شناسه هدف",
+		"deleted": "هدف \"{{id}}\" حذف شد."
+	},
+	"stats": {
+		"title": "آمار رمضان",
+		"prayerCompletion": "تکمیل نماز:",
+		"prayersCompleted": "{{completed}}/{{total}} نماز انجام شده",
+		"fastingStreak": "روزهای متوالی روزه:",
+		"streakDetails": "بیشترین: {{longest}} روز | مجموع روزه‌ها: {{total}} روز",
+		"goals": "اهداف:",
+		"goalsCompleted": "{{completed}}/{{total}} تکمیل شده",
+		"noGoals": "هدفی تعیین نشده.",
+		"badgesEarned": "نشان‌های کسب شده:",
+		"noBadges": "هیچ نشانی کسب نشده است."
+	},
+	"charity": {
+		"invalidAction": "عملیات نامعتبر. استفاده کنید: add, list, summary",
+		"requiredAdd": "الزامی: --amount, --description",
+		"recorded": "صدقه ثبت شد: ${{amount}} — {{description}}",
+		"noEntries": "هیچ صدقه‌ای ثبت نشده. از `ramadan charity add --amount ... --description ...` استفاده کنید",
+		"logTitle": "سوابق صدقات",
+		"total": "مجموع:",
+		"summaryTitle": "خلاصه صدقات",
+		"totalDonated": "مجموع اهدا شده:",
+		"entries": "ورودی‌ها:"
+	},
+	"zakat": {
+		"title": "محاسبه‌گر زکات",
+		"totalWealth": "مجموع دارایی:",
+		"deductions": "کسورات:",
+		"netWorth": "دارایی خالص:",
+		"nisabGold": "نصاب (طلا):",
+		"nisabSilver": "نصاب (نقره):",
+		"zakatDue": "زکات واجب:",
+		"belowNisab": "دارایی خالص کمتر از حد نصاب است. زکاتی واجب نیست."
+	},
+	"compare": {
+		"needCities": "۲ تا ۴ شهر برای مقایسه وارد کنید.",
+		"title": "مقایسه اوقات نماز",
+		"prayer": "نماز",
+		"na": "ندارد",
+		"fetchFailed": "دریافت ناموفق"
+	},
+	"widget": {
+		"title": "ویجت رمضان",
+		"seharIftar": "{{address}} | سحری: {{sehar}} | افطار: {{iftar}}",
+		"exitHint": "برای خروج Ctrl+C را فشار دهید",
+		"error": "خطای ویجت: اوقات نماز دریافت نشد."
+	},
+	"export": {
+		"unsupportedFormat": "فرمت پشتیبانی نشده: {{format}}. از \"ical\"، \"csv\" یا \"json\" استفاده کنید.",
+		"exported": "به {{path}} صادر شد"
+	},
+	"config": {
+		"cleared": "تنظیمات پاک شد.",
+		"noUpdates": "تغییری ارائه نشد. برای مشاهده از `ramadan-cli-pro config --show` استفاده کنید.",
+		"updated": "تنظیمات به‌روز شد.",
+		"invalidFile": "فایل خوانده نشد: {{path}}",
+		"invalidJson": "JSON نامعتبر در فایل تنظیمات.",
+		"invalidFormat": "فرمت تنظیمات نامعتبر: {{details}}",
+		"imported": "تنظیمات با موفقیت وارد شد.",
+		"currentTitle": "تنظیمات فعلی:",
+		"city": "شهر:",
+		"country": "کشور:",
+		"latitude": "عرض جغرافیایی:",
+		"longitude": "طول جغرافیایی:",
+		"method": "روش:",
+		"school": "مکتب:",
+		"timezone": "منطقه زمانی:",
+		"firstRozaDate": "تاریخ اولین روزه:"
+	},
+	"notify": {
+		"enabled": "اعلان‌ها فعال شد.",
+		"disabled": "اعلان‌ها غیرفعال شد.",
+		"seharOn": "یادآوری سحری فعال شد.",
+		"seharOff": "یادآوری سحری غیرفعال شد.",
+		"iftarOn": "یادآوری افطار فعال شد.",
+		"iftarOff": "یادآوری افطار غیرفعال شد.",
+		"minutesSet": "یادآوری {{minutes}} دقیقه قبل تنظیم شد.",
+		"title": "تنظیمات اعلان‌ها",
+		"usage": "از --enable/--disable، --sehar، --iftar، --minutes <n> استفاده کنید"
+	},
+	"reset": {
+		"done": "تنظیمات بازنشانی شد."
+	},
+	"profile": {
+		"invalidAction": "عملیات نامعتبر. استفاده کنید: add, use, list, delete",
+		"nameRequired": "نام پروفایل الزامی است.",
+		"cityRequired": "شهر الزامی است. از --city <city> استفاده کنید",
+		"saved": "پروفایل \"{{name}}\" ذخیره شد ({{location}}).",
+		"notFound": "پروفایل \"{{name}}\" یافت نشد.",
+		"switched": "به پروفایل \"{{name}}\" تغییر یافت ({{location}}).",
+		"noProfiles": "پروفایلی ذخیره نشده. برای ایجاد از `ramadan-pro profile add <name> --city <city>` استفاده کنید.",
+		"title": "پروفایل‌های مکان",
+		"deleted": "پروفایل \"{{name}}\" حذف شد."
+	}
+}
