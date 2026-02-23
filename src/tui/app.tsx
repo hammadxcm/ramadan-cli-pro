@@ -11,6 +11,7 @@ import { createContainer } from "../container.js";
 import type { CommandContext } from "../types/command.js";
 import { Dashboard } from "./components/dashboard.js";
 import { PrayerProvider } from "./context/prayer-context.js";
+import { ThemeProvider } from "./context/theme-context.js";
 import { useHighlight } from "./hooks/use-highlight.js";
 import { usePrayerTimes } from "./hooks/use-prayer-times.js";
 
@@ -47,8 +48,10 @@ export const App: React.FC<AppProps> = ({ context }) => {
 	});
 
 	return (
-		<PrayerProvider value={{ data, highlight, loading, error }}>
-			<Dashboard />
-		</PrayerProvider>
+		<ThemeProvider value={container.themeService.getActiveTheme().tui}>
+			<PrayerProvider value={{ data, highlight, loading, error }}>
+				<Dashboard />
+			</PrayerProvider>
+		</ThemeProvider>
 	);
 };
