@@ -94,11 +94,60 @@ describe("NotifyCommand + NotificationService + ConfigRepository", () => {
 		});
 	});
 
+	it("--iftar toggles iftarReminder off and prints disabled message", async () => {
+		mockConfigRepo.getNotificationPreferences.mockReturnValue({
+			...DEFAULT_NOTIFICATION_PREFERENCES,
+			iftarReminder: true,
+		});
+		const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+		await notifyCommand.execute({ iftar: true });
+		expect(mockConfigRepo.setNotificationPreferences).toHaveBeenCalledWith({
+			iftarReminder: false,
+		});
+		const allOutput = consoleSpy.mock.calls.map((c) => c[0]).join("\n");
+		expect(allOutput).toContain("Iftar reminder disabled");
+		consoleSpy.mockRestore();
+	});
+
 	it("no flags shows status without persisting anything", async () => {
 		const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 		await notifyCommand.execute({});
 		expect(mockConfigRepo.setNotificationPreferences).not.toHaveBeenCalled();
 		expect(consoleSpy).toHaveBeenCalled();
+		consoleSpy.mockRestore();
+	});
+
+	it("no flags shows disabled status when notifications are off", async () => {
+		mockConfigRepo.getNotificationPreferences.mockReturnValue({
+			...DEFAULT_NOTIFICATION_PREFERENCES,
+			enabled: false,
+			seharReminder: false,
+			iftarReminder: false,
+		});
+		const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+		await notifyCommand.execute({});
+		const allOutput = consoleSpy.mock.calls.map((c) => c[0]).join("\n");
+		expect(allOutput).toContain("Notification Preferences");
+		expect(allOutput).toContain("disabled");
+		expect(allOutput).toContain("off");
+		consoleSpy.mockRestore();
+	});
+
+	it("no flags shows enabled status with reminders on", async () => {
+		mockConfigRepo.getNotificationPreferences.mockReturnValue({
+			...DEFAULT_NOTIFICATION_PREFERENCES,
+			enabled: true,
+			seharReminder: true,
+			iftarReminder: true,
+			reminderMinutesBefore: 10,
+		});
+		const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+		await notifyCommand.execute({});
+		const allOutput = consoleSpy.mock.calls.map((c) => c[0]).join("\n");
+		expect(allOutput).toContain("Notification Preferences");
+		expect(allOutput).toContain("enabled");
+		expect(allOutput).toContain("on");
+		expect(allOutput).toContain("10 min before");
 		consoleSpy.mockRestore();
 	});
 
