@@ -55,5 +55,120 @@
 		"locationFailed": "تعذر تحديد الموقع. أدخل مدينة مثل `ramadan-cli-pro \"القاهرة\"`.",
 		"invalidDate": "تاريخ أول صوم غير صالح. استخدم YYYY-MM-DD.",
 		"flagConflict": "استخدم إما --all أو --number، وليس كليهما."
+	},
+	"track": {
+		"invalidPrayer": "صلاة غير صالحة: {{prayer}}. استخدم: {{list}}",
+		"marked": "تم تسجيل {{prayer}} كمكتملة ليوم {{date}}",
+		"fastingMarked": "تم تسجيل الصيام ليوم {{date}}",
+		"streak": "السلسلة الحالية: {{count}} أيام",
+		"title": "متابعة الصلاة - {{date}}",
+		"completed": "{{completed}}/{{total}} صلوات مكتملة",
+		"allComplete": "جميع الصلوات مكتملة! ما شاء الله!",
+		"vacationMarked": "تم تسجيل إجازة ليوم {{date}} (السلسلة محفوظة)"
+	},
+	"goal": {
+		"invalidAction": "إجراء غير صالح. استخدم: add، update، list، delete",
+		"requiredAdd": "مطلوب: --title، --target، --unit",
+		"added": "تمت إضافة الهدف: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "مطلوب: --id، --progress",
+		"notFound": "الهدف \"{{id}}\" غير موجود.",
+		"updated": "تم تحديث الهدف: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "لا توجد أهداف. استخدم `ramadan goal add --title ... --target ... --unit ...`",
+		"title": "أهداف رمضان",
+		"requiredDelete": "مطلوب: معرّف الهدف",
+		"deleted": "تم حذف الهدف \"{{id}}\"."
+	},
+	"stats": {
+		"title": "إحصائيات رمضان",
+		"prayerCompletion": "إتمام الصلاة:",
+		"prayersCompleted": "{{completed}}/{{total}} صلوات مكتملة",
+		"fastingStreak": "سلسلة الصيام:",
+		"streakDetails": "الأطول: {{longest}} أيام | إجمالي الصيام: {{total}} أيام",
+		"goals": "الأهداف:",
+		"goalsCompleted": "{{completed}}/{{total}} مكتملة",
+		"noGoals": "لا توجد أهداف.",
+		"badgesEarned": "الشارات المكتسبة:",
+		"noBadges": "لم تكسب أي شارات بعد."
+	},
+	"charity": {
+		"invalidAction": "إجراء غير صالح. استخدم: add، list، summary",
+		"requiredAdd": "مطلوب: --amount، --description",
+		"recorded": "تم تسجيل الصدقة: ${{amount}} — {{description}}",
+		"noEntries": "لا توجد سجلات صدقة. استخدم `ramadan charity add --amount ... --description ...`",
+		"logTitle": "سجل الصدقات",
+		"total": "المجموع:",
+		"summaryTitle": "ملخص الصدقات",
+		"totalDonated": "إجمالي التبرعات:",
+		"entries": "السجلات:"
+	},
+	"zakat": {
+		"title": "حاسبة الزكاة",
+		"totalWealth": "إجمالي الثروة:",
+		"deductions": "الخصومات:",
+		"netWorth": "صافي الثروة:",
+		"nisabGold": "النصاب (ذهب):",
+		"nisabSilver": "النصاب (فضة):",
+		"zakatDue": "الزكاة المستحقة:",
+		"belowNisab": "صافي الثروة أقل من حد النصاب. لا زكاة مستحقة."
+	},
+	"compare": {
+		"needCities": "أدخل من 2 إلى 4 مدن للمقارنة.",
+		"title": "مقارنة أوقات الصلاة",
+		"prayer": "الصلاة",
+		"na": "غير متوفر",
+		"fetchFailed": "فشل في الجلب"
+	},
+	"widget": {
+		"title": "أداة رمضان",
+		"seharIftar": "{{address}} | السحور: {{sehar}} | الإفطار: {{iftar}}",
+		"exitHint": "اضغط Ctrl+C للخروج",
+		"error": "خطأ في الأداة: تعذر جلب أوقات الصلاة."
+	},
+	"export": {
+		"unsupportedFormat": "صيغة غير مدعومة: {{format}}. استخدم \"ical\" أو \"csv\" أو \"json\".",
+		"exported": "تم التصدير إلى {{path}}"
+	},
+	"config": {
+		"cleared": "تم مسح الإعدادات.",
+		"noUpdates": "لم يتم تقديم تحديثات. استخدم `ramadan-cli-pro config --show` للعرض.",
+		"updated": "تم تحديث الإعدادات.",
+		"invalidFile": "تعذرت قراءة الملف: {{path}}",
+		"invalidJson": "ملف JSON غير صالح في الإعدادات.",
+		"invalidFormat": "صيغة إعدادات غير صالحة: {{details}}",
+		"imported": "تم استيراد الإعدادات بنجاح.",
+		"currentTitle": "الإعدادات الحالية:",
+		"city": "المدينة:",
+		"country": "البلد:",
+		"latitude": "خط العرض:",
+		"longitude": "خط الطول:",
+		"method": "الطريقة:",
+		"school": "المذهب:",
+		"timezone": "المنطقة الزمنية:",
+		"firstRozaDate": "تاريخ أول صوم:"
+	},
+	"notify": {
+		"enabled": "تم تفعيل الإشعارات.",
+		"disabled": "تم تعطيل الإشعارات.",
+		"seharOn": "تم تفعيل تذكير السحور.",
+		"seharOff": "تم تعطيل تذكير السحور.",
+		"iftarOn": "تم تفعيل تذكير الإفطار.",
+		"iftarOff": "تم تعطيل تذكير الإفطار.",
+		"minutesSet": "تم ضبط التذكير قبل {{minutes}} دقيقة.",
+		"title": "تفضيلات الإشعارات",
+		"usage": "استخدم --enable/--disable، --sehar، --iftar، --minutes <n>"
+	},
+	"reset": {
+		"done": "تمت إعادة تعيين الإعدادات."
+	},
+	"profile": {
+		"invalidAction": "إجراء غير صالح. استخدم: add، use، list، delete",
+		"nameRequired": "اسم الملف الشخصي مطلوب.",
+		"cityRequired": "المدينة مطلوبة. استخدم --city <city>",
+		"saved": "تم حفظ الملف الشخصي \"{{name}}\" ({{location}}).",
+		"notFound": "الملف الشخصي \"{{name}}\" غير موجود.",
+		"switched": "تم التبديل إلى الملف الشخصي \"{{name}}\" ({{location}}).",
+		"noProfiles": "لا توجد ملفات شخصية. استخدم `ramadan-pro profile add <name> --city <city>` لإنشاء واحد.",
+		"title": "ملفات المواقع",
+		"deleted": "تم حذف الملف الشخصي \"{{name}}\"."
 	}
 }
