@@ -1,0 +1,174 @@
+{
+	"app": {
+		"name": "Ramadan CLI Pro",
+		"tagline": "सहरी, इफ्तार और रमजान समय"
+	},
+	"table": {
+		"roza": "रोज़ा",
+		"sehar": "सहरी",
+		"iftar": "इफ्तार",
+		"date": "तारीख",
+		"hijri": "हिजरी"
+	},
+	"status": {
+		"beforeRozaDay": "रोज़े से पहले",
+		"firstSehar": "पहली सहरी",
+		"seharWindowOpen": "सहरी का समय",
+		"rozaStartsFajr": "रोज़ा शुरू (फज्र)",
+		"rozaInProgress": "रोज़ा जारी",
+		"iftarTime": "इफ्तार का समय",
+		"nextDaySehar": "अगले दिन सहरी"
+	},
+	"mode": {
+		"today": "आज सहरी/इफ्तार",
+		"all": "रमजान {{year}} (सभी दिन)",
+		"number": "रोज़ा {{roza}} सहरी/इफ्तार"
+	},
+	"highlight": {
+		"status": "स्थिति:",
+		"upNext": "अगला:",
+		"in": "में"
+	},
+	"footer": {
+		"note": "सहरी फज्र का उपयोग करती है। इफ्तार मगरिब का उपयोग करती है।",
+		"credits": "Aladhan API द्वारा संचालित"
+	},
+	"setup": {
+		"title": "Ramadan CLI Pro सेटअप",
+		"detecting": "आपकी लोकेशन खोजी जा रही है...",
+		"detected": "पता चला: {{city}}, {{country}}",
+		"notDetected": "लोकेशन नहीं मिला",
+		"enterCity": "शहर दर्ज करें",
+		"enterCountry": "देश दर्ज करें",
+		"selectMethod": "गणना विधि चुनें",
+		"selectSchool": "अस्र स्कूल चुनें",
+		"timezonePref": "समय क्षेत्र",
+		"complete": "सेटअप पूरा।"
+	},
+	"notification": {
+		"seharReminder": "सहरी रिमाइंडर",
+		"seharIn": "सहरी {{minutes}} मिनट में",
+		"iftarReminder": "इफ्तार रिमाइंडर",
+		"iftarIn": "इफ्तार {{minutes}} मिनट में"
+	},
+	"error": {
+		"locationFailed": "लोकेशन नहीं मिला।",
+		"invalidDate": "अमान्य तारीख। YYYY-MM-DD उपयोग करें।",
+		"flagConflict": "--all या --number उपयोग करें, दोनों नहीं।"
+	},
+	"track": {
+		"invalidPrayer": "अमान्य नमाज़: {{prayer}}। उपयोग करें: {{list}}",
+		"marked": "{{prayer}} {{date}} के लिए पूर्ण चिह्नित",
+		"fastingMarked": "{{date}} के लिए रोज़ा दर्ज किया गया",
+		"streak": "वर्तमान लगातार दिन: {{count}} दिन",
+		"title": "नमाज़ ट्रैकिंग - {{date}}",
+		"completed": "{{completed}}/{{total}} नमाज़ें पूरी हुईं",
+		"allComplete": "सभी नमाज़ें पूरी! माशाअल्लाह!",
+		"vacationMarked": "{{date}} के लिए छुट्टी चिह्नित (लगातार दिन सुरक्षित)"
+	},
+	"goal": {
+		"invalidAction": "अमान्य कार्य। उपयोग करें: add, update, list, delete",
+		"requiredAdd": "आवश्यक: --title, --target, --unit",
+		"added": "लक्ष्य जोड़ा गया: \"{{title}}\" ({{target}} {{unit}})",
+		"requiredUpdate": "आवश्यक: --id, --progress",
+		"notFound": "लक्ष्य \"{{id}}\" नहीं मिला।",
+		"updated": "लक्ष्य अपडेट किया गया: \"{{title}}\" — {{current}}/{{target}} {{unit}}",
+		"noGoals": "कोई लक्ष्य नहीं। `ramadan goal add --title ... --target ... --unit ...` उपयोग करें",
+		"title": "रमजान लक्ष्य",
+		"requiredDelete": "आवश्यक: लक्ष्य ID",
+		"deleted": "लक्ष्य \"{{id}}\" हटाया गया।"
+	},
+	"stats": {
+		"title": "रमजान सांख्यिकी",
+		"prayerCompletion": "नमाज़ पूर्णता:",
+		"prayersCompleted": "{{completed}}/{{total}} नमाज़ें पूरी हुईं",
+		"fastingStreak": "रोज़ा लगातार दिन:",
+		"streakDetails": "सबसे लंबा: {{longest}} दिन | कुल रोज़े: {{total}} दिन",
+		"goals": "लक्ष्य:",
+		"goalsCompleted": "{{completed}}/{{total}} पूर्ण",
+		"noGoals": "कोई लक्ष्य नहीं।",
+		"badgesEarned": "अर्जित बैज:",
+		"noBadges": "अभी तक कोई बैज अर्जित नहीं किया गया है।"
+	},
+	"charity": {
+		"invalidAction": "अमान्य कार्य। उपयोग करें: add, list, summary",
+		"requiredAdd": "आवश्यक: --amount, --description",
+		"recorded": "दान दर्ज: ${{amount}} — {{description}}",
+		"noEntries": "कोई दान प्रविष्टि नहीं। `ramadan charity add --amount ... --description ...` उपयोग करें",
+		"logTitle": "दान/सदक़ा रिकॉर्ड",
+		"total": "कुल:",
+		"summaryTitle": "दान सारांश",
+		"totalDonated": "कुल दान:",
+		"entries": "प्रविष्टियाँ:"
+	},
+	"zakat": {
+		"title": "ज़कात कैलकुलेटर",
+		"totalWealth": "कुल संपत्ति:",
+		"deductions": "कटौती:",
+		"netWorth": "शुद्ध संपत्ति:",
+		"nisabGold": "निसाब (सोना):",
+		"nisabSilver": "निसाब (चाँदी):",
+		"zakatDue": "देय ज़कात:",
+		"belowNisab": "शुद्ध संपत्ति निसाब सीमा से कम है। कोई ज़कात देय नहीं।"
+	},
+	"compare": {
+		"needCities": "तुलना के लिए 2-4 शहर दें।",
+		"title": "नमाज़ समय तुलना",
+		"prayer": "नमाज़",
+		"na": "उपलब्ध नहीं",
+		"fetchFailed": "डेटा प्राप्त नहीं हो सका"
+	},
+	"widget": {
+		"title": "रमजान विजेट",
+		"seharIftar": "{{address}} | सहरी: {{sehar}} | इफ्तार: {{iftar}}",
+		"exitHint": "बाहर निकलने के लिए Ctrl+C दबाएँ",
+		"error": "विजेट त्रुटि: नमाज़ के समय प्राप्त नहीं हो सके।"
+	},
+	"export": {
+		"unsupportedFormat": "असमर्थित प्रारूप: {{format}}। \"ical\", \"csv\" या \"json\" उपयोग करें।",
+		"exported": "{{path}} में निर्यात किया गया"
+	},
+	"config": {
+		"cleared": "कॉन्फ़िगरेशन साफ़ किया गया।",
+		"noUpdates": "कोई अपडेट नहीं दिया गया। देखने के लिए `ramadan-cli-pro config --show` उपयोग करें।",
+		"updated": "कॉन्फ़िगरेशन अपडेट किया गया।",
+		"invalidFile": "फ़ाइल पढ़ नहीं सकी: {{path}}",
+		"invalidJson": "कॉन्फ़िग फ़ाइल में अमान्य JSON।",
+		"invalidFormat": "अमान्य कॉन्फ़िग प्रारूप: {{details}}",
+		"imported": "कॉन्फ़िगरेशन सफलतापूर्वक आयात किया गया।",
+		"currentTitle": "वर्तमान कॉन्फ़िगरेशन:",
+		"city": "शहर:",
+		"country": "देश:",
+		"latitude": "अक्षांश:",
+		"longitude": "देशांतर:",
+		"method": "विधि:",
+		"school": "स्कूल:",
+		"timezone": "समय क्षेत्र:",
+		"firstRozaDate": "पहले रोज़े की तारीख:"
+	},
+	"notify": {
+		"enabled": "सूचनाएँ सक्रिय।",
+		"disabled": "सूचनाएँ निष्क्रिय।",
+		"seharOn": "सहरी रिमाइंडर सक्रिय।",
+		"seharOff": "सहरी रिमाइंडर निष्क्रिय।",
+		"iftarOn": "इफ्तार रिमाइंडर सक्रिय।",
+		"iftarOff": "इफ्तार रिमाइंडर निष्क्रिय।",
+		"minutesSet": "रिमाइंडर {{minutes}} मिनट पहले सेट किया गया।",
+		"title": "सूचना सेटिंग्स",
+		"usage": "--enable/--disable, --sehar, --iftar, --minutes <n> उपयोग करें"
+	},
+	"reset": {
+		"done": "कॉन्फ़िगरेशन रीसेट किया गया।"
+	},
+	"profile": {
+		"invalidAction": "अमान्य कार्य। उपयोग करें: add, use, list, delete",
+		"nameRequired": "प्रोफ़ाइल नाम आवश्यक है।",
+		"cityRequired": "शहर आवश्यक है। --city <city> उपयोग करें",
+		"saved": "प्रोफ़ाइल \"{{name}}\" सहेजी गई ({{location}})।",
+		"notFound": "प्रोफ़ाइल \"{{name}}\" नहीं मिली।",
+		"switched": "प्रोफ़ाइल \"{{name}}\" पर स्विच किया गया ({{location}})।",
+		"noProfiles": "कोई प्रोफ़ाइल नहीं। बनाने के लिए `ramadan-pro profile add <name> --city <city>` उपयोग करें।",
+		"title": "स्थान प्रोफ़ाइल",
+		"deleted": "प्रोफ़ाइल \"{{name}}\" हटाई गई।"
+	}
+}
