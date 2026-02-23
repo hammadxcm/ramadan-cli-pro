@@ -5,6 +5,7 @@
  */
 
 import pc from "picocolors";
+import type { I18nService } from "../services/i18n.service.js";
 import type { NotificationService } from "../services/notification.service.js";
 
 /**
@@ -22,7 +23,18 @@ export interface NotifyCommandOptions {
  * Handles the `notify` subcommand for managing desktop notification preferences.
  */
 export class NotifyCommand {
-	constructor(private readonly notificationService: NotificationService) {}
+	private readonly i18n: I18nService | undefined;
+
+	constructor(
+		private readonly notificationService: NotificationService,
+		i18nService?: I18nService,
+	) {
+		this.i18n = i18nService;
+	}
+
+	private t(key: string, fallback: string, options?: Record<string, unknown>): string {
+		return this.i18n ? this.i18n.t(key, options) : fallback;
+	}
 
 	async execute(options: NotifyCommandOptions): Promise<void> {
 		const hasToggle = options.enable || options.disable;
@@ -30,12 +42,12 @@ export class NotifyCommand {
 
 		if (options.enable) {
 			this.notificationService.setPreferences({ enabled: true });
-			console.log(pc.green("Notifications enabled."));
+			console.log(pc.green(this.t("notify.enabled", "Notifications enabled.")));
 		}
 
 		if (options.disable) {
 			this.notificationService.setPreferences({ enabled: false });
-			console.log(pc.yellow("Notifications disabled."));
+			console.log(pc.yellow(this.t("notify.disabled", "Notifications disabled.")));
 		}
 
 		if (options.sehar) {
@@ -43,7 +55,9 @@ export class NotifyCommand {
 			const toggled = !prefs.seharReminder;
 			this.notificationService.setPreferences({ seharReminder: toggled });
 			console.log(
-				toggled ? pc.green("Sehar reminder enabled.") : pc.yellow("Sehar reminder disabled."),
+				toggled
+					? pc.green(this.t("notify.seharOn", "Sehar reminder enabled."))
+					: pc.yellow(this.t("notify.seharOff", "Sehar reminder disabled.")),
 			);
 		}
 
@@ -52,7 +66,9 @@ export class NotifyCommand {
 			const toggled = !prefs.iftarReminder;
 			this.notificationService.setPreferences({ iftarReminder: toggled });
 			console.log(
-				toggled ? pc.green("Iftar reminder enabled.") : pc.yellow("Iftar reminder disabled."),
+				toggled
+					? pc.green(this.t("notify.iftarOn", "Iftar reminder enabled."))
+					: pc.yellow(this.t("notify.iftarOff", "Iftar reminder disabled.")),
 			);
 		}
 
@@ -60,7 +76,13 @@ export class NotifyCommand {
 			this.notificationService.setPreferences({
 				reminderMinutesBefore: options.minutes,
 			});
-			console.log(pc.green(`Reminder set to ${options.minutes} minutes before.`));
+			console.log(
+				pc.green(
+					this.t("notify.minutesSet", `Reminder set to ${options.minutes} minutes before.`, {
+						minutes: options.minutes,
+					}),
+				),
+			);
 		}
 
 		if (!hasToggle && !hasPreferenceFlag) {
@@ -71,12 +93,14 @@ export class NotifyCommand {
 	private showStatus(): void {
 		const prefs = this.notificationService.getPreferences();
 
-		console.log(pc.bold("Notification Preferences"));
+		console.log(pc.bold(this.t("notify.title", "Notification Preferences")));
 		console.log(`  Notifications: ${prefs.enabled ? pc.green("enabled") : pc.yellow("disabled")}`);
 		console.log(`  Sehar reminder: ${prefs.seharReminder ? pc.green("on") : pc.dim("off")}`);
 		console.log(`  Iftar reminder: ${prefs.iftarReminder ? pc.green("on") : pc.dim("off")}`);
 		console.log(`  Reminder time: ${pc.cyan(`${prefs.reminderMinutesBefore} min before`)}`);
 		console.log();
-		console.log(pc.dim("Use --enable/--disable, --sehar, --iftar, --minutes <n>"));
+		console.log(
+			pc.dim(this.t("notify.usage", "Use --enable/--disable, --sehar, --iftar, --minutes <n>")),
+		);
 	}
 }
