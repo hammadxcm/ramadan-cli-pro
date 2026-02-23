@@ -5,6 +5,13 @@
 
 import type { RamadanRow } from "../types/ramadan.js";
 import type { FormatContext, IOutputFormatter } from "./formatter.interface.js";
+import {
+	TABLE_HEADERS,
+	formatRowLine,
+	getFormatterTitle,
+	getTableDivider,
+	rowToColumns,
+} from "./formatter.utils.js";
 
 /**
  * Renders the Ramadan timetable as plain text without any ANSI color codes.
@@ -22,12 +29,7 @@ export class PlainFormatter implements IOutputFormatter {
 		const lines: Array<string> = [];
 		const { output, highlight } = ctx;
 
-		const title =
-			output.mode === "all"
-				? `Ramadan ${output.hijriYear} (All Days)`
-				: output.mode === "number"
-					? `Roza ${output.rows[0]?.roza ?? ""} Sehar/Iftar`
-					: "Today Sehar/Iftar";
+		const title = getFormatterTitle(output);
 
 		lines.push("RAMADAN CLI");
 		lines.push(`  ${title}`);
@@ -49,20 +51,14 @@ export class PlainFormatter implements IOutputFormatter {
 	}
 
 	private formatTable(rows: ReadonlyArray<RamadanRow>): string {
-		const headers = ["Roza", "Sehar", "Iftar", "Date", "Hijri"];
-		const widths = [6, 8, 8, 14, 20] as const;
-		const pad = (value: string, index: number): string =>
-			value.padEnd(widths[index] ?? value.length);
-		const line = (columns: ReadonlyArray<string>): string =>
-			columns.map((column, index) => pad(column, index)).join("  ");
-		const divider = "-".repeat(line(headers).length);
+		const divider = getTableDivider();
 
 		const lines: Array<string> = [];
-		lines.push(`  ${line(headers)}`);
+		lines.push(`  ${formatRowLine([...TABLE_HEADERS])}`);
 		lines.push(`  ${divider}`);
 
 		for (const row of rows) {
-			lines.push(`  ${line([String(row.roza), row.sehar, row.iftar, row.date, row.hijri])}`);
+			lines.push(`  ${formatRowLine([...rowToColumns(row)])}`);
 		}
 
 		return lines.join("\n");
