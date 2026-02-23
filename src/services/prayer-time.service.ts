@@ -8,15 +8,9 @@ import { PrayerTimeFetchError, RamadanCalendarError } from "../errors/prayer.err
 import type { PrayerApiRepository } from "../repositories/prayer-api.repository.js";
 import type { PrayerData } from "../types/prayer.js";
 import type { RamadanQuery } from "../types/ramadan.js";
+import { getErrorMessage } from "../utils/error.js";
 import type { CacheService } from "./cache.service.js";
 import { CACHE_TTL } from "./cache.service.js";
-
-const getErrorMessage = (error: unknown): string => {
-	if (error instanceof Error) {
-		return error.message;
-	}
-	return "unknown error";
-};
 
 /**
  * Fetches prayer times using a cascade of API strategies.
