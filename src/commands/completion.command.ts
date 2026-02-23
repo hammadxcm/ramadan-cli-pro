@@ -1,11 +1,14 @@
 /**
  * @module commands/completion
  * @description Generates shell completion scripts for bash, zsh, and fish.
+ * Dynamically reads command names from CommandFactory when available.
  */
 
 import { CITY_ALIAS_MAP } from "../data/city-aliases.js";
+import { CommandError } from "../errors/command.error.js";
+import type { CommandFactory } from "./command.factory.js";
 
-const SUBCOMMANDS = [
+const FALLBACK_SUBCOMMANDS = [
 	"reset",
 	"config",
 	"dashboard",
@@ -15,7 +18,19 @@ const SUBCOMMANDS = [
 	"track",
 	"completion",
 	"profile",
+	"quran",
+	"hadith",
+	"goal",
+	"stats",
+	"zakat",
+	"charity",
+	"export",
+	"compare",
+	"widget",
+	"adhkar",
+	"cache",
 ];
+
 const GLOBAL_FLAGS = [
 	"--city",
 	"--all",
@@ -25,29 +40,42 @@ const GLOBAL_FLAGS = [
 	"--status",
 	"--tui",
 	"--locale",
+	"--theme",
+	"--no-color",
 	"--first-roza-date",
 	"--clear-first-roza-date",
 	"--version",
 	"--help",
 ];
 
+const SUPPORTED_LOCALES = "en ar ur tr ms bn fr id es de hi fa";
+
+const getSubcommands = (commandFactory?: CommandFactory): ReadonlyArray<string> => {
+	if (commandFactory) {
+		const registered = commandFactory.list();
+		// Add commands not in the registry that are still valid
+		const extra = ["completion", "profile"];
+		return [...new Set([...registered, ...extra])];
+	}
+	return FALLBACK_SUBCOMMANDS;
+};
+
 const cityAliases = Object.keys(CITY_ALIAS_MAP).join(" ");
-const subcommands = SUBCOMMANDS.join(" ");
 const flags = GLOBAL_FLAGS.join(" ");
 
-const generateBash = (): string => `# bash completion for ramadan-cli-pro
+const generateBash = (subcommandList: string): string => `# bash completion for ramadan-cli-pro
 _ramadan_cli_pro() {
     local cur prev commands cities flags
     COMPREPLY=()
     cur="\${COMP_WORDS[COMP_CWORD]}"
     prev="\${COMP_WORDS[COMP_CWORD-1]}"
-    commands="${subcommands}"
+    commands="${subcommandList}"
     cities="${cityAliases}"
     flags="${flags}"
 
     case "\${prev}" in
         --locale|-l)
-            COMPREPLY=( $(compgen -W "en ar ur tr ms bn fr id" -- "\${cur}") )
+            COMPREPLY=( $(compgen -W "${SUPPORTED_LOCALES}" -- "\${cur}") )
             return 0
             ;;
         --method)
@@ -58,16 +86,40 @@ _ramadan_cli_pro() {
             COMPREPLY=( $(compgen -W "0 1" -- "\${cur}") )
             return 0
             ;;
+        --theme)
+            COMPREPLY=( $(compgen -W "ramadan-green classic-gold ocean-blue royal-purple minimal-mono high-contrast" -- "\${cur}") )
+            return 0
+            ;;
         completion)
             COMPREPLY=( $(compgen -W "bash zsh fish" -- "\${cur}") )
             return 0
             ;;
         track)
-            COMPREPLY=( $(compgen -W "fajr dhuhr asr maghrib isha --show --date" -- "\${cur}") )
+            COMPREPLY=( $(compgen -W "fajr dhuhr asr maghrib isha taraweeh --show --date --fasted --vacation" -- "\${cur}") )
             return 0
             ;;
         profile)
             COMPREPLY=( $(compgen -W "add use list delete" -- "\${cur}") )
+            return 0
+            ;;
+        goal)
+            COMPREPLY=( $(compgen -W "add update list delete" -- "\${cur}") )
+            return 0
+            ;;
+        charity)
+            COMPREPLY=( $(compgen -W "add list summary" -- "\${cur}") )
+            return 0
+            ;;
+        adhkar)
+            COMPREPLY=( $(compgen -W "morning evening post-prayer" -- "\${cur}") )
+            return 0
+            ;;
+        export)
+            COMPREPLY=( $(compgen -W "--format --output" -- "\${cur}") )
+            return 0
+            ;;
+        --format)
+            COMPREPLY=( $(compgen -W "ical csv json" -- "\${cur}") )
             return 0
             ;;
     esac
@@ -87,24 +139,19 @@ complete -F _ramadan_cli_pro ramzan
 complete -F _ramadan_cli_pro roza
 `;
 
-const generateZsh = (): string => `#compdef ramadan-cli-pro ramadan-pro ramadan ramzan roza
+const generateZsh = (subcommandList: ReadonlyArray<string>): string => {
+	const commandEntries = subcommandList.map((cmd) => `        '${cmd}:${cmd} command'`).join("\n");
+
+	return `#compdef ramadan-cli-pro ramadan-pro ramadan ramzan roza
 
 _ramadan_cli_pro() {
     local -a commands cities locales prayers
     commands=(
-        'reset:Clear saved configuration'
-        'config:Configure saved settings'
-        'dashboard:Launch TUI dashboard'
-        'notify:Manage notification preferences'
-        'qibla:Show Qibla direction'
-        'dua:Show dua of the day'
-        'track:Track daily prayer completion'
-        'completion:Output shell completion script'
-        'profile:Manage location profiles'
+${commandEntries}
     )
     cities=(${cityAliases})
-    locales=(en ar ur tr ms bn fr id)
-    prayers=(fajr dhuhr asr maghrib isha)
+    locales=(${SUPPORTED_LOCALES})
+    prayers=(fajr dhuhr asr maghrib isha taraweeh)
 
     _arguments -s \\
         '1:city or command:->first' \\
@@ -124,6 +171,8 @@ _ramadan_cli_pro() {
         '--tui[Launch TUI dashboard]' \\
         '-l[Language]:locale:(\${locales})' \\
         '--locale[Language]:locale:(\${locales})' \\
+        '--theme[Color theme]:theme:(ramadan-green classic-gold ocean-blue royal-purple minimal-mono high-contrast)' \\
+        '--no-color[Disable colors]' \\
         '--first-roza-date[Set custom first roza date]:date:' \\
         '--clear-first-roza-date[Clear custom first roza date]' \\
         '-v[Show version]' \\
@@ -141,8 +190,9 @@ _ramadan_cli_pro() {
 
 _ramadan_cli_pro "\$@"
 `;
+};
 
-const generateFish = (): string => {
+const generateFish = (subcommandList: ReadonlyArray<string>): string => {
 	const lines = [
 		"# fish completion for ramadan-cli-pro",
 		"",
@@ -157,7 +207,7 @@ const generateFish = (): string => {
 	];
 
 	for (const cmd of ["ramadan-cli-pro", "ramadan-pro", "ramadan", "ramzan", "roza"]) {
-		for (const sub of SUBCOMMANDS) {
+		for (const sub of subcommandList) {
 			lines.push(`complete -c ${cmd} -n '__fish_use_subcommand' -a '${sub}'`);
 		}
 
@@ -175,8 +225,12 @@ const generateFish = (): string => {
 		lines.push(`complete -c ${cmd} -s j -l json -d 'JSON output'`);
 		lines.push(`complete -c ${cmd} -s s -l status -d 'Status line output'`);
 		lines.push(`complete -c ${cmd} -s t -l tui -d 'Launch TUI dashboard'`);
-		lines.push(`complete -c ${cmd} -s l -l locale -d 'Language' -x -a 'en ar ur tr ms bn fr id'`);
+		lines.push(`complete -c ${cmd} -s l -l locale -d 'Language' -x -a '${SUPPORTED_LOCALES}'`);
 		lines.push(`complete -c ${cmd} -s c -l city -d 'City' -x`);
+		lines.push(
+			`complete -c ${cmd} -l theme -d 'Color theme' -x -a 'ramadan-green classic-gold ocean-blue royal-purple minimal-mono high-contrast'`,
+		);
+		lines.push(`complete -c ${cmd} -l no-color -d 'Disable colors'`);
 		lines.push(`complete -c ${cmd} -s v -l version -d 'Show version'`);
 		lines.push(`complete -c ${cmd} -s h -l help -d 'Show help'`);
 
@@ -187,13 +241,35 @@ const generateFish = (): string => {
 		lines.push("");
 		lines.push("# track subcommand");
 		lines.push(
-			`complete -c ${cmd} -n '__fish_seen_subcommand_from track' -a 'fajr dhuhr asr maghrib isha'`,
+			`complete -c ${cmd} -n '__fish_seen_subcommand_from track' -a 'fajr dhuhr asr maghrib isha taraweeh'`,
 		);
 
 		lines.push("");
 		lines.push("# profile subcommand");
 		lines.push(
 			`complete -c ${cmd} -n '__fish_seen_subcommand_from profile' -a 'add use list delete'`,
+		);
+
+		lines.push("");
+		lines.push("# goal subcommand");
+		lines.push(
+			`complete -c ${cmd} -n '__fish_seen_subcommand_from goal' -a 'add update list delete'`,
+		);
+
+		lines.push("");
+		lines.push("# charity subcommand");
+		lines.push(`complete -c ${cmd} -n '__fish_seen_subcommand_from charity' -a 'add list summary'`);
+
+		lines.push("");
+		lines.push("# adhkar subcommand");
+		lines.push(
+			`complete -c ${cmd} -n '__fish_seen_subcommand_from adhkar' -a 'morning evening post-prayer'`,
+		);
+
+		lines.push("");
+		lines.push("# export format");
+		lines.push(
+			`complete -c ${cmd} -n '__fish_seen_subcommand_from export' -l format -d 'Export format' -x -a 'ical csv json'`,
 		);
 		lines.push("");
 	}
@@ -203,20 +279,23 @@ const generateFish = (): string => {
 
 /**
  * Outputs the shell completion script for the given shell type.
+ * Dynamically reads command names from CommandFactory when provided.
  */
-export const generateCompletion = (shell: string): void => {
+export const generateCompletion = (shell: string, commandFactory?: CommandFactory): void => {
+	const subcommands = getSubcommands(commandFactory);
+	const subcommandStr = subcommands.join(" ");
+
 	switch (shell.toLowerCase()) {
 		case "bash":
-			console.log(generateBash());
+			console.log(generateBash(subcommandStr));
 			break;
 		case "zsh":
-			console.log(generateZsh());
+			console.log(generateZsh(subcommands));
 			break;
 		case "fish":
-			console.log(generateFish());
+			console.log(generateFish(subcommands));
 			break;
 		default:
-			console.error(`Unsupported shell: ${shell}. Use bash, zsh, or fish.`);
-			process.exit(1);
+			throw new CommandError(`Unsupported shell: ${shell}. Use bash, zsh, or fish.`);
 	}
 };
