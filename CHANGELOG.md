@@ -26,9 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Terminal Widget** — `ramadan widget [city]` launches a compact 3-line auto-refreshing display for status bars.
 - **Offline Cache Build** — `ramadan cache --build [--city <city>] [--days <n>]` prefetches prayer times for offline use. `ramadan cache --clear` purges the cache.
 - **Hijri Event Calendar** — Special Ramadan nights (Laylat al-Qadr, last 10 nights, odd nights) are annotated. `HijriEventService` provides upcoming event lookups.
-- **25 New City Aliases** — Expanded from 53 to 78 aliases: Americas (phi, bos, mia, atl, van, mtl), South Asia (pew, fsd, rwp, ktm), Europe (mdr, rom, mun, vie, cop), East Asia (bkk, hcm, tok, pek, seo), Africa (acc, kmp, dkr).
+- **23 New City Aliases** — 82 total aliases: Americas (phi, bos, mia, atl, van, mtl), South Asia (pew, fsd, rwp, ktm), Europe (mdr, rom, mun, vie, cop), East Asia (bkk, hcm, tok, pek, seo), Africa (acc, kmp, dkr).
 - **4 New Languages** — Spanish (`es`), German (`de`), Hindi (`hi`), and Persian/Farsi (`fa`), bringing total to 12 languages.
-- **NO_COLOR Support** — Respects the `NO_COLOR` environment variable and `--no-color` flag for accessible plain-text output.
+- **NO_COLOR Support** — Respects the `NO_COLOR` environment variable for accessible plain-text output.
 - **TUI Theme Integration** — Dashboard components now use dynamic theme colors via React context instead of hardcoded values.
 - **TUI Content Cards** — Dashboard shows Dua of the Day and Quran Verse of the Day cards during Ramadan.
 - **1207 Tests** — Up from 849, covering all new commands, services, data files, and utilities at 99.48% statement coverage.
@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Centralized Error Handling** — Replaced 32 instances of `process.exit(1)` across 15 command files with `throw new CommandError(...)`. A single top-level handler in `cli.ts` catches errors and exits.
-- **CommandFactory Pure Registry** — Removed all constructor parameters. All 20 commands are registered via `register()` and accessed via `get()`. New commands no longer require modifying the factory class.
+- **CommandFactory Pure Registry** — Removed all constructor parameters. All 19 commands are registered via `register()` and accessed via `get()`. New commands no longer require modifying the factory class.
 - **Dynamic Shell Completions** — `CompletionCommand` now generates command lists dynamically from `CommandFactory.list()` instead of a hardcoded array. Includes all v1.3.0 commands and locales.
 - **TrackCommand DI Cleanup** — Replaced `setStreakService()` setter with proper constructor injection.
 - **i18n All Hardcoded Strings** — 80+ new i18n keys across 12 namespaces (track, goal, stats, charity, zakat, compare, widget, export, config, notify, reset, profile). All 12 command files now accept `I18nService` for full localization.
@@ -54,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `src/utils/store.ts` — shared `createConfStore()` factory (was duplicated in 3 files)
   - `src/formatters/formatter.utils.ts` — shared formatter helpers (title generation, column padding, status labels)
 - **Config Schema** — Added `theme` field to the Zod config schema and `RamadanConfigStore` type.
-- **Container** — Wired 20 commands, `BadgeService`, `HijriEventService`, and all new services into the DI container.
+- **Container** — Wired 19 commands, `BadgeService`, `HijriEventService`, and all new services into the DI container.
 
 ## [1.2.0] - 2026-02-22
 
@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Location Profiles** — `ramadan profile add|use|list|delete <name>` for managing multiple named location configurations with quick switching.
 - **Shell Completions** — `ramadan completion bash|zsh|fish` generates tab-completion scripts covering all subcommands, city aliases, flags, locales, and prayer names.
 - **Config Export/Import** — `ramadan config --export` serializes config to JSON stdout; `ramadan config --import <file>` imports and validates a JSON config file with Zod schema validation.
-- **38 New City Aliases** — Expanded from 15 to 53 aliases across 9 regions:
+- **44 New City Aliases** — Expanded from 15 to 59 aliases across 9 regions:
   - South Asia: `mum` (Mumbai), `del` (Delhi), `dhk` (Dhaka), `cmb` (Colombo), `hyd` (Hyderabad)
   - Middle East: `ruh` (Riyadh), `mak`/`makkah`/`mecca` (Makkah), `mad`/`madinah`/`medina` (Madinah), `doh` (Doha), `kwt` (Kuwait City), `mus` (Muscat), `amm` (Amman), `bgd` (Baghdad), `bei` (Beirut), `dam` (Damascus)
   - North Africa: `tun` (Tunis), `alg` (Algiers), `cas` (Casablanca), `rab` (Rabat), `tri` (Tripoli)

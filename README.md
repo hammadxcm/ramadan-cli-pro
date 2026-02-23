@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+Qibla+%7C+Duas+%7C+Tracking;78+City+Aliases+%7C+12+Languages+%7C+24+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+Qibla+%7C+Duas+%7C+Tracking;82+City+Aliases+%7C+12+Languages+%7C+24+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
   </a>
 </p>
 
@@ -86,12 +86,12 @@
 - **Offline Cache** — Prefetch 30 days of prayer times for offline use
 - **Hijri Events** — Special night annotations (Laylat al-Qadr, last 10 nights)
 - **Location Profiles** — Save and switch between multiple named location configurations
-- **78 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb`, `makkah` for quick lookups
+- **82 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb`, `makkah` for quick lookups
 - **24 Calculation Methods** — Region-specific methods including ISNA, MWL, Umm al-Qura, and more
 - **2 Juristic Schools** — Shafi (standard) and Hanafi Asr calculation
 - **12 Languages** — English, Arabic, Urdu, Turkish, Malay, Bengali, French, Indonesian, Spanish, German, Hindi, Persian
 - **4 Output Formats** — Table, JSON, plain text, and status-line for tmux/polybar
-- **NO_COLOR Support** — Respects `NO_COLOR` env variable and `--no-color` flag for accessibility
+- **NO_COLOR Support** — Respects the `NO_COLOR` environment variable for accessible plain-text output
 - **Shell Completions** — Tab-completion scripts for Bash, Zsh, and Fish
 - **Desktop Notifications** — Native OS alerts for Sehar & Iftar via node-notifier
 - **Smart Geolocation** — Auto-detect location with 3 fallback geo-IP providers
@@ -107,12 +107,18 @@
 <details>
 <summary><strong>TUI Dashboard Components</strong></summary>
 
-- **Header** — Location and Hijri date display
+- **Header** — Location and Hijri date display with theme colors
 - **PrayerTimesTable** — All 5 prayer times with Sehar/Iftar highlights
 - **CountdownTimer** — Live countdown to the next prayer event
 - **ProgressBar** — Visual progress through the fasting day
-- **Ramadan Progress** — Day X of 30 progress indicator
 - **StatusBadge** — Current fasting status indicator
+- **DuaCard** — Dua of the day with Arabic text and translation
+- **QuranVerseCard** — Quran verse of the day with surah reference
+- **GoalProgress** — Visual goal progress bars
+- **StreakBadge** — Fasting streak display with current/longest stats
+- **ErrorDisplay** — Graceful error state rendering
+- **LoadingSpinner** — Loading state indicator
+- **Dashboard** — Main orchestrator composing all components
 - **Footer** — Methodology and attribution info
 
 </details>
@@ -175,7 +181,6 @@ ramadan [city] [options]
 | `-t, --tui` | Launch TUI dashboard |
 | `-l, --locale <locale>` | Language: `en`, `ar`, `ur`, `tr`, `ms`, `bn`, `fr`, `id`, `es`, `de`, `hi`, `fa` |
 | `--theme <name>` | Color theme: `ramadan-green`, `classic-gold`, `ocean-blue`, `royal-purple`, `minimal-mono`, `high-contrast` |
-| `--no-color` | Disable colors (also respects `NO_COLOR` env variable) |
 | `--first-roza-date <YYYY-MM-DD>` | Set custom first roza date |
 | `--clear-first-roza-date` | Clear custom first roza date |
 | `-v, --version` | Show version |
@@ -487,11 +492,25 @@ ramadan goal delete --id "read-quran"
 
 ### Stats
 
-```bash
-ramadan stats
+```
+ramadan stats [options]
 ```
 
+| Flag | Description |
+|------|-------------|
+| `-w, --weekly` | Show weekly summary |
+
 Shows a consolidated summary of prayer completion rate, fasting streak, goal progress, and earned badges.
+
+**Examples:**
+
+```bash
+# Full stats summary
+ramadan stats
+
+# Weekly summary
+ramadan stats --weekly
+```
 
 ---
 
@@ -511,12 +530,16 @@ ramadan charity <action> [options]
 |------|-------------|
 | `--amount <n>` | Donation amount (for `add`) |
 | `--description <text>` | Description (for `add`) |
+| `--category <category>` | Category, e.g. food, shelter, education (for `add`) |
 
 **Examples:**
 
 ```bash
 # Log a donation
 ramadan charity add --amount 50 --description "Masjid fund"
+
+# Log with category
+ramadan charity add --amount 100 --description "Food bank" --category food
 
 # List all donations
 ramadan charity list
@@ -535,12 +558,12 @@ ramadan zakat [options]
 
 | Flag | Description |
 |------|-------------|
-| `--cash <n>` | Cash and bank balances |
-| `--gold <n>` | Gold value |
-| `--silver <n>` | Silver value |
-| `--investments <n>` | Investment value |
-| `--property <n>` | Property value |
-| `--debts <n>` | Total debts |
+| `--cash <amount>` | Cash and bank balances |
+| `--gold <grams>` | Gold in grams |
+| `--silver <grams>` | Silver in grams |
+| `--investments <amount>` | Investment value |
+| `--property <amount>` | Property value |
+| `--debts <amount>` | Outstanding debts |
 
 Calculates Zakat (2.5%) based on wealth inputs with nisab thresholds for gold and silver.
 
@@ -581,8 +604,8 @@ ramadan export [options]
 
 | Flag | Description |
 |------|-------------|
-| `--format <format>` | Export format: `ical` (default), `csv`, `json` |
-| `--output <path>` | Output file path |
+| `-f, --format <format>` | Export format: `ical` (default), `csv`, `json` |
+| `-o, --output <path>` | Output file path |
 
 **Examples:**
 
@@ -792,10 +815,10 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 
 ## City Aliases
 
-78 short codes covering major cities across 9 regions:
+82 short codes covering major cities across 10 regions:
 
 <details>
-<summary><strong>Americas (8)</strong></summary>
+<summary><strong>Americas (14)</strong></summary>
 
 | Alias | City |
 |-------|------|
@@ -807,11 +830,17 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 | `tor` | Toronto |
 | `hou` | Houston |
 | `det` | Detroit |
+| `phi` | Philadelphia |
+| `bos` | Boston |
+| `mia` | Miami |
+| `atl` | Atlanta |
+| `van` | Vancouver |
+| `mtl` | Montreal |
 
 </details>
 
 <details>
-<summary><strong>South Asia (8)</strong></summary>
+<summary><strong>South Asia (12)</strong></summary>
 
 | Alias | City |
 |-------|------|
@@ -823,6 +852,10 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 | `dhk` | Dhaka |
 | `cmb` | Colombo |
 | `hyd` | Hyderabad |
+| `pew` | Peshawar |
+| `fsd` | Faisalabad |
+| `rwp` | Rawalpindi |
+| `ktm` | Kathmandu |
 
 </details>
 
@@ -862,7 +895,7 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 </details>
 
 <details>
-<summary><strong>Sub-Saharan Africa (5)</strong></summary>
+<summary><strong>Sub-Saharan Africa (8)</strong></summary>
 
 | Alias | City |
 |-------|------|
@@ -871,11 +904,14 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 | `nbo` | Nairobi |
 | `dar` | Dar es Salaam |
 | `mgq` | Mogadishu |
+| `acc` | Accra |
+| `kmp` | Kampala |
+| `dkr` | Dakar |
 
 </details>
 
 <details>
-<summary><strong>Europe (7)</strong></summary>
+<summary><strong>Europe (12)</strong></summary>
 
 | Alias | City |
 |-------|------|
@@ -886,6 +922,11 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 | `bru` | Brussels |
 | `osl` | Oslo |
 | `sto` | Stockholm |
+| `mdr` | Madrid |
+| `rom` | Rome |
+| `mun` | Munich |
+| `vie` | Vienna |
+| `cop` | Copenhagen |
 
 </details>
 
@@ -897,6 +938,19 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 | `kul` | Kuala Lumpur |
 | `jkt` | Jakarta |
 | `sg` | Singapore |
+
+</details>
+
+<details>
+<summary><strong>East Asia (5)</strong></summary>
+
+| Alias | City |
+|-------|------|
+| `bkk` | Bangkok |
+| `hcm` | Ho Chi Minh City |
+| `tok` | Tokyo |
+| `pek` | Beijing |
+| `seo` | Seoul |
 
 </details>
 
@@ -1068,7 +1122,7 @@ ramadan config --method 4 --school 1
 
 ## Architecture
 
-- **DI Container** — Centralized dependency injection wiring 20 commands and all services
+- **DI Container** — Centralized dependency injection wiring 21 commands and all services
 - **Command Pattern** — Each CLI command implements `validate()` + `execute()` with centralized `CommandError` handling
 - **Pure Registry** — `CommandFactory` uses a Map-based registry with `register()`/`get()`/`list()` — no constructor params
 - **Formatter Strategy** — Pluggable output formatters (Table, JSON, Plain, Status-line, Qibla)
