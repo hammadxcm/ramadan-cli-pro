@@ -2,7 +2,7 @@ import { Box, Text } from "ink";
 import type React from "react";
 import type { PrayerTimings } from "../../types/prayer.js";
 import { to12HourTime } from "../../utils/time.js";
-import { colors } from "../theme/colors.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface PrayerTimesTableProps {
 	readonly timings: PrayerTimings | null;
@@ -18,6 +18,8 @@ const prayerEntries: ReadonlyArray<{ key: keyof PrayerTimings; label: string }> 
 ];
 
 export const PrayerTimesTable: React.FC<PrayerTimesTableProps> = ({ timings }) => {
+	const colors = useThemeColors();
+
 	if (!timings) {
 		return (
 			<Box paddingX={1}>
