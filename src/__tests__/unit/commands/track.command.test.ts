@@ -18,7 +18,7 @@ describe("TrackCommand", () => {
 		configDir = mkdtempSync(join(tmpdir(), "track-test-"));
 		storeDir = mkdtempSync(join(tmpdir(), "track-store-"));
 		configRepo = new ConfigRepository({ cwd: configDir });
-		command = new TrackCommand(configRepo, storeDir);
+		command = new TrackCommand(configRepo, undefined, storeDir);
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 		exitSpy = vi.spyOn(process, "exit").mockImplementation(((code?: number) => {
@@ -162,23 +162,13 @@ describe("TrackCommand", () => {
 	});
 
 	describe("invalid prayer name", () => {
-		it("should exit with error for invalid prayer", async () => {
+		it("should throw CommandError for invalid prayer", async () => {
 			await expect(
 				command.execute({
 					prayer: "invalid" as "fajr",
 					date: "2026-03-07",
 				}),
-			).rejects.toThrow("process.exit(1)");
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Invalid prayer");
-			expect(errorOutput).toContain("fajr");
-			expect(errorOutput).toContain("dhuhr");
-			expect(errorOutput).toContain("asr");
-			expect(errorOutput).toContain("maghrib");
-			expect(errorOutput).toContain("isha");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+			).rejects.toThrow("Invalid prayer");
 		});
 
 		it("should show status for empty prayer name (falsy value)", async () => {
@@ -202,6 +192,74 @@ describe("TrackCommand", () => {
 			await command.execute({ prayer: "fajr", date });
 			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
 			expect(allOutput).toContain("1/5 prayers completed");
+		});
+	});
+
+	describe("taraweeh tracking", () => {
+		it("should mark taraweeh as complete", async () => {
+			await command.execute({ prayer: "taraweeh", date: "2026-03-01" });
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Taraweeh marked as complete");
+		});
+	});
+
+	describe("vacation tracking", () => {
+		it("should mark day as vacation with streak service", async () => {
+			const mockStreakService = {
+				markVacation: vi.fn(),
+			};
+			const cmdWithStreak = new TrackCommand(configRepo, mockStreakService as never, storeDir);
+
+			await cmdWithStreak.execute({ vacation: true, date: "2026-03-10" });
+
+			expect(mockStreakService.markVacation).toHaveBeenCalledWith("2026-03-10");
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Vacation marked for 2026-03-10");
+			expect(allOutput).toContain("streak preserved");
+		});
+
+		it("should mark day as vacation without streak service", async () => {
+			await command.execute({ vacation: true, date: "2026-03-10" });
+
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Vacation marked for 2026-03-10");
+		});
+	});
+
+	describe("fasted tracking", () => {
+		it("should mark day as fasted without streak service", async () => {
+			await command.execute({ fasted: true, date: "2026-03-10" });
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Fasting marked for 2026-03-10");
+		});
+
+		it("should mark day as fasted with streak service and show streak", async () => {
+			const mockStreakService = {
+				markDay: vi.fn(),
+				getCurrentStreak: vi.fn().mockReturnValue(3),
+			};
+			const cmdWithStreak = new TrackCommand(configRepo, mockStreakService as never, storeDir);
+
+			await cmdWithStreak.execute({ fasted: true, date: "2026-03-10" });
+
+			expect(mockStreakService.markDay).toHaveBeenCalledWith("2026-03-10");
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Fasting marked for 2026-03-10");
+			expect(allOutput).toContain("Current streak: 3 days");
+		});
+
+		it("should mark day as fasted with streak service but zero streak", async () => {
+			const mockStreakService = {
+				markDay: vi.fn(),
+				getCurrentStreak: vi.fn().mockReturnValue(0),
+			};
+			const cmdWithStreak = new TrackCommand(configRepo, mockStreakService as never, storeDir);
+
+			await cmdWithStreak.execute({ fasted: true, date: "2026-03-10" });
+
+			const allOutput = logSpy.mock.calls.map((c) => c[0]).join("\n");
+			expect(allOutput).toContain("Fasting marked for 2026-03-10");
+			expect(allOutput).not.toContain("Current streak");
 		});
 	});
 });
