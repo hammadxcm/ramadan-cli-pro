@@ -11,8 +11,6 @@ describe("ProfileCommand", () => {
 	let storeDir: string;
 	let configRepo: ConfigRepository;
 	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
-	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		configDir = mkdtempSync(join(tmpdir(), "profile-test-"));
@@ -20,10 +18,6 @@ describe("ProfileCommand", () => {
 		configRepo = new ConfigRepository({ cwd: configDir });
 		command = new ProfileCommand(configRepo, storeDir);
 		logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-		errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-		exitSpy = vi
-			.spyOn(process, "exit")
-			.mockImplementation((() => {}) as never) as unknown as ReturnType<typeof vi.fn>;
 	});
 
 	afterEach(() => {
@@ -199,85 +193,67 @@ describe("ProfileCommand", () => {
 	});
 
 	describe("use nonexistent profile", () => {
-		it("should exit with error when using a nonexistent profile", async () => {
-			await command.execute({ action: "use", name: "nonexistent" });
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain('Profile "nonexistent" not found');
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when using a nonexistent profile", async () => {
+			await expect(command.execute({ action: "use", name: "nonexistent" })).rejects.toThrow(
+				'Profile "nonexistent" not found',
+			);
 		});
 	});
 
 	describe("delete nonexistent profile", () => {
-		it("should exit with error when deleting a nonexistent profile", async () => {
-			await command.execute({ action: "delete", name: "nonexistent" });
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain('Profile "nonexistent" not found');
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when deleting a nonexistent profile", async () => {
+			await expect(command.execute({ action: "delete", name: "nonexistent" })).rejects.toThrow(
+				'Profile "nonexistent" not found',
+			);
 		});
 	});
 
 	describe("add without name", () => {
-		it("should exit with error when adding without a name", async () => {
-			await command.execute({
-				action: "add",
-				city: "Karachi",
-			});
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Profile name is required");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when adding without a name", async () => {
+			await expect(
+				command.execute({
+					action: "add",
+					city: "Karachi",
+				}),
+			).rejects.toThrow("Profile name is required");
 		});
 	});
 
 	describe("add without city", () => {
-		it("should exit with error when adding without a city", async () => {
-			await command.execute({
-				action: "add",
-				name: "test",
-			});
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("City is required");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when adding without a city", async () => {
+			await expect(
+				command.execute({
+					action: "add",
+					name: "test",
+				}),
+			).rejects.toThrow("City is required");
 		});
 	});
 
 	describe("use without name", () => {
-		it("should exit with error when using without a name", async () => {
-			await command.execute({ action: "use" });
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Profile name is required");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when using without a name", async () => {
+			await expect(command.execute({ action: "use" })).rejects.toThrow("Profile name is required");
 		});
 	});
 
 	describe("delete without name", () => {
-		it("should exit with error when deleting without a name", async () => {
-			await command.execute({ action: "delete" });
-
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Profile name is required");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+		it("should throw error when deleting without a name", async () => {
+			await expect(command.execute({ action: "delete" })).rejects.toThrow(
+				"Profile name is required",
+			);
 		});
 	});
 
 	describe("add without both name and city", () => {
-		it("should exit with error for name first", async () => {
-			await command.execute({ action: "add" });
+		it("should throw error for name first", async () => {
+			await expect(command.execute({ action: "add" })).rejects.toThrow("Profile name is required");
+		});
+	});
 
-			expect(errorSpy).toHaveBeenCalled();
-			const errorOutput = errorSpy.mock.calls[0]?.[0] as string;
-			expect(errorOutput).toContain("Profile name is required");
-			expect(exitSpy).toHaveBeenCalledWith(1);
+	describe("invalid action", () => {
+		it("should throw error for unrecognized action", async () => {
+			// biome-ignore lint/suspicious/noExplicitAny: testing runtime edge case with invalid action
+			await expect(command.execute({ action: "unknown" as any })).rejects.toThrow("Invalid action");
 		});
 	});
 });
