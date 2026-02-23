@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+Qibla+%7C+Duas+%7C+Tracking;50%2B+City+Aliases+%7C+8+Languages+%7C+24+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2E7D32&center=true&vCenter=true&multiline=true&repeat=true&width=620&height=120&lines=Sehar+%E2%80%A2+Iftar+%E2%80%A2+Ramadan+Timings;TUI+Dashboard+%7C+Qibla+%7C+Duas+%7C+Tracking;78+City+Aliases+%7C+12+Languages+%7C+24+Methods;TypeScript+%7C+React%2FInk+%7C+Zod+Validated" alt="Typing SVG" />
   </a>
 </p>
 
@@ -30,7 +30,18 @@
   - [Notify](#notify)
   - [Qibla](#qibla)
   - [Dua](#dua)
+  - [Quran](#quran)
+  - [Hadith](#hadith)
+  - [Adhkar](#adhkar)
   - [Track](#track)
+  - [Goal](#goal)
+  - [Stats](#stats)
+  - [Charity](#charity)
+  - [Zakat](#zakat)
+  - [Compare](#compare)
+  - [Export](#export)
+  - [Widget](#widget)
+  - [Cache](#cache)
   - [Profile](#profile)
   - [Completion](#completion)
   - [Reset](#reset)
@@ -56,15 +67,31 @@
 
 - **Prayer Times** — Sehar & Iftar times for any city worldwide via the Aladhan API
 - **TUI Dashboard** — Interactive React/Ink terminal dashboard with live countdown and Ramadan progress bar
+- **6 Color Themes** — `ramadan-green`, `classic-gold`, `ocean-blue`, `royal-purple`, `minimal-mono`, `high-contrast`
 - **Qibla Direction** — ASCII compass showing the direction to Makkah from your location
 - **Dua of the Day** — 30 daily Ramadan duas with Arabic text, transliteration, and English translation
-- **Prayer Tracking** — Mark daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) as complete
+- **Quran Verse of the Day** — 30 curated verses with Arabic, transliteration, translation, and surah reference
+- **Hadith of the Day** — 30 curated hadiths with Arabic, transliteration, translation, source, and narrator
+- **Adhkar Collections** — Morning, evening, and post-prayer dhikr with Arabic and transliteration
+- **Prayer Tracking** — Mark daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha, Taraweeh) as complete
+- **Fasting Streaks** — Track fasting days with current/longest streak and vacation mode
+- **Badge System** — 12 achievements earned automatically based on prayer, fasting, charity, and goals
+- **Ramadan Goals** — Set and track personal goals with progress bars
+- **Statistics** — Consolidated view of prayer completion, fasting streaks, goals, and badges
+- **Zakat Calculator** — Calculate Zakat based on wealth inputs with nisab thresholds
+- **Charity Tracker** — Log donations with amounts, descriptions, and categories
+- **City Comparison** — Compare prayer times for 2-4 cities side by side
+- **Multi-format Export** — Export prayer times as iCal (.ics), CSV, or JSON
+- **Terminal Widget** — Compact auto-refreshing display for status bars
+- **Offline Cache** — Prefetch 30 days of prayer times for offline use
+- **Hijri Events** — Special night annotations (Laylat al-Qadr, last 10 nights)
 - **Location Profiles** — Save and switch between multiple named location configurations
-- **53 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb`, `makkah` for quick lookups
+- **78 City Aliases** — Short codes like `sf`, `nyc`, `lhr`, `dxb`, `makkah` for quick lookups
 - **24 Calculation Methods** — Region-specific methods including ISNA, MWL, Umm al-Qura, and more
 - **2 Juristic Schools** — Shafi (standard) and Hanafi Asr calculation
-- **8 Languages** — English, Arabic, Urdu, Turkish, Malay, Bengali, French, and Indonesian
+- **12 Languages** — English, Arabic, Urdu, Turkish, Malay, Bengali, French, Indonesian, Spanish, German, Hindi, Persian
 - **4 Output Formats** — Table, JSON, plain text, and status-line for tmux/polybar
+- **NO_COLOR Support** — Respects `NO_COLOR` env variable and `--no-color` flag for accessibility
 - **Shell Completions** — Tab-completion scripts for Bash, Zsh, and Fish
 - **Desktop Notifications** — Native OS alerts for Sehar & Iftar via node-notifier
 - **Smart Geolocation** — Auto-detect location with 3 fallback geo-IP providers
@@ -117,6 +144,12 @@ ramadan qibla
 
 # Show today's dua
 ramadan dua
+
+# Track a prayer
+ramadan track fajr
+
+# View your stats
+ramadan stats
 ```
 
 > **Tip:** You can use any of these aliases: `ramadan-cli-pro`, `ramadan-pro`, `ramadan`, `ramzan`, or `roza`.
@@ -140,7 +173,9 @@ ramadan [city] [options]
 | `-j, --json` | JSON output |
 | `-s, --status` | Status-line output (for status bars) |
 | `-t, --tui` | Launch TUI dashboard |
-| `-l, --locale <locale>` | Language: `en`, `ar`, `ur`, `tr`, `ms`, `bn`, `fr`, `id` |
+| `-l, --locale <locale>` | Language: `en`, `ar`, `ur`, `tr`, `ms`, `bn`, `fr`, `id`, `es`, `de`, `hi`, `fa` |
+| `--theme <name>` | Color theme: `ramadan-green`, `classic-gold`, `ocean-blue`, `royal-purple`, `minimal-mono`, `high-contrast` |
+| `--no-color` | Disable colors (also respects `NO_COLOR` env variable) |
 | `--first-roza-date <YYYY-MM-DD>` | Set custom first roza date |
 | `--clear-first-roza-date` | Clear custom first roza date |
 | `-v, --version` | Show version |
@@ -301,6 +336,77 @@ ramadan dua -d 27
 
 ---
 
+### Quran
+
+```
+ramadan quran [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `-d, --day <number>` | Show verse for a specific day (1-30) |
+
+Displays a curated Quran verse with Arabic text, transliteration, English translation, and surah/ayah reference.
+
+**Examples:**
+
+```bash
+# Today's verse
+ramadan quran
+
+# Verse for a specific day
+ramadan quran --day 15
+```
+
+---
+
+### Hadith
+
+```
+ramadan hadith [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `-d, --day <number>` | Show hadith for a specific day (1-30) |
+
+Displays a curated hadith with Arabic text, transliteration, English translation, source, and narrator.
+
+**Examples:**
+
+```bash
+# Today's hadith
+ramadan hadith
+
+# Hadith for a specific day
+ramadan hadith --day 27
+```
+
+---
+
+### Adhkar
+
+```
+ramadan adhkar <collection>
+```
+
+Displays adhkar (remembrance) collections. Collections: `morning`, `evening`, `post-prayer`.
+
+**Examples:**
+
+```bash
+# Morning adhkar
+ramadan adhkar morning
+
+# Evening adhkar
+ramadan adhkar evening
+
+# Post-prayer adhkar
+ramadan adhkar post-prayer
+```
+
+---
+
 ### Track
 
 ```
@@ -311,8 +417,10 @@ ramadan track [prayer] [options]
 |------|-------------|
 | `--show` | Show today's prayer tracking status |
 | `--date <YYYY-MM-DD>` | Track for a specific date |
+| `--fasted` | Mark the day as fasted |
+| `--vacation` | Mark the day as vacation (doesn't break streak) |
 
-Track daily prayer completion. Prayers: `fajr`, `dhuhr`, `asr`, `maghrib`, `isha`.
+Track daily prayer completion. Prayers: `fajr`, `dhuhr`, `asr`, `maghrib`, `isha`, `taraweeh`.
 
 **Examples:**
 
@@ -320,14 +428,224 @@ Track daily prayer completion. Prayers: `fajr`, `dhuhr`, `asr`, `maghrib`, `isha
 # Mark Fajr as complete
 ramadan track fajr
 
-# Mark Maghrib as complete
-ramadan track maghrib
+# Mark Taraweeh as complete
+ramadan track taraweeh
+
+# Mark today as fasted
+ramadan track --fasted
+
+# Mark a vacation day (travel/illness)
+ramadan track --vacation
 
 # Show today's tracking status
 ramadan track --show
 
 # Track for a specific date
 ramadan track fajr --date 2026-03-01
+```
+
+---
+
+### Goal
+
+```
+ramadan goal <action> [options]
+```
+
+| Action | Description |
+|--------|-------------|
+| `add` | Create a new goal |
+| `update` | Update goal progress |
+| `list` | List all goals |
+| `delete` | Delete a goal |
+
+| Flag | Description |
+|------|-------------|
+| `--title <title>` | Goal title (for `add`) |
+| `--target <n>` | Target value (for `add`) |
+| `--unit <unit>` | Unit of measurement (for `add`) |
+| `--id <id>` | Goal ID (for `update`/`delete`) |
+| `--progress <n>` | Progress value (for `update`) |
+
+**Examples:**
+
+```bash
+# Add a goal
+ramadan goal add --title "Read Quran" --target 30 --unit juz
+
+# Update progress
+ramadan goal update --id "read-quran" --progress 15
+
+# List all goals
+ramadan goal list
+
+# Delete a goal
+ramadan goal delete --id "read-quran"
+```
+
+---
+
+### Stats
+
+```bash
+ramadan stats
+```
+
+Shows a consolidated summary of prayer completion rate, fasting streak, goal progress, and earned badges.
+
+---
+
+### Charity
+
+```
+ramadan charity <action> [options]
+```
+
+| Action | Description |
+|--------|-------------|
+| `add` | Log a new donation |
+| `list` | List all donations |
+| `summary` | Show donation summary |
+
+| Flag | Description |
+|------|-------------|
+| `--amount <n>` | Donation amount (for `add`) |
+| `--description <text>` | Description (for `add`) |
+
+**Examples:**
+
+```bash
+# Log a donation
+ramadan charity add --amount 50 --description "Masjid fund"
+
+# List all donations
+ramadan charity list
+
+# View summary
+ramadan charity summary
+```
+
+---
+
+### Zakat
+
+```
+ramadan zakat [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cash <n>` | Cash and bank balances |
+| `--gold <n>` | Gold value |
+| `--silver <n>` | Silver value |
+| `--investments <n>` | Investment value |
+| `--property <n>` | Property value |
+| `--debts <n>` | Total debts |
+
+Calculates Zakat (2.5%) based on wealth inputs with nisab thresholds for gold and silver.
+
+**Examples:**
+
+```bash
+# Calculate Zakat
+ramadan zakat --cash 10000 --gold 5000 --debts 2000
+```
+
+---
+
+### Compare
+
+```
+ramadan compare <city1> <city2> [city3] [city4]
+```
+
+Shows prayer times for 2-4 cities side by side.
+
+**Examples:**
+
+```bash
+# Compare two cities
+ramadan compare sf lhr
+
+# Compare four cities
+ramadan compare sf lhr dxb ist
+```
+
+---
+
+### Export
+
+```
+ramadan export [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--format <format>` | Export format: `ical` (default), `csv`, `json` |
+| `--output <path>` | Output file path |
+
+**Examples:**
+
+```bash
+# Export as iCal
+ramadan export
+
+# Export as CSV
+ramadan export --format csv
+
+# Export as JSON to a specific path
+ramadan export --format json --output ~/ramadan-times.json
+```
+
+---
+
+### Widget
+
+```
+ramadan widget [city]
+```
+
+Launches a compact 3-line auto-refreshing terminal display showing location, Sehar, and Iftar times.
+
+**Examples:**
+
+```bash
+# Widget for saved location
+ramadan widget
+
+# Widget for a specific city
+ramadan widget lhr
+```
+
+---
+
+### Cache
+
+```
+ramadan cache [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--build` | Prefetch prayer times for offline use |
+| `--clear` | Clear the cache |
+| `--city <city>` | City to cache (defaults to saved config) |
+| `--days <n>` | Number of days to cache (default: 30) |
+
+**Examples:**
+
+```bash
+# Prefetch 30 days of prayer times
+ramadan cache --build
+
+# Prefetch for a specific city
+ramadan cache --build --city lhr
+
+# Prefetch 7 days
+ramadan cache --build --days 7
+
+# Clear cache
+ramadan cache --clear
 ```
 
 ---
@@ -474,7 +792,7 @@ Single-line output designed for embedding in **tmux**, **polybar**, **i3status**
 
 ## City Aliases
 
-53 short codes covering major cities across 9 regions:
+78 short codes covering major cities across 9 regions:
 
 <details>
 <summary><strong>Americas (8)</strong></summary>
@@ -675,7 +993,7 @@ ramadan --tui
 
 ## Internationalization
 
-8 languages supported via [i18next](https://www.i18next.com):
+12 languages supported via [i18next](https://www.i18next.com):
 
 | Code | Language |
 |------|----------|
@@ -687,12 +1005,17 @@ ramadan --tui
 | `bn` | Bengali (বাংলা) |
 | `fr` | French (Francais) |
 | `id` | Indonesian (Bahasa Indonesia) |
+| `es` | Spanish (Espanol) |
+| `de` | German (Deutsch) |
+| `hi` | Hindi (हिन्दी) |
+| `fa` | Persian (فارسی) |
 
 ```bash
 ramadan --locale ur
 ramadan --locale ar
-ramadan --locale bn
-ramadan --locale fr
+ramadan --locale es
+ramadan --locale de
+ramadan --locale hi
 ```
 
 ---
@@ -745,16 +1068,18 @@ ramadan config --method 4 --school 1
 
 ## Architecture
 
-- **DI Container** — Centralized dependency injection wiring all services
-- **Command Pattern** — Each CLI command implements `validate()` + `execute()`
+- **DI Container** — Centralized dependency injection wiring 20 commands and all services
+- **Command Pattern** — Each CLI command implements `validate()` + `execute()` with centralized `CommandError` handling
+- **Pure Registry** — `CommandFactory` uses a Map-based registry with `register()`/`get()`/`list()` — no constructor params
 - **Formatter Strategy** — Pluggable output formatters (Table, JSON, Plain, Status-line, Qibla)
 - **3 Geo-IP Providers** — Fallback chain for automatic location detection
 - **Geocoding** — Open Meteo geocoding for city name resolution with timezone detection
-- **File-based Caching** — TTL-based cache to minimize API calls
+- **File-based Caching** — TTL-based cache with offline prefetch support
 - **Zod Validation** — Runtime schema validation with branded types (`Latitude`, `Longitude`, `MethodId`, `SchoolId`, `RozaNumber`)
-- **React/Ink TUI** — Terminal UI components with hooks (`use-prayer-times`, `use-countdown`, `use-highlight`, `use-i18n`)
-- **i18next Integration** — Dynamic language switching with 8 locales and interpolation
-- **Custom Error Hierarchy** — Typed errors with error codes for programmatic handling
+- **React/Ink TUI** — Terminal UI components with hooks and dynamic theme context
+- **i18next Integration** — Dynamic language switching with 12 locales, 80+ keys per locale, and interpolation
+- **Custom Error Hierarchy** — `CommandError` with error codes; single top-level handler replaces 32 scattered `process.exit` calls
+- **Service-level Validation** — Input validation in service layer (non-empty strings, positive numbers, date formats)
 - **Country-Aware Defaults** — Automatic calculation method and school recommendations per country
 
 ---
