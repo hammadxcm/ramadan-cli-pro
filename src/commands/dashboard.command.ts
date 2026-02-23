@@ -3,6 +3,7 @@
  * @description Launches the interactive TUI dashboard using Ink and React.
  */
 
+import { CommandError } from "../errors/command.error.js";
 import type { CommandContext } from "../types/command.js";
 
 /**
@@ -16,13 +17,10 @@ export class DashboardCommand {
 			const React = await import("react");
 			const { App } = await import("../tui/app.js");
 			render(React.createElement(App, { context }));
-		} catch (error) {
-			console.error("Failed to start TUI dashboard.");
-			console.error("Make sure ink and react are installed: pnpm add ink react");
-			if (error instanceof Error) {
-				console.error(error.message);
-			}
-			process.exit(1);
+		} catch {
+			throw new CommandError(
+				"Failed to start TUI dashboard. Make sure ink and react are installed.",
+			);
 		}
 	}
 }
