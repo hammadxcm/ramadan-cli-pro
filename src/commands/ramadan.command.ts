@@ -74,7 +74,7 @@ export class RamadanCommand implements ICommand {
 
 	validate(context: CommandContext): void {
 		if (context.all && context.rozaNumber !== undefined) {
-			throw new Error("Use either --all or --number, not both.");
+			throw new CommandError("Use either --all or --number, not both.");
 		}
 	}
 

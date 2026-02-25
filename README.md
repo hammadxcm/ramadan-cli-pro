@@ -67,7 +67,8 @@
 
 - **Prayer Times** — Sehar & Iftar times for any city worldwide via the Aladhan API
 - **TUI Dashboard** — Interactive React/Ink terminal dashboard with live countdown and Ramadan progress bar
-- **6 Color Themes** — `ramadan-green`, `classic-gold`, `ocean-blue`, `royal-purple`, `minimal-mono`, `high-contrast`
+- **Interactive Settings Editor** — Edit all settings directly from the TUI with keyboard navigation, inline dropdowns, text input, and instant toggles
+- **6 Color Themes** — `ramadan-green`, `classic-gold`, `ocean-blue`, `royal-purple`, `minimal-mono`, `high-contrast` with live switching in the TUI
 - **Qibla Direction** — ASCII compass showing the direction to Makkah from your location
 - **Dua of the Day** — 30 daily Ramadan duas with Arabic text, transliteration, and English translation
 - **Quran Verse of the Day** — 30 curated verses with Arabic, transliteration, translation, and surah reference
@@ -116,6 +117,7 @@
 - **QuranVerseCard** — Quran verse of the day with surah reference
 - **GoalProgress** — Visual goal progress bars
 - **StreakBadge** — Fasting streak display with current/longest stats
+- **SettingsEditor** — Interactive keyboard-driven settings editor with text input, selection dropdowns, and toggles
 - **ErrorDisplay** — Graceful error state rendering
 - **LoadingSpinner** — Loading state indicator
 - **Dashboard** — Main orchestrator composing all components
@@ -1037,6 +1039,7 @@ An interactive terminal dashboard built with [React](https://react.dev) and [Ink
 - **Ramadan Progress** showing day X of 30
 - **Progress Bar** showing fasting day progression
 - **Status Badges** for current fasting state
+- **Interactive Settings Editor** — edit all 9 settings (City, Country, Method, School, Theme, Locale, Notifications, Sehar/Iftar Reminders) via keyboard with inline dropdowns, text input, and instant toggles. Theme changes apply live.
 
 ```bash
 ramadan dashboard

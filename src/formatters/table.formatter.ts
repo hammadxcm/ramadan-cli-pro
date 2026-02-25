@@ -11,9 +11,15 @@ import type { FormatContext, IOutputFormatter } from "./formatter.interface.js";
 import {
 	TABLE_HEADERS,
 	formatRowLine,
+	getFooterNote,
 	getFormatterTitle,
+	getHighlightInLabel,
+	getHighlightStatusLabel,
+	getHighlightUpNextLabel,
 	getTableDivider,
+	getTableHeaders,
 	rowToColumns,
+	translateHighlightString,
 } from "./formatter.utils.js";
 
 const formatRowAnnotation = (kind: RowAnnotationKind): string => {
@@ -50,14 +56,14 @@ export class TableFormatter implements IOutputFormatter {
 		lines.push("");
 
 		if (highlight) {
-			lines.push(`  ${ramadanGreen("Status:")} ${pc.white(highlight.current)}`);
+			lines.push(`  ${ramadanGreen(getHighlightStatusLabel())} ${pc.white(translateHighlightString(highlight.current))}`);
 			lines.push(
-				`  ${ramadanGreen("Up next:")} ${pc.white(highlight.next)} in ${pc.yellow(highlight.countdown)}`,
+				`  ${ramadanGreen(getHighlightUpNextLabel())} ${pc.white(translateHighlightString(highlight.next))} ${getHighlightInLabel()} ${pc.yellow(highlight.countdown)}`,
 			);
 			lines.push("");
 		}
 
-		lines.push(pc.dim("  Sehar uses Fajr. Iftar uses Maghrib."));
+		lines.push(pc.dim(`  ${getFooterNote()}`));
 		lines.push("");
 
 		return lines.join("\n");
@@ -69,8 +75,9 @@ export class TableFormatter implements IOutputFormatter {
 	): string {
 		const divider = getTableDivider();
 
+		const headers = getTableHeaders();
 		const lines: Array<string> = [];
-		lines.push(pc.dim(`  ${formatRowLine([...TABLE_HEADERS])}`));
+		lines.push(pc.dim(`  ${formatRowLine([...headers])}`));
 		lines.push(pc.dim(`  ${divider}`));
 
 		for (const row of rows) {

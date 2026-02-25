@@ -11,7 +11,7 @@ import { ramadanGreenTheme } from "./ramadan-green.theme.js";
 import { royalPurpleTheme } from "./royal-purple.theme.js";
 import type { ITheme } from "./theme.interface.js";
 
-const DEFAULT_THEME_ID = "ramadan-green";
+const DEFAULT_THEME_ID = "classic-gold";
 
 /**
  * Registry that holds all available themes and provides lookup methods.

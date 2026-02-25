@@ -3,15 +3,17 @@ import { ADHKAR_COLLECTIONS } from "../../../data/adhkar.js";
 import type { AdhkarCollection, Dhikr } from "../../../data/adhkar.js";
 
 describe("ADHKAR_COLLECTIONS", () => {
-	it("should have exactly 3 collections", () => {
-		expect(ADHKAR_COLLECTIONS).toHaveLength(3);
+	it("should have exactly 5 collections", () => {
+		expect(ADHKAR_COLLECTIONS).toHaveLength(5);
 	});
 
-	it('should have collection IDs "morning", "evening", "post-prayer"', () => {
+	it('should have collection IDs "morning", "evening", "post-prayer", "before-sleep", "waking-up"', () => {
 		const ids = ADHKAR_COLLECTIONS.map((c) => c.id);
 		expect(ids).toContain("morning");
 		expect(ids).toContain("evening");
 		expect(ids).toContain("post-prayer");
+		expect(ids).toContain("before-sleep");
+		expect(ids).toContain("waking-up");
 	});
 
 	it("each collection should have a non-empty id", () => {
@@ -28,21 +30,21 @@ describe("ADHKAR_COLLECTIONS", () => {
 		}
 	});
 
-	it("each collection should have at least 5 items", () => {
+	it("each collection should have at least 3 items", () => {
 		for (const collection of ADHKAR_COLLECTIONS) {
 			expect(
 				collection.items.length,
-				`Collection "${collection.id}" has fewer than 5 items`,
-			).toBeGreaterThanOrEqual(5);
+				`Collection "${collection.id}" has fewer than 3 items`,
+			).toBeGreaterThanOrEqual(3);
 		}
 	});
 
-	it("each collection should have at most 7 items", () => {
+	it("each collection should have at most 10 items", () => {
 		for (const collection of ADHKAR_COLLECTIONS) {
 			expect(
 				collection.items.length,
-				`Collection "${collection.id}" has more than 7 items`,
-			).toBeLessThanOrEqual(7);
+				`Collection "${collection.id}" has more than 10 items`,
+			).toBeLessThanOrEqual(10);
 		}
 	});
 

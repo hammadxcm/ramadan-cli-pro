@@ -5,14 +5,18 @@
  */
 
 import React, { createContext, useContext } from "react";
+import type { Goal } from "../../types/goals.js";
 import type { PrayerData } from "../../types/prayer.js";
 import type { HighlightState } from "../../types/ramadan.js";
+import type { StreakData } from "../../types/streak.js";
 
 interface PrayerContextValue {
 	readonly data: PrayerData | null;
 	readonly highlight: HighlightState | null;
 	readonly loading: boolean;
 	readonly error: string | null;
+	readonly streakData?: StreakData | undefined;
+	readonly goals?: ReadonlyArray<Goal> | undefined;
 }
 
 const PrayerContext = createContext<PrayerContextValue>({

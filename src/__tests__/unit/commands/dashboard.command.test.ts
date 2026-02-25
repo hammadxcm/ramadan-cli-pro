@@ -24,15 +24,18 @@ vi.mock("../../../tui/app.js", () => ({
 
 describe("DashboardCommand", () => {
 	let command: DashboardCommand;
+	const originalIsTTY = process.stdin.isTTY;
 
 	beforeEach(() => {
 		command = new DashboardCommand();
 		mockRender.mockReset();
 		mockCreateElement.mockReset().mockReturnValue("mock-element");
+		Object.defineProperty(process.stdin, "isTTY", { value: true, writable: true });
 	});
 
 	afterEach(() => {
 		vi.restoreAllMocks();
+		Object.defineProperty(process.stdin, "isTTY", { value: originalIsTTY, writable: true });
 	});
 
 	it("can be instantiated", () => {
@@ -66,7 +69,7 @@ describe("DashboardCommand", () => {
 		await command.execute(context);
 
 		expect(mockCreateElement).toHaveBeenCalledTimes(1);
-		expect(mockRender).toHaveBeenCalledWith("mock-element");
+		expect(mockRender).toHaveBeenCalledWith("mock-element", { stdin: process.stdin });
 	});
 
 	it("handles import failure gracefully", async () => {
@@ -75,7 +78,7 @@ describe("DashboardCommand", () => {
 		});
 
 		await expect(command.execute({})).rejects.toThrow(CommandError);
-		await expect(command.execute({})).rejects.toThrow("Failed to start TUI dashboard");
+		await expect(command.execute({})).rejects.toThrow("Failed to start TUI dashboard: ink not available");
 	});
 
 	it("handles non-Error exceptions in the catch block", async () => {
@@ -84,6 +87,13 @@ describe("DashboardCommand", () => {
 		});
 
 		await expect(command.execute({})).rejects.toThrow(CommandError);
+	});
+
+	it("throws CommandError when stdin is not a TTY", async () => {
+		Object.defineProperty(process.stdin, "isTTY", { value: false, writable: true });
+
+		await expect(command.execute({})).rejects.toThrow(CommandError);
+		await expect(command.execute({})).rejects.toThrow("Dashboard requires an interactive terminal");
 	});
 
 	it("passes empty context through to the App component", async () => {

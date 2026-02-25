@@ -16,9 +16,9 @@ describe("ThemeRegistry", () => {
 		expect(theme).toBeUndefined();
 	});
 
-	it("getDefault: returns ramadan-green", () => {
+	it("getDefault: returns classic-gold", () => {
 		const theme = registry.getDefault();
-		expect(theme.id).toBe("ramadan-green");
+		expect(theme.id).toBe("classic-gold");
 	});
 
 	it("list: returns all themes", () => {
@@ -65,7 +65,7 @@ describe("ThemeService", () => {
 		mockConfigRepository.getStoredTheme.mockReturnValue(undefined);
 		const service = new ThemeService(registry, mockConfigRepository as never);
 		const theme = service.getActiveTheme();
-		expect(theme.id).toBe("ramadan-green");
+		expect(theme.id).toBe("classic-gold");
 	});
 
 	it("setTheme: persists valid theme, returns true", () => {

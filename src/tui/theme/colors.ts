@@ -8,10 +8,10 @@
  * @readonly
  */
 export const colors = {
-	/** Brand green. */
-	primary: "#80F097",
-	/** Accent yellow. */
-	secondary: "#F0E080",
+	/** Brand gold. */
+	primary: "#FFC125",
+	/** Accent cyan. */
+	secondary: "#80D4E0",
 	/** Error red. */
 	error: "#F08080",
 	/** Muted/dim gray. */
