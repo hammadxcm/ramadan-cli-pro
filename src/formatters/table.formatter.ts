@@ -56,7 +56,9 @@ export class TableFormatter implements IOutputFormatter {
 		lines.push("");
 
 		if (highlight) {
-			lines.push(`  ${ramadanGreen(getHighlightStatusLabel())} ${pc.white(translateHighlightString(highlight.current))}`);
+			lines.push(
+				`  ${ramadanGreen(getHighlightStatusLabel())} ${pc.white(translateHighlightString(highlight.current))}`,
+			);
 			lines.push(
 				`  ${ramadanGreen(getHighlightUpNextLabel())} ${pc.white(translateHighlightString(highlight.next))} ${getHighlightInLabel()} ${pc.yellow(highlight.countdown)}`,
 			);

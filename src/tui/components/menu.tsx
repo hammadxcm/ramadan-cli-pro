@@ -81,10 +81,7 @@ export const Menu: React.FC<MenuProps> = ({ onSelect, isActive }) => {
 					const isSelected = index === selectedIndex;
 					return (
 						<Box key={item.screen}>
-							<Text
-								color={isSelected ? colors.primary : colors.white}
-								bold={isSelected}
-							>
+							<Text color={isSelected ? colors.primary : colors.white} bold={isSelected}>
 								{isSelected ? "  > " : "    "}
 								{item.label}
 							</Text>

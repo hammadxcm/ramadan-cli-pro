@@ -7,8 +7,8 @@ import { Box, Text, useInput } from "ink";
 import type React from "react";
 import { useState } from "react";
 import { QURAN_VERSES } from "../../data/quran-verses.js";
-import { useThemeColors } from "../context/theme-context.js";
 import { ScreenWrapper } from "../components/screen-wrapper.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface QuranScreenProps {
 	readonly onBack: () => void;

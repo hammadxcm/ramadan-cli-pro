@@ -6,10 +6,10 @@
 import { Box, Text, useInput } from "ink";
 import type React from "react";
 import { useCallback, useState } from "react";
+import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { useContainer } from "../context/container-context.js";
 import { usePrayerContext } from "../context/prayer-context.js";
 import { useThemeColors } from "../context/theme-context.js";
-import { ScreenWrapper } from "../components/screen-wrapper.js";
 
 interface TrackerScreenProps {
 	readonly onBack: () => void;
@@ -56,8 +56,7 @@ export const TrackerScreen: React.FC<TrackerScreenProps> = ({ onBack, isActive }
 		>
 			<Box flexDirection="column">
 				<Text color={colors.white} bold>
-					Today ({today}): {fastedToday ? "Fasted" : "Not Fasted"}{" "}
-					{fastedToday ? "[CHECK]" : "[ ]"}
+					Today ({today}): {fastedToday ? "Fasted" : "Not Fasted"} {fastedToday ? "[CHECK]" : "[ ]"}
 				</Text>
 				<Text> </Text>
 				{streakData && (
@@ -69,12 +68,8 @@ export const TrackerScreen: React.FC<TrackerScreenProps> = ({ onBack, isActive }
 							Current: {streakData.currentStreak} days
 							{streakData.currentStreak >= 7 ? " [FIRE]" : ""}
 						</Text>
-						<Text color={colors.muted}>
-							Longest: {streakData.longestStreak} days
-						</Text>
-						<Text color={colors.muted}>
-							Total fasted: {streakData.totalDaysFasted} days
-						</Text>
+						<Text color={colors.muted}>Longest: {streakData.longestStreak} days</Text>
+						<Text color={colors.muted}>Total fasted: {streakData.totalDaysFasted} days</Text>
 					</Box>
 				)}
 			</Box>

@@ -5,8 +5,8 @@
 
 import { Box, Text } from "ink";
 import type React from "react";
-import { useThemeColors } from "../context/theme-context.js";
 import { ScreenWrapper } from "../components/screen-wrapper.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface ZakatScreenProps {
 	readonly onBack: () => void;
@@ -28,9 +28,7 @@ export const ZakatScreen: React.FC<ZakatScreenProps> = ({ onBack, isActive }) =>
 				<Text color={colors.muted}>
 					Use `ramadan-cli-pro zakat --wealth AMOUNT` to calculate your Zakat.
 				</Text>
-				<Text color={colors.muted}>
-					Example: ramadan-cli-pro zakat --wealth 50000
-				</Text>
+				<Text color={colors.muted}>Example: ramadan-cli-pro zakat --wealth 50000</Text>
 				<Text> </Text>
 				<Text color={colors.primary} bold>
 					Quick Reference

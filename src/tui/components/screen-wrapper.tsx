@@ -41,12 +41,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
 
 	return (
 		<Box flexDirection="column">
-			<Box
-				flexDirection="column"
-				borderStyle="round"
-				borderColor={colors.primary}
-				paddingX={1}
-			>
+			<Box flexDirection="column" borderStyle="round" borderColor={colors.primary} paddingX={1}>
 				<Text color={colors.primary} bold>
 					{title}
 				</Text>

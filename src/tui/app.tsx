@@ -53,9 +53,7 @@ export const App: React.FC<AppProps> = ({ context }) => {
 		[container.goalService],
 	);
 
-	const [themeColors, setThemeColors] = useState(() =>
-		container.themeService.getActiveTheme().tui,
-	);
+	const [themeColors, setThemeColors] = useState(() => container.themeService.getActiveTheme().tui);
 
 	const refreshTheme = useCallback(() => {
 		setThemeColors(container.themeService.getActiveTheme().tui);

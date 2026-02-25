@@ -79,8 +79,7 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 				count: 3,
 			},
 			{
-				arabic:
-					"قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
+				arabic: "قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
 				transliteration:
 					"Qul huwal-lahu ahad, Allahus-samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad",
 				translation:
@@ -89,15 +88,13 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 			},
 			{
 				arabic: "قل أعوذ برب الفلق، من شر ما خلق",
-				transliteration:
-					"Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
+				transliteration: "Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
 				translation:
 					"Say: I seek refuge in the Lord of daybreak, from the evil of that which He created. (Surah Al-Falaq 3x)",
 				count: 3,
 			},
 			{
-				arabic:
-					"حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
+				arabic: "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
 				transliteration:
 					"HasbiyAllahu la ilaha illa huwa 'alayhi tawakkaltu wa huwa Rabbul-'arshil-'adhim",
 				translation:
@@ -164,8 +161,7 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 					"O Allah, whatever blessing I or any of Your creation have received this evening is from You alone, without partner. So all praise and thanks are to You.",
 			},
 			{
-				arabic:
-					"قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
+				arabic: "قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
 				transliteration:
 					"Qul huwal-lahu ahad, Allahus-samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad",
 				translation:
@@ -174,15 +170,13 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 			},
 			{
 				arabic: "قل أعوذ برب الفلق، من شر ما خلق",
-				transliteration:
-					"Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
+				transliteration: "Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
 				translation:
 					"Say: I seek refuge in the Lord of daybreak, from the evil of that which He created. (Surah Al-Falaq 3x)",
 				count: 3,
 			},
 			{
-				arabic:
-					"حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
+				arabic: "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
 				transliteration:
 					"HasbiyAllahu la ilaha illa huwa 'alayhi tawakkaltu wa huwa Rabbul-'arshil-'adhim",
 				translation:
@@ -243,10 +237,8 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 			},
 			{
 				arabic: "قل هو الله أحد",
-				transliteration:
-					"Qul huwal-lahu ahad (Surah Al-Ikhlas, Al-Falaq, An-Nas)",
-				translation:
-					"Recite Surah Al-Ikhlas, Al-Falaq, and An-Nas once after each prayer.",
+				transliteration: "Qul huwal-lahu ahad (Surah Al-Ikhlas, Al-Falaq, An-Nas)",
+				translation: "Recite Surah Al-Ikhlas, Al-Falaq, and An-Nas once after each prayer.",
 			},
 			{
 				arabic:
@@ -269,17 +261,14 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 					"Recite Ayat al-Kursi before sleeping. Whoever recites it will have a guardian from Allah.",
 			},
 			{
-				arabic:
-					"آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ",
-				transliteration:
-					"Last two verses of Surah Al-Baqarah (2:285-286)",
+				arabic: "آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ",
+				transliteration: "Last two verses of Surah Al-Baqarah (2:285-286)",
 				translation:
 					"Whoever recites the last two verses of Surah Al-Baqarah at night, they will suffice him.",
 			},
 			{
 				arabic: "قل هو الله أحد",
-				transliteration:
-					"Surah Al-Ikhlas, Al-Falaq, An-Nas (3x each)",
+				transliteration: "Surah Al-Ikhlas, Al-Falaq, An-Nas (3x each)",
 				translation:
 					"Recite the three Quls three times each, cup your hands, blow into them, and wipe over your body.",
 				count: 3,
@@ -290,8 +279,7 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 				translation: "In Your name, O Allah, I die and I live.",
 			},
 			{
-				arabic:
-					"اللهم باسمك أموت وأحيا، اللهم قني عذابك يوم تبعث عبادك",
+				arabic: "اللهم باسمك أموت وأحيا، اللهم قني عذابك يوم تبعث عبادك",
 				transliteration:
 					"Allahumma bismika amutu wa ahya, Allahumma qini 'adhabaka yawma tab'athu 'ibadak",
 				translation:
@@ -299,8 +287,7 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 			},
 			{
 				arabic: "سبحان الله، الحمد لله، الله أكبر",
-				transliteration:
-					"SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x",
+				transliteration: "SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x",
 				translation:
 					"Glorify Allah 33 times, praise Him 33 times, and declare His greatness 34 times before sleeping.",
 			},
@@ -311,26 +298,21 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 		title: "Waking Up Adhkar (Adhkar al-Istiqadh)",
 		items: [
 			{
-				arabic:
-					"الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور",
-				transliteration:
-					"Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+				arabic: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور",
+				transliteration: "Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
 				translation:
 					"Praise be to Allah who gave us life after death, and to Him is the resurrection.",
 			},
 			{
-				arabic:
-					"لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير",
+				arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير",
 				transliteration:
 					"La ilaha illallahu wahdahu la sharika lahu, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
 				translation:
 					"There is no deity except Allah alone, with no partner. To Him belongs dominion and praise, and He is over all things capable.",
 			},
 			{
-				arabic:
-					"سبحان الله والحمد لله ولا إله إلا الله والله أكبر",
-				transliteration:
-					"SubhanAllahi walhamdulillahi wa la ilaha illallahu wallahu akbar",
+				arabic: "سبحان الله والحمد لله ولا إله إلا الله والله أكبر",
+				transliteration: "SubhanAllahi walhamdulillahi wa la ilaha illallahu wallahu akbar",
 				translation:
 					"Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the Greatest.",
 			},

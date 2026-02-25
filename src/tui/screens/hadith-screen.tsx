@@ -7,8 +7,8 @@ import { Box, Text, useInput } from "ink";
 import type React from "react";
 import { useState } from "react";
 import { RAMADAN_HADITHS } from "../../data/hadiths.js";
-import { useThemeColors } from "../context/theme-context.js";
 import { ScreenWrapper } from "../components/screen-wrapper.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface HadithScreenProps {
 	readonly onBack: () => void;

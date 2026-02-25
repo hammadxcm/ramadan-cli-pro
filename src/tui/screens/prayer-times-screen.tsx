@@ -6,7 +6,6 @@
 
 import { Box } from "ink";
 import type React from "react";
-import { usePrayerContext } from "../context/prayer-context.js";
 import { CountdownTimer } from "../components/countdown-timer.js";
 import { DuaCard } from "../components/dua-card.js";
 import { GoalProgress } from "../components/goal-progress.js";
@@ -15,6 +14,7 @@ import { ProgressBar } from "../components/progress-bar.js";
 import { QuranVerseCard } from "../components/quran-verse-card.js";
 import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { StreakBadge } from "../components/streak-badge.js";
+import { usePrayerContext } from "../context/prayer-context.js";
 
 interface PrayerTimesScreenProps {
 	readonly onBack: () => void;

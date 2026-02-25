@@ -295,19 +295,16 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Patience
 	{
 		day: 31,
-		arabic:
-			"وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم",
+		arabic: "وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم",
 		transliteration: "Wa sabbir nafsaka ma'alladhina yad'una Rabbahum",
-		translation:
-			"And keep yourself patient with those who call upon their Lord.",
+		translation: "And keep yourself patient with those who call upon their Lord.",
 		surah: "Al-Kahf",
 		ayah: 28,
 	},
 	// Charity
 	{
 		day: 32,
-		arabic:
-			"مَن ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا",
+		arabic: "مَن ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا",
 		transliteration: "Man dhal-ladhi yuqridul-laha qardan hasanan",
 		translation: "Who is it that would loan Allah a goodly loan?",
 		surah: "Al-Baqarah",
@@ -316,12 +313,9 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Prayer
 	{
 		day: 33,
-		arabic:
-			"إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ",
-		transliteration:
-			"Inna salati wa nusuki wa mahyaya wa mamati lillahi rabbil-'alamin",
-		translation:
-			"Indeed, my prayer, my sacrifice, my living and my dying are for Allah.",
+		arabic: "إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ",
+		transliteration: "Inna salati wa nusuki wa mahyaya wa mamati lillahi rabbil-'alamin",
+		translation: "Indeed, my prayer, my sacrifice, my living and my dying are for Allah.",
 		surah: "Al-An'am",
 		ayah: 162,
 	},
@@ -346,10 +340,8 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Forgiveness
 	{
 		day: 36,
-		arabic:
-			"قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
-		transliteration:
-			"Qul ya 'ibadiyalladhina asrafu 'ala anfusihim la taqnatu mir-rahmatillah",
+		arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
+		transliteration: "Qul ya 'ibadiyalladhina asrafu 'ala anfusihim la taqnatu mir-rahmatillah",
 		translation:
 			"Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah.",
 		surah: "Az-Zumar",
@@ -358,11 +350,9 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Night prayer
 	{
 		day: 37,
-		arabic:
-			"وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ",
+		arabic: "وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ",
 		transliteration: "Wa minal-layli fatahajjad bihi nafilatan lak",
-		translation:
-			"And during the night, pray tahajjud as additional worship.",
+		translation: "And during the night, pray tahajjud as additional worship.",
 		surah: "Al-Isra",
 		ayah: 79,
 	},
@@ -378,35 +368,27 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Patience
 	{
 		day: 39,
-		arabic:
-			"إِنَّمَا يُوَفَّى الصَّابِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍ",
-		transliteration:
-			"Innama yuwaffas-sabiruna ajrahum bighayri hisab",
-		translation:
-			"Indeed, the patient will be given their reward without account.",
+		arabic: "إِنَّمَا يُوَفَّى الصَّابِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍ",
+		transliteration: "Innama yuwaffas-sabiruna ajrahum bighayri hisab",
+		translation: "Indeed, the patient will be given their reward without account.",
 		surah: "Az-Zumar",
 		ayah: 10,
 	},
 	// Charity
 	{
 		day: 40,
-		arabic:
-			"مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ",
-		transliteration:
-			"Mathalul-ladhina yunfiquna amwalahum fi sabilillahi kamathalin habbatin",
-		translation:
-			"The example of those who spend their wealth in the way of Allah is like a seed.",
+		arabic: "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ",
+		transliteration: "Mathalul-ladhina yunfiquna amwalahum fi sabilillahi kamathalin habbatin",
+		translation: "The example of those who spend their wealth in the way of Allah is like a seed.",
 		surah: "Al-Baqarah",
 		ayah: 261,
 	},
 	// Prayer
 	{
 		day: 41,
-		arabic:
-			"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ",
+		arabic: "حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ",
 		transliteration: "Hafidhu 'alas-salawati was-salatil-wusta",
-		translation:
-			"Maintain with care the prayers and the middle prayer.",
+		translation: "Maintain with care the prayers and the middle prayer.",
 		surah: "Al-Baqarah",
 		ayah: 238,
 	},
@@ -422,90 +404,70 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Mercy
 	{
 		day: 43,
-		arabic:
-			"وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
+		arabic: "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
 		transliteration: "Wa ma arsalnaka illa rahmatan lil-'alamin",
-		translation:
-			"And We have not sent you except as a mercy to the worlds.",
+		translation: "And We have not sent you except as a mercy to the worlds.",
 		surah: "Al-Anbiya",
 		ayah: 107,
 	},
 	// Forgiveness
 	{
 		day: 44,
-		arabic:
-			"وَالْعَافِينَ عَنِ النَّاسِ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ",
-		transliteration:
-			"Wal-'afina 'anin-nas wallahu yuhibbul-muhsinin",
-		translation:
-			"And who pardon the people — and Allah loves the doers of good.",
+		arabic: "وَالْعَافِينَ عَنِ النَّاسِ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ",
+		transliteration: "Wal-'afina 'anin-nas wallahu yuhibbul-muhsinin",
+		translation: "And who pardon the people — and Allah loves the doers of good.",
 		surah: "Al-Imran",
 		ayah: 134,
 	},
 	// Night prayer
 	{
 		day: 45,
-		arabic:
-			"تَتَجَافَىٰ جُنُوبُهُمْ عَنِ الْمَضَاجِعِ يَدْعُونَ رَبَّهُمْ خَوْفًا وَطَمَعًا",
-		transliteration:
-			"Tatajafa junubuhum 'anil-madaji'i yad'una Rabbahum khawfan wa tama'a",
-		translation:
-			"They arise from their beds to invoke their Lord in fear and aspiration.",
+		arabic: "تَتَجَافَىٰ جُنُوبُهُمْ عَنِ الْمَضَاجِعِ يَدْعُونَ رَبَّهُمْ خَوْفًا وَطَمَعًا",
+		transliteration: "Tatajafa junubuhum 'anil-madaji'i yad'una Rabbahum khawfan wa tama'a",
+		translation: "They arise from their beds to invoke their Lord in fear and aspiration.",
 		surah: "As-Sajdah",
 		ayah: 16,
 	},
 	// Patience
 	{
 		day: 46,
-		arabic:
-			"يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
-		transliteration:
-			"Ya ayyuhalladhina amanus-ta'inu bis-sabri was-salah",
-		translation:
-			"O you who believe, seek help through patience and prayer.",
+		arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+		transliteration: "Ya ayyuhalladhina amanus-ta'inu bis-sabri was-salah",
+		translation: "O you who believe, seek help through patience and prayer.",
 		surah: "Al-Baqarah",
 		ayah: 153,
 	},
 	// Charity
 	{
 		day: 47,
-		arabic:
-			"لَن تَنَالُوا الْبِرَّ حَتَّىٰ تُنفِقُوا مِمَّا تُحِبُّونَ",
+		arabic: "لَن تَنَالُوا الْبِرَّ حَتَّىٰ تُنفِقُوا مِمَّا تُحِبُّونَ",
 		transliteration: "Lan tanalu-l-birra hatta tunfiqu mimma tuhibbun",
-		translation:
-			"Never will you attain the good until you spend from that which you love.",
+		translation: "Never will you attain the good until you spend from that which you love.",
 		surah: "Al-Imran",
 		ayah: 92,
 	},
 	// Prayer
 	{
 		day: 48,
-		arabic:
-			"أَقِمِ الصَّلَاةَ لِدُلُوكِ الشَّمْسِ إِلَىٰ غَسَقِ اللَّيْلِ",
-		transliteration:
-			"Aqimis-salata lidulukish-shamsi ila ghasaqil-layl",
-		translation:
-			"Establish prayer at the decline of the sun until the darkness of night.",
+		arabic: "أَقِمِ الصَّلَاةَ لِدُلُوكِ الشَّمْسِ إِلَىٰ غَسَقِ اللَّيْلِ",
+		transliteration: "Aqimis-salata lidulukish-shamsi ila ghasaqil-layl",
+		translation: "Establish prayer at the decline of the sun until the darkness of night.",
 		surah: "Al-Isra",
 		ayah: 78,
 	},
 	// Gratitude
 	{
 		day: 49,
-		arabic:
-			"وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
-		transliteration:
-			"Wa idh ta'adhdhana Rabbukum la'in shakartum la-azidannakum",
-		translation:
-			"And when your Lord proclaimed: If you are grateful, I will increase you.",
+		arabic: "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+		transliteration: "Wa idh ta'adhdhana Rabbukum la'in shakartum la-azidannakum",
+		translation: "And when your Lord proclaimed: If you are grateful, I will increase you.",
 		surah: "Ibrahim",
 		ayah: 7,
 	},
 	// Mercy
 	{
 		day: 50,
-		arabic:
-			"كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ",
+		arabic: "كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ",
 		transliteration: "Kataba Rabbukum 'ala nafsihi-r-rahmah",
 		translation: "Your Lord has decreed upon Himself mercy.",
 		surah: "Al-An'am",
@@ -514,12 +476,9 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Forgiveness
 	{
 		day: 51,
-		arabic:
-			"وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ",
-		transliteration:
-			"Wa huwal-ladhi yaqbalut-tawbata 'an 'ibadihi wa ya'fu 'anis-sayyi'at",
-		translation:
-			"And it is He who accepts repentance from His servants and pardons misdeeds.",
+		arabic: "وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ",
+		transliteration: "Wa huwal-ladhi yaqbalut-tawbata 'an 'ibadihi wa ya'fu 'anis-sayyi'at",
+		translation: "And it is He who accepts repentance from His servants and pardons misdeeds.",
 		surah: "Ash-Shura",
 		ayah: 25,
 	},
@@ -535,36 +494,27 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Patience
 	{
 		day: 53,
-		arabic:
-			"وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ",
-		transliteration:
-			"Wa la tahinuu wa la tahzanu wa antumul-a'lawna",
-		translation:
-			"So do not weaken and do not grieve, and you will be superior.",
+		arabic: "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ",
+		transliteration: "Wa la tahinuu wa la tahzanu wa antumul-a'lawna",
+		translation: "So do not weaken and do not grieve, and you will be superior.",
 		surah: "Al-Imran",
 		ayah: 139,
 	},
 	// Charity
 	{
 		day: 54,
-		arabic:
-			"الَّذِينَ يُنفِقُونَ أَمْوَالَهُم بِاللَّيْلِ وَالنَّهَارِ",
-		transliteration:
-			"Alladhina yunfiquna amwalahum bil-layli wan-nahari",
-		translation:
-			"Those who spend their wealth by night and by day.",
+		arabic: "الَّذِينَ يُنفِقُونَ أَمْوَالَهُم بِاللَّيْلِ وَالنَّهَارِ",
+		transliteration: "Alladhina yunfiquna amwalahum bil-layli wan-nahari",
+		translation: "Those who spend their wealth by night and by day.",
 		surah: "Al-Baqarah",
 		ayah: 274,
 	},
 	// Prayer
 	{
 		day: 55,
-		arabic:
-			"وَأَقِمِ الصَّلَاةَ إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
-		transliteration:
-			"Wa aqimis-salata inna-s-salata tanha 'anil-fahsha'i wal-munkar",
-		translation:
-			"And establish prayer. Indeed, prayer prohibits immorality and wrongdoing.",
+		arabic: "وَأَقِمِ الصَّلَاةَ إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
+		transliteration: "Wa aqimis-salata inna-s-salata tanha 'anil-fahsha'i wal-munkar",
+		translation: "And establish prayer. Indeed, prayer prohibits immorality and wrongdoing.",
 		surah: "Al-Ankabut",
 		ayah: 45,
 	},
@@ -589,36 +539,27 @@ export const ADDITIONAL_QURAN_VERSES: ReadonlyArray<QuranVerse> = [
 	// Forgiveness
 	{
 		day: 58,
-		arabic:
-			"رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا",
-		transliteration:
-			"Rabbana-ghfir lana dhunubana wa israfana fi amrina",
-		translation:
-			"Our Lord, forgive us our sins and the excess in our affairs.",
+		arabic: "رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا",
+		transliteration: "Rabbana-ghfir lana dhunubana wa israfana fi amrina",
+		translation: "Our Lord, forgive us our sins and the excess in our affairs.",
 		surah: "Al-Imran",
 		ayah: 147,
 	},
 	// Night prayer
 	{
 		day: 59,
-		arabic:
-			"أَمَّنْ هُوَ قَانِتٌ آنَاءَ اللَّيْلِ سَاجِدًا وَقَائِمًا",
-		transliteration:
-			"Amman huwa qanitun ana'al-layli sajidan wa qa'ima",
-		translation:
-			"Is one who is devoutly obedient during the night, prostrating and standing?",
+		arabic: "أَمَّنْ هُوَ قَانِتٌ آنَاءَ اللَّيْلِ سَاجِدًا وَقَائِمًا",
+		transliteration: "Amman huwa qanitun ana'al-layli sajidan wa qa'ima",
+		translation: "Is one who is devoutly obedient during the night, prostrating and standing?",
 		surah: "Az-Zumar",
 		ayah: 9,
 	},
 	// Comprehensive
 	{
 		day: 60,
-		arabic:
-			"رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا",
-		transliteration:
-			"Rabbana atina mil-ladunka rahmatan wa hayyi' lana min amrina rashada",
-		translation:
-			"Our Lord, grant us from Yourself mercy and prepare for us guidance.",
+		arabic: "رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا",
+		transliteration: "Rabbana atina mil-ladunka rahmatan wa hayyi' lana min amrina rashada",
+		translation: "Our Lord, grant us from Yourself mercy and prepare for us guidance.",
 		surah: "Al-Kahf",
 		ayah: 10,
 	},

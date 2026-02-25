@@ -46,7 +46,9 @@ export class PlainFormatter implements IOutputFormatter {
 
 		if (highlight) {
 			lines.push(`  ${getHighlightStatusLabel()} ${translateHighlightString(highlight.current)}`);
-			lines.push(`  ${getHighlightUpNextLabel()} ${translateHighlightString(highlight.next)} ${getHighlightInLabel()} ${highlight.countdown}`);
+			lines.push(
+				`  ${getHighlightUpNextLabel()} ${translateHighlightString(highlight.next)} ${getHighlightInLabel()} ${highlight.countdown}`,
+			);
 			lines.push("");
 		}
 

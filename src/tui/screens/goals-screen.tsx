@@ -5,9 +5,9 @@
 
 import { Box, Text } from "ink";
 import type React from "react";
+import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { usePrayerContext } from "../context/prayer-context.js";
 import { useThemeColors } from "../context/theme-context.js";
-import { ScreenWrapper } from "../components/screen-wrapper.js";
 
 interface GoalsScreenProps {
 	readonly onBack: () => void;
@@ -21,16 +21,14 @@ export const GoalsScreen: React.FC<GoalsScreenProps> = ({ onBack, isActive }) =>
 	return (
 		<ScreenWrapper title="Goals" onBack={onBack} isActive={isActive}>
 			<Box flexDirection="column">
-				{(!goals || goals.length === 0) ? (
+				{!goals || goals.length === 0 ? (
 					<Text color={colors.muted}>
 						No goals set. Use `ramadan-cli-pro goal add` to create goals.
 					</Text>
 				) : (
 					goals.map((goal) => {
 						const percent =
-							goal.target > 0
-								? Math.min(100, Math.round((goal.current / goal.target) * 100))
-								: 0;
+							goal.target > 0 ? Math.min(100, Math.round((goal.current / goal.target) * 100)) : 0;
 						const barWidth = 20;
 						const filled = Math.round((percent / 100) * barWidth);
 						const empty = barWidth - filled;

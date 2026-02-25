@@ -7,10 +7,10 @@ import { Box, Text } from "ink";
 import type React from "react";
 import { useMemo } from "react";
 import { BADGES } from "../../data/badges.js";
+import { ProgressBar } from "../components/progress-bar.js";
+import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { useContainer } from "../context/container-context.js";
 import { useThemeColors } from "../context/theme-context.js";
-import { ScreenWrapper } from "../components/screen-wrapper.js";
-import { ProgressBar } from "../components/progress-bar.js";
 
 interface StatsScreenProps {
 	readonly onBack: () => void;

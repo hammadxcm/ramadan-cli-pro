@@ -6,10 +6,10 @@
 import { Box, Text } from "ink";
 import type React from "react";
 import { useEffect, useState } from "react";
+import { LoadingSpinner } from "../components/loading-spinner.js";
+import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { useContainer } from "../context/container-context.js";
 import { useThemeColors } from "../context/theme-context.js";
-import { ScreenWrapper } from "../components/screen-wrapper.js";
-import { LoadingSpinner } from "../components/loading-spinner.js";
 
 interface QiblaScreenProps {
 	readonly onBack: () => void;
@@ -112,8 +112,8 @@ export const QiblaScreen: React.FC<QiblaScreenProps> = ({ onBack, isActive }) =>
 	return (
 		<ScreenWrapper title="Qibla Direction" onBack={onBack} isActive={isActive}>
 			<Box flexDirection="column">
-				<Text color={colors.muted}>        N</Text>
-				<Text color={colors.muted}>        |</Text>
+				<Text color={colors.muted}> N</Text>
+				<Text color={colors.muted}> |</Text>
 				<Text color={colors.muted}>
 					{"   W ---"}
 					<Text color={colors.primary} bold>
@@ -121,15 +121,16 @@ export const QiblaScreen: React.FC<QiblaScreenProps> = ({ onBack, isActive }) =>
 					</Text>
 					{"--- E"}
 				</Text>
-				<Text color={colors.muted}>        |</Text>
-				<Text color={colors.muted}>        S</Text>
+				<Text color={colors.muted}> |</Text>
+				<Text color={colors.muted}> S</Text>
 				<Text> </Text>
 				<Text>
 					<Text color={colors.white} bold>
 						Bearing:{" "}
 					</Text>
 					<Text color={colors.secondary}>
-						{qibla.direction.toFixed(2)}{"\u00B0"} ({cardinal})
+						{qibla.direction.toFixed(2)}
+						{"\u00B0"} ({cardinal})
 					</Text>
 				</Text>
 				<Text>

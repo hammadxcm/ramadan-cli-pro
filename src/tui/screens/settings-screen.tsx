@@ -210,6 +210,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 
 	const enterEdit = useCallback(() => {
 		const setting = SETTINGS[selectedRow];
+		if (!setting) return;
 		if (setting.type === "toggle") {
 			const key = setting.key as keyof ConfigValues;
 			const current = configValues[key] as boolean;
@@ -245,6 +246,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 				}
 			} else if (editMode === "select") {
 				const setting = SETTINGS[selectedRow];
+				if (!setting) return;
 				const options = getOptionsForRow(setting.key);
 				if (key.upArrow) {
 					setEditOptionIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
@@ -252,7 +254,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 					setEditOptionIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
 				} else if (key.return) {
 					const selected = options[editOptionIndex];
-					saveValue(setting.key, selected.value);
+					if (selected) {
+						saveValue(setting.key, selected.value);
+					}
 					setEditMode("none");
 				} else if (key.escape) {
 					setEditMode("none");
@@ -261,7 +265,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 				if (key.return) {
 					const setting = SETTINGS[selectedRow];
 					const trimmed = textBuffer.trim();
-					if (trimmed) {
+					if (trimmed && setting) {
 						saveValue(setting.key, trimmed);
 					}
 					setEditMode("none");
@@ -284,12 +288,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 
 	return (
 		<Box flexDirection="column">
-			<Box
-				flexDirection="column"
-				borderStyle="round"
-				borderColor={colors.primary}
-				paddingX={1}
-			>
+			<Box flexDirection="column" borderStyle="round" borderColor={colors.primary} paddingX={1}>
 				<Text color={colors.primary} bold>
 					Settings
 				</Text>
@@ -304,15 +303,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 						<Box key={setting.key} flexDirection="column">
 							<Box>
 								<Box width={2}>
-									<Text color={isSelected ? colors.primary : undefined}>
+									<Text {...(isSelected ? { color: colors.primary } : {})}>
 										{isSelected ? ">" : " "}
 									</Text>
 								</Box>
 								<Box width={22}>
-									<Text
-										color={isSelected ? colors.primary : colors.white}
-										bold={isSelected}
-									>
+									<Text color={isSelected ? colors.primary : colors.white} bold={isSelected}>
 										{setting.label}
 									</Text>
 								</Box>
@@ -329,9 +325,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 										{getDisplayValue(setting.key)}
 									</Text>
 								) : (
-									<Text color={colors.white}>
-										{getDisplayValue(setting.key)}
-									</Text>
+									<Text color={colors.white}>{getDisplayValue(setting.key)}</Text>
 								)}
 							</Box>
 
@@ -339,15 +333,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, isActive
 								<Box flexDirection="column" paddingLeft={4}>
 									{getOptionsForRow(setting.key).map((option, optIndex) => {
 										const isCurrent =
-											option.value ===
-											configValues[setting.key as keyof ConfigValues];
+											option.value === configValues[setting.key as keyof ConfigValues];
 										const isHighlighted = optIndex === editOptionIndex;
 										return (
 											<Box key={String(option.value)}>
 												<Text
-													color={
-														isHighlighted ? colors.primary : colors.muted
-													}
+													color={isHighlighted ? colors.primary : colors.muted}
 													bold={isHighlighted}
 												>
 													{isHighlighted ? "> " : "  "}

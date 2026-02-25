@@ -78,7 +78,9 @@ describe("DashboardCommand", () => {
 		});
 
 		await expect(command.execute({})).rejects.toThrow(CommandError);
-		await expect(command.execute({})).rejects.toThrow("Failed to start TUI dashboard: ink not available");
+		await expect(command.execute({})).rejects.toThrow(
+			"Failed to start TUI dashboard: ink not available",
+		);
 	});
 
 	it("handles non-Error exceptions in the catch block", async () => {

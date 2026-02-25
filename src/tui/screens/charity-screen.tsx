@@ -6,9 +6,9 @@
 import { Box, Text } from "ink";
 import type React from "react";
 import { useMemo } from "react";
+import { ScreenWrapper } from "../components/screen-wrapper.js";
 import { useContainer } from "../context/container-context.js";
 import { useThemeColors } from "../context/theme-context.js";
-import { ScreenWrapper } from "../components/screen-wrapper.js";
 
 interface CharityScreenProps {
 	readonly onBack: () => void;
@@ -19,15 +19,9 @@ export const CharityScreen: React.FC<CharityScreenProps> = ({ onBack, isActive }
 	const colors = useThemeColors();
 	const container = useContainer();
 
-	const entries = useMemo(
-		() => container.charityService.listEntries(),
-		[container.charityService],
-	);
+	const entries = useMemo(() => container.charityService.listEntries(), [container.charityService]);
 
-	const total = useMemo(
-		() => entries.reduce((sum, e) => sum + e.amount, 0),
-		[entries],
-	);
+	const total = useMemo(() => entries.reduce((sum, e) => sum + e.amount, 0), [entries]);
 
 	return (
 		<ScreenWrapper title="Charity Log" onBack={onBack} isActive={isActive}>

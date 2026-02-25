@@ -306,8 +306,10 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 	{
 		day: 32,
 		arabic: "من قام ليلة القدر إيمانا واحتسابا غفر له ما تقدم من ذنبه",
-		transliteration: "Man qama laylat-al-qadri imanan wahtisaban ghufira lahu ma taqaddama min dhanbih",
-		translation: "Whoever stands in prayer on the Night of Decree out of faith and seeking reward, his past sins will be forgiven.",
+		transliteration:
+			"Man qama laylat-al-qadri imanan wahtisaban ghufira lahu ma taqaddama min dhanbih",
+		translation:
+			"Whoever stands in prayer on the Night of Decree out of faith and seeking reward, his past sins will be forgiven.",
 		source: "Sahih Bukhari",
 		narrator: "Abu Hurairah",
 	},
@@ -346,7 +348,8 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 	{
 		day: 37,
 		arabic: "إن الله لا ينظر إلى أجسادكم ولا إلى صوركم ولكن ينظر إلى قلوبكم",
-		transliteration: "Innallaha la yandhuru ila ajsamikum wa la ila suwarikum wa lakin yandhuru ila qulubikum",
+		transliteration:
+			"Innallaha la yandhuru ila ajsamikum wa la ila suwarikum wa lakin yandhuru ila qulubikum",
 		translation: "Allah does not look at your bodies or forms, but He looks at your hearts.",
 		source: "Sahih Muslim",
 		narrator: "Abu Hurairah",
@@ -362,8 +365,10 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 	{
 		day: 39,
 		arabic: "من سلك طريقا يلتمس فيه علما سهل الله له طريقا إلى الجنة",
-		transliteration: "Man salaka tariqan yaltamisu fihi 'ilman sahhalallahu lahu tariqan ilal-jannah",
-		translation: "Whoever takes a path seeking knowledge, Allah will ease for him a path to Paradise.",
+		transliteration:
+			"Man salaka tariqan yaltamisu fihi 'ilman sahhalallahu lahu tariqan ilal-jannah",
+		translation:
+			"Whoever takes a path seeking knowledge, Allah will ease for him a path to Paradise.",
 		source: "Sahih Muslim",
 		narrator: "Abu Hurairah",
 	},
@@ -371,7 +376,8 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 		day: 40,
 		arabic: "لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه",
 		transliteration: "La yu'minu ahadukum hatta yuhibba li-akhihi ma yuhibbu li-nafsih",
-		translation: "None of you truly believes until he loves for his brother what he loves for himself.",
+		translation:
+			"None of you truly believes until he loves for his brother what he loves for himself.",
 		source: "Sahih Bukhari",
 		narrator: "Anas ibn Malik",
 	},
@@ -427,7 +433,8 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 		day: 47,
 		arabic: "من حسن إسلام المرء تركه ما لا يعنيه",
 		transliteration: "Min husni islami-l-mar'i tarkuhu ma la ya'nih",
-		translation: "Part of the perfection of one's Islam is leaving that which does not concern him.",
+		translation:
+			"Part of the perfection of one's Islam is leaving that which does not concern him.",
 		source: "Sunan Tirmidhi",
 		narrator: "Abu Hurairah",
 	},
@@ -475,7 +482,8 @@ export const ADDITIONAL_HADITHS: ReadonlyArray<Hadith> = [
 		day: 53,
 		arabic: "سبحان الله وبحمده سبحان الله العظيم",
 		transliteration: "SubhanAllahi wa bihamdihi SubhanAllahil-'Adhim",
-		translation: "Two phrases beloved to the Most Merciful: Glory be to Allah and His praise, Glory be to Allah the Magnificent.",
+		translation:
+			"Two phrases beloved to the Most Merciful: Glory be to Allah and His praise, Glory be to Allah the Magnificent.",
 		source: "Sahih Bukhari",
 		narrator: "Abu Hurairah",
 	},

@@ -7,8 +7,8 @@ import { Box, Text, useInput } from "ink";
 import type React from "react";
 import { useState } from "react";
 import { ADHKAR_COLLECTIONS } from "../../data/adhkar.js";
-import { useThemeColors } from "../context/theme-context.js";
 import { ScreenWrapper } from "../components/screen-wrapper.js";
+import { useThemeColors } from "../context/theme-context.js";
 
 interface AdhkarScreenProps {
 	readonly onBack: () => void;
@@ -84,9 +84,7 @@ export const AdhkarScreen: React.FC<AdhkarScreenProps> = ({ onBack, isActive }) 
 						</Text>
 						<Text> </Text>
 						<Text color={colors.muted}>{item.translation}</Text>
-						{item.count !== undefined && (
-							<Text color={colors.primary}>Repeat: {item.count}x</Text>
-						)}
+						{item.count !== undefined && <Text color={colors.primary}>Repeat: {item.count}x</Text>}
 					</Box>
 				)}
 			</Box>
