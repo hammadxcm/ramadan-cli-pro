@@ -2,16 +2,19 @@
  * @module tui/app
  * @description Root React/Ink application component for the TUI dashboard.
  * Wires up the dependency container, fetches prayer data, and provides
- * context to all child components.
+ * context to all child components. Renders the interactive screen router.
  */
 
-import { useApp, useInput } from "ink";
 import type React from "react";
+import { useCallback, useMemo, useState } from "react";
 import { createContainer } from "../container.js";
 import type { CommandContext } from "../types/command.js";
-import { Dashboard } from "./components/dashboard.js";
+import type { Goal } from "../types/goals.js";
+import type { StreakData } from "../types/streak.js";
+import { ScreenRouter } from "./components/screen-router.js";
+import { ContainerProvider } from "./context/container-context.js";
 import { PrayerProvider } from "./context/prayer-context.js";
-import { ThemeProvider } from "./context/theme-context.js";
+import { ThemeProvider, ThemeRefreshProvider } from "./context/theme-context.js";
 import { useHighlight } from "./hooks/use-highlight.js";
 import { usePrayerTimes } from "./hooks/use-prayer-times.js";
 
@@ -25,11 +28,10 @@ interface AppProps {
 
 /**
  * Root TUI application component. Fetches prayer data, computes highlight state,
- * and renders the dashboard. Press `q` to quit.
+ * and renders the interactive screen router with navigation.
  */
 export const App: React.FC<AppProps> = ({ context }) => {
-	const { exit } = useApp();
-	const container = createContainer();
+	const container = useMemo(() => createContainer(), []);
 
 	const { data, loading, error } = usePrayerTimes(async () => {
 		const query = await container.locationService.resolveQuery({
@@ -41,17 +43,33 @@ export const App: React.FC<AppProps> = ({ context }) => {
 
 	const highlight = useHighlight(data);
 
-	useInput((input) => {
-		if (input === "q") {
-			exit();
-		}
-	});
+	const streakData: StreakData = useMemo(
+		() => container.streakService.getStreakData(),
+		[container.streakService],
+	);
+
+	const goals: ReadonlyArray<Goal> = useMemo(
+		() => container.goalService.listGoals(),
+		[container.goalService],
+	);
+
+	const [themeColors, setThemeColors] = useState(() =>
+		container.themeService.getActiveTheme().tui,
+	);
+
+	const refreshTheme = useCallback(() => {
+		setThemeColors(container.themeService.getActiveTheme().tui);
+	}, [container.themeService]);
 
 	return (
-		<ThemeProvider value={container.themeService.getActiveTheme().tui}>
-			<PrayerProvider value={{ data, highlight, loading, error }}>
-				<Dashboard />
-			</PrayerProvider>
-		</ThemeProvider>
+		<ContainerProvider value={container}>
+			<ThemeProvider value={themeColors}>
+				<ThemeRefreshProvider value={refreshTheme}>
+					<PrayerProvider value={{ data, highlight, loading, error, streakData, goals }}>
+						<ScreenRouter />
+					</PrayerProvider>
+				</ThemeRefreshProvider>
+			</ThemeProvider>
+		</ContainerProvider>
 	);
 };

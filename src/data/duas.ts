@@ -9,6 +9,7 @@ export interface Dua {
 	readonly arabic: string;
 	readonly transliteration: string;
 	readonly translation: string;
+	readonly category?: string;
 }
 
 export const RAMADAN_DUAS: ReadonlyArray<Dua> = [
@@ -222,4 +223,46 @@ export const RAMADAN_DUAS: ReadonlyArray<Dua> = [
 		transliteration: "Allahummaj'al siyami fihi bish-shukri wal-qabul",
 		translation: "O Allah, make my fasting in it with gratitude and acceptance.",
 	},
+];
+
+export const GENERAL_DUAS: ReadonlyArray<Dua> = [
+	// Travel
+	{ day: 31, arabic: "سبحان الذي سخر لنا هذا وما كنا له مقرنين", transliteration: "Subhanal-ladhi sakhkhara lana hadha wa ma kunna lahu muqrinin", translation: "Glory be to Him who has subjected this to us, and we could never have it by our efforts.", category: "travel" },
+	{ day: 32, arabic: "اللهم إني أسألك في سفري هذا البر والتقوى", transliteration: "Allahumma inni as'aluka fi safari hadhal-birra wat-taqwa", translation: "O Allah, I ask You in this journey for righteousness and piety.", category: "travel" },
+	// Eating
+	{ day: 33, arabic: "بسم الله وعلى بركة الله", transliteration: "Bismillahi wa 'ala barakatillah", translation: "In the name of Allah and with the blessings of Allah.", category: "eating" },
+	{ day: 34, arabic: "الحمد لله الذي أطعمنا وسقانا وجعلنا مسلمين", transliteration: "Alhamdulillahil-ladhi at'amana wa saqana wa ja'alana muslimin", translation: "Praise be to Allah who fed us, gave us drink, and made us Muslims.", category: "eating" },
+	// Sleeping
+	{ day: 35, arabic: "باسمك اللهم أموت وأحيا", transliteration: "Bismika Allahumma amutu wa ahya", translation: "In Your name, O Allah, I die and I live.", category: "sleeping" },
+	{ day: 36, arabic: "اللهم قني عذابك يوم تبعث عبادك", transliteration: "Allahumma qini 'adhabaka yawma tab'athu 'ibadak", translation: "O Allah, protect me from Your punishment on the Day You resurrect Your servants.", category: "sleeping" },
+	// Waking
+	{ day: 37, arabic: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور", transliteration: "Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur", translation: "Praise be to Allah who gave us life after death, and to Him is the resurrection.", category: "waking" },
+	{ day: 38, arabic: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت", transliteration: "Allahumma bika asbahna wa bika amsayna wa bika nahya wa bika namut", translation: "O Allah, by You we enter morning, by You we enter evening, by You we live and by You we die.", category: "waking" },
+	// Distress
+	{ day: 39, arabic: "لا إله إلا أنت سبحانك إني كنت من الظالمين", transliteration: "La ilaha illa anta subhanaka inni kuntu minaz-zalimin", translation: "There is no god but You, glory be to You, indeed I have been among the wrongdoers.", category: "distress" },
+	{ day: 40, arabic: "حسبنا الله ونعم الوكيل", transliteration: "Hasbunallahu wa ni'mal-wakil", translation: "Allah is sufficient for us, and He is the best Disposer of affairs.", category: "distress" },
+	{ day: 41, arabic: "اللهم إني أعوذ بك من الهم والحزن", transliteration: "Allahumma inni a'udhu bika minal-hammi wal-hazan", translation: "O Allah, I seek refuge in You from worry and grief.", category: "distress" },
+	{ day: 42, arabic: "يا حي يا قيوم برحمتك أستغيث", transliteration: "Ya Hayyu ya Qayyumu bi-rahmatika astaghith", translation: "O Living, O Sustainer, in Your mercy I seek relief.", category: "distress" },
+	// Forgiveness
+	{ day: 43, arabic: "أستغفر الله الذي لا إله إلا هو الحي القيوم وأتوب إليه", transliteration: "Astaghfirullahul-ladhi la ilaha illa huwal-Hayyul-Qayyumu wa atubu ilayh", translation: "I seek forgiveness from Allah, there is no god but He, the Living, the Sustainer, and I turn to Him in repentance.", category: "forgiveness" },
+	{ day: 44, arabic: "ربنا ظلمنا أنفسنا وإن لم تغفر لنا وترحمنا لنكونن من الخاسرين", transliteration: "Rabbana dhalamna anfusana wa in lam taghfir lana wa tarhamna lanakunnana minal-khasirin", translation: "Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers.", category: "forgiveness" },
+	{ day: 45, arabic: "اللهم إنك عفو كريم تحب العفو فاعف عني", transliteration: "Allahumma innaka 'afuwwun karimun tuhibbul-'afwa fa'fu 'anni", translation: "O Allah, You are Pardoning, Generous, You love to pardon, so pardon me.", category: "forgiveness" },
+	{ day: 46, arabic: "رب اغفر لي وتب علي إنك أنت التواب الرحيم", transliteration: "Rabbigh-fir li wa tub 'alayya innaka antat-Tawwabur-Rahim", translation: "My Lord, forgive me and accept my repentance. Indeed, You are the Accepting of repentance, the Merciful.", category: "forgiveness" },
+	// Parents
+	{ day: 47, arabic: "رب ارحمهما كما ربياني صغيرا", transliteration: "Rabbir-hamhuma kama rabbayanee saghira", translation: "My Lord, have mercy upon them as they brought me up when I was small.", category: "parents" },
+	{ day: 48, arabic: "ربنا اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب", transliteration: "Rabbanagh-fir li wa li-walidayya wa lil-mu'minina yawma yaqumul-hisab", translation: "Our Lord, forgive me and my parents and the believers the Day the account is established.", category: "parents" },
+	// Entering mosque
+	{ day: 49, arabic: "اللهم افتح لي أبواب رحمتك", transliteration: "Allahummaf-tah li abwaba rahmatik", translation: "O Allah, open for me the doors of Your mercy.", category: "entering-mosque" },
+	{ day: 50, arabic: "أعوذ بالله العظيم وبوجهه الكريم وسلطانه القديم من الشيطان الرجيم", transliteration: "A'udhu billahil-'adhimi wa bi-wajhihil-karimi wa sultanihil-qadimi minash-shaytanir-rajim", translation: "I seek refuge in Allah the Magnificent, in His Noble Face, and in His eternal authority from the accursed Satan.", category: "entering-mosque" },
+	// General/comprehensive
+	{ day: 51, arabic: "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار", transliteration: "Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adhaban-nar", translation: "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.", category: "general" },
+	{ day: 52, arabic: "اللهم إني أسألك الهدى والتقى والعفاف والغنى", transliteration: "Allahumma inni as'alukal-huda wat-tuqa wal-'afafa wal-ghina", translation: "O Allah, I ask You for guidance, piety, chastity, and self-sufficiency.", category: "general" },
+	{ day: 53, arabic: "اللهم أصلح لي ديني الذي هو عصمة أمري", transliteration: "Allahumma aslih li diniyalladhi huwa 'ismatu amri", translation: "O Allah, set right for me my religion which is the safeguard of my affairs.", category: "general" },
+	{ day: 54, arabic: "اللهم إني أعوذ بك من شر ما عملت ومن شر ما لم أعمل", transliteration: "Allahumma inni a'udhu bika min sharri ma 'amiltu wa min sharri ma lam a'mal", translation: "O Allah, I seek refuge in You from the evil of what I have done and the evil of what I have not done.", category: "general" },
+	{ day: 55, arabic: "ربنا لا تؤاخذنا إن نسينا أو أخطأنا", transliteration: "Rabbana la tu'akhidhna in nasina aw akhta'na", translation: "Our Lord, do not impose blame upon us if we have forgotten or erred.", category: "general" },
+	{ day: 56, arabic: "ربنا هب لنا من أزواجنا وذرياتنا قرة أعين", transliteration: "Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yun", translation: "Our Lord, grant us from our spouses and offspring comfort to our eyes.", category: "general" },
+	{ day: 57, arabic: "ربنا أفرغ علينا صبرا وثبت أقدامنا", transliteration: "Rabbana afrigh 'alayna sabran wa thabbit aqdamana", translation: "Our Lord, pour upon us patience and plant firmly our feet.", category: "general" },
+	{ day: 58, arabic: "ربنا لا تزغ قلوبنا بعد إذ هديتنا", transliteration: "Rabbana la tuzigh qulubana ba'da idh hadaytana", translation: "Our Lord, let not our hearts deviate after You have guided us.", category: "general" },
+	{ day: 59, arabic: "اللهم اهدني وسددني", transliteration: "Allahummah-dini wa saddidni", translation: "O Allah, guide me and keep me on the right path.", category: "general" },
+	{ day: 60, arabic: "اللهم إني أسألك العفو والعافية في الدنيا والآخرة", transliteration: "Allahumma inni as'alukal-'afwa wal-'afiyata fid-dunya wal-akhirah", translation: "O Allah, I ask You for pardon and well-being in this world and the Hereafter.", category: "general" },
 ];

@@ -24,6 +24,20 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	atl: "Atlanta",
 	van: "Vancouver",
 	mtl: "Montreal",
+	sea: "Seattle",
+	den: "Denver",
+	aus: "Austin",
+	phx: "Phoenix",
+	cal: "Calgary",
+	ott: "Ottawa",
+
+	// South America
+	bog: "Bogota",
+	lim: "Lima",
+	bue: "Buenos Aires",
+	sao: "Sao Paulo",
+	rio: "Rio de Janeiro",
+	scl: "Santiago",
 
 	// South Asia
 	lhr: "Lahore",
@@ -38,6 +52,15 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	fsd: "Faisalabad",
 	rwp: "Rawalpindi",
 	ktm: "Kathmandu",
+	mul: "Multan",
+	qta: "Quetta",
+	gwl: "Gujranwala",
+	ban: "Bangalore",
+	che: "Chennai",
+	kol: "Kolkata",
+	lkn: "Lucknow",
+	pne: "Pune",
+	ctg: "Chittagong",
 
 	// Middle East
 	dxb: "Dubai",
@@ -56,6 +79,13 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	bgd: "Baghdad",
 	bei: "Beirut",
 	dam: "Damascus",
+	san: "Sanaa",
+	ade: "Aden",
+	man: "Manama",
+	teh: "Tehran",
+	isf: "Isfahan",
+	shi: "Shiraz",
+	tab: "Tabriz",
 
 	// Turkey
 	ist: "Istanbul",
@@ -67,6 +97,8 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	cas: "Casablanca",
 	rab: "Rabat",
 	tri: "Tripoli",
+	add: "Addis Ababa",
+	krt: "Khartoum",
 
 	// Sub-Saharan Africa
 	lag: "Lagos",
@@ -77,6 +109,10 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	acc: "Accra",
 	kmp: "Kampala",
 	dkr: "Dakar",
+	bko: "Bamako",
+	nkc: "Nouakchott",
+	jib: "Djibouti",
+	kig: "Kigali",
 
 	// Europe
 	lon: "London",
@@ -91,11 +127,21 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	mun: "Munich",
 	vie: "Vienna",
 	cop: "Copenhagen",
+	hel: "Helsinki",
+	bud: "Budapest",
+	pra: "Prague",
+	war: "Warsaw",
+	lis: "Lisbon",
+	sar: "Sarajevo",
+	tir: "Tirana",
 
 	// Southeast Asia
 	kul: "Kuala Lumpur",
 	jkt: "Jakarta",
 	sg: "Singapore",
+	mnl: "Manila",
+	ygn: "Yangon",
+	pnp: "Phnom Penh",
 
 	// East Asia
 	bkk: "Bangkok",
@@ -108,10 +154,16 @@ const CITY_ALIAS_MAP: Readonly<Record<string, string>> = {
 	tsh: "Tashkent",
 	ala: "Almaty",
 	bak: "Baku",
+	dsh: "Dushanbe",
+	ash: "Ashgabat",
+	bis: "Bishkek",
 
 	// Oceania
 	syd: "Sydney",
 	mel: "Melbourne",
+	bri: "Brisbane",
+	per: "Perth",
+	akl: "Auckland",
 };
 
 /**

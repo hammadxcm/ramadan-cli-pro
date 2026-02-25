@@ -78,6 +78,32 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 					"O Allah, grant me well-being in my body. O Allah, grant me well-being in my hearing. O Allah, grant me well-being in my sight. There is no deity except You.",
 				count: 3,
 			},
+			{
+				arabic:
+					"قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
+				transliteration:
+					"Qul huwal-lahu ahad, Allahus-samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad",
+				translation:
+					"Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born, nor is there any equivalent to Him. (Surah Al-Ikhlas 3x)",
+				count: 3,
+			},
+			{
+				arabic: "قل أعوذ برب الفلق، من شر ما خلق",
+				transliteration:
+					"Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
+				translation:
+					"Say: I seek refuge in the Lord of daybreak, from the evil of that which He created. (Surah Al-Falaq 3x)",
+				count: 3,
+			},
+			{
+				arabic:
+					"حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
+				transliteration:
+					"HasbiyAllahu la ilaha illa huwa 'alayhi tawakkaltu wa huwa Rabbul-'arshil-'adhim",
+				translation:
+					"Allah is sufficient for me. There is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne.",
+				count: 7,
+			},
 		],
 	},
 	{
@@ -137,6 +163,32 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 				translation:
 					"O Allah, whatever blessing I or any of Your creation have received this evening is from You alone, without partner. So all praise and thanks are to You.",
 			},
+			{
+				arabic:
+					"قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد",
+				transliteration:
+					"Qul huwal-lahu ahad, Allahus-samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad",
+				translation:
+					"Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born, nor is there any equivalent to Him. (Surah Al-Ikhlas 3x)",
+				count: 3,
+			},
+			{
+				arabic: "قل أعوذ برب الفلق، من شر ما خلق",
+				transliteration:
+					"Qul a'udhu bi-rabbil-falaq, min sharri ma khalaq",
+				translation:
+					"Say: I seek refuge in the Lord of daybreak, from the evil of that which He created. (Surah Al-Falaq 3x)",
+				count: 3,
+			},
+			{
+				arabic:
+					"حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم",
+				transliteration:
+					"HasbiyAllahu la ilaha illa huwa 'alayhi tawakkaltu wa huwa Rabbul-'arshil-'adhim",
+				translation:
+					"Allah is sufficient for me. There is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne.",
+				count: 7,
+			},
 		],
 	},
 	{
@@ -188,6 +240,105 @@ export const ADHKAR_COLLECTIONS: ReadonlyArray<AdhkarCollection> = [
 					"Allahumma antas-Salamu wa minkas-salamu tabarakta ya dhal-jalali wal-ikram",
 				translation:
 					"O Allah, You are Peace and from You comes peace. Blessed are You, O Owner of majesty and honor.",
+			},
+			{
+				arabic: "قل هو الله أحد",
+				transliteration:
+					"Qul huwal-lahu ahad (Surah Al-Ikhlas, Al-Falaq, An-Nas)",
+				translation:
+					"Recite Surah Al-Ikhlas, Al-Falaq, and An-Nas once after each prayer.",
+			},
+			{
+				arabic:
+					"اللهم إني أعوذ بك من عذاب القبر ومن عذاب النار ومن فتنة المحيا والممات ومن فتنة المسيح الدجال",
+				transliteration:
+					"Allahumma inni a'udhu bika min 'adhabil-qabri wa min 'adhabin-nar wa min fitnatil-mahya wal-mamati wa min fitnatil-masihid-dajjal",
+				translation:
+					"O Allah, I seek refuge in You from the punishment of the grave, from the punishment of the Fire, from the trials of life and death, and from the trial of the false messiah.",
+			},
+		],
+	},
+	{
+		id: "before-sleep",
+		title: "Before Sleep Adhkar (Adhkar Qablun-Nawm)",
+		items: [
+			{
+				arabic: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...",
+				transliteration: "Ayat al-Kursi (Al-Baqarah 2:255)",
+				translation:
+					"Recite Ayat al-Kursi before sleeping. Whoever recites it will have a guardian from Allah.",
+			},
+			{
+				arabic:
+					"آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ",
+				transliteration:
+					"Last two verses of Surah Al-Baqarah (2:285-286)",
+				translation:
+					"Whoever recites the last two verses of Surah Al-Baqarah at night, they will suffice him.",
+			},
+			{
+				arabic: "قل هو الله أحد",
+				transliteration:
+					"Surah Al-Ikhlas, Al-Falaq, An-Nas (3x each)",
+				translation:
+					"Recite the three Quls three times each, cup your hands, blow into them, and wipe over your body.",
+				count: 3,
+			},
+			{
+				arabic: "باسمك اللهم أموت وأحيا",
+				transliteration: "Bismika Allahumma amutu wa ahya",
+				translation: "In Your name, O Allah, I die and I live.",
+			},
+			{
+				arabic:
+					"اللهم باسمك أموت وأحيا، اللهم قني عذابك يوم تبعث عبادك",
+				transliteration:
+					"Allahumma bismika amutu wa ahya, Allahumma qini 'adhabaka yawma tab'athu 'ibadak",
+				translation:
+					"O Allah, in Your name I die and live. O Allah, protect me from Your punishment the Day You resurrect Your servants.",
+			},
+			{
+				arabic: "سبحان الله، الحمد لله، الله أكبر",
+				transliteration:
+					"SubhanAllah 33x, Alhamdulillah 33x, Allahu Akbar 34x",
+				translation:
+					"Glorify Allah 33 times, praise Him 33 times, and declare His greatness 34 times before sleeping.",
+			},
+		],
+	},
+	{
+		id: "waking-up",
+		title: "Waking Up Adhkar (Adhkar al-Istiqadh)",
+		items: [
+			{
+				arabic:
+					"الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور",
+				transliteration:
+					"Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+				translation:
+					"Praise be to Allah who gave us life after death, and to Him is the resurrection.",
+			},
+			{
+				arabic:
+					"لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير",
+				transliteration:
+					"La ilaha illallahu wahdahu la sharika lahu, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
+				translation:
+					"There is no deity except Allah alone, with no partner. To Him belongs dominion and praise, and He is over all things capable.",
+			},
+			{
+				arabic:
+					"سبحان الله والحمد لله ولا إله إلا الله والله أكبر",
+				transliteration:
+					"SubhanAllahi walhamdulillahi wa la ilaha illallahu wallahu akbar",
+				translation:
+					"Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the Greatest.",
+			},
+			{
+				arabic: "اللهم اغفر لي",
+				transliteration: "Allahummagh-fir li",
+				translation:
+					"O Allah, forgive me. (The Prophet said: Whoever wakes up and says this, his supplication will be answered.)",
 			},
 		],
 	},

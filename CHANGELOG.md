@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-02-25
+
+### Added
+
+- **Interactive TUI Settings Editor** — All 9 settings (City, Country, Calculation Method, School, Theme, Locale, Notifications, Sehar Reminder, Iftar Reminder) are now editable directly from the TUI dashboard Settings screen via keyboard navigation. Supports inline text input, selection dropdowns, and instant toggles.
+- **Live Theme Switching** — Theme changes in the TUI Settings screen apply instantly to all components without requiring a restart. Powered by a new `ThemeRefreshContext` that propagates color updates through the React tree.
+
+### Changed
+
+- **TUI Theme Context** — Added `ThemeRefreshProvider` and `useThemeRefresh` hook for live theme updates. Existing `useThemeColors` API is unchanged.
+- **TUI App Root** — Theme colors are now held in React state (`useState`) instead of a static value, enabling dynamic updates when the user switches themes.
+- **Settings Screen** — Fully rewritten from a read-only display to an interactive editor. No longer uses `ScreenWrapper`; manages its own layout and `useInput` to avoid key-handler conflicts.
+
 ## [1.3.0] - 2026-02-23
 
 ### Added
@@ -31,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **NO_COLOR Support** — Respects the `NO_COLOR` environment variable for accessible plain-text output.
 - **TUI Theme Integration** — Dashboard components now use dynamic theme colors via React context instead of hardcoded values.
 - **TUI Content Cards** — Dashboard shows Dua of the Day and Quran Verse of the Day cards during Ramadan.
-- **1207 Tests** — Up from 849, covering all new commands, services, data files, and utilities at 99.48% statement coverage.
+- **1208 Tests** — Up from 849, covering all new commands, services, data files, and utilities at 99.35% statement coverage.
 
 ### Fixed
 
@@ -124,6 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Zod runtime validation with branded types
 - CI/CD pipeline with GitHub Actions
 
+[1.3.1]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.0.0...v1.2.0
 [1.0.0]: https://github.com/hammadxcm/ramadan-cli-pro/releases/tag/v1.0.0

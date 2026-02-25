@@ -8,9 +8,15 @@ import type { FormatContext, IOutputFormatter } from "./formatter.interface.js";
 import {
 	TABLE_HEADERS,
 	formatRowLine,
+	getFooterNote,
 	getFormatterTitle,
+	getHighlightInLabel,
+	getHighlightStatusLabel,
+	getHighlightUpNextLabel,
 	getTableDivider,
+	getTableHeaders,
 	rowToColumns,
+	translateHighlightString,
 } from "./formatter.utils.js";
 
 /**
@@ -39,12 +45,12 @@ export class PlainFormatter implements IOutputFormatter {
 		lines.push("");
 
 		if (highlight) {
-			lines.push(`  Status: ${highlight.current}`);
-			lines.push(`  Up next: ${highlight.next} in ${highlight.countdown}`);
+			lines.push(`  ${getHighlightStatusLabel()} ${translateHighlightString(highlight.current)}`);
+			lines.push(`  ${getHighlightUpNextLabel()} ${translateHighlightString(highlight.next)} ${getHighlightInLabel()} ${highlight.countdown}`);
 			lines.push("");
 		}
 
-		lines.push("  Sehar uses Fajr. Iftar uses Maghrib.");
+		lines.push(`  ${getFooterNote()}`);
 		lines.push("");
 
 		return lines.join("\n");
@@ -54,7 +60,8 @@ export class PlainFormatter implements IOutputFormatter {
 		const divider = getTableDivider();
 
 		const lines: Array<string> = [];
-		lines.push(`  ${formatRowLine([...TABLE_HEADERS])}`);
+		const headers = getTableHeaders();
+		lines.push(`  ${formatRowLine([...headers])}`);
 		lines.push(`  ${divider}`);
 
 		for (const row of rows) {
