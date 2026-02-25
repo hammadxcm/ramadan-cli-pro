@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.1] - 2026-02-25
+## [1.3.2] - 2026-02-25
 
 ### Added
 
@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **TUI Theme Context** — Added `ThemeRefreshProvider` and `useThemeRefresh` hook for live theme updates. Existing `useThemeColors` API is unchanged.
 - **TUI App Root** — Theme colors are now held in React state (`useState`) instead of a static value, enabling dynamic updates when the user switches themes.
 - **Settings Screen** — Fully rewritten from a read-only display to an interactive editor. No longer uses `ScreenWrapper`; manages its own layout and `useInput` to avoid key-handler conflicts.
+
+### Fixed
+
+- **TypeScript strict mode** — Added guard clauses for array index access in settings editor to satisfy `exactOptionalPropertyTypes`.
+- **Biome lint** — Fixed import ordering and formatting across all TUI screen files.
 
 ## [1.3.0] - 2026-02-23
 
@@ -137,6 +142,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Zod runtime validation with branded types
 - CI/CD pipeline with GitHub Actions
 
+[1.3.2]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/hammadxcm/ramadan-cli-pro/compare/v1.0.0...v1.2.0
