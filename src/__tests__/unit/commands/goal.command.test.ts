@@ -1,9 +1,9 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GoalCommand } from "../../../commands/goal.command.js";
 import { CommandError } from "../../../errors/command.error.js";
 
 describe("GoalCommand", () => {
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	const mockGoalService = {
 		addGoal: vi.fn(),

@@ -40,27 +40,28 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@types/node": "^22.10.0",
-		"@types/react": "^19.0.0",
+		"@types/node": "^22.20.5",
+		"@types/react": "^19.3.0",
 		"@types/update-notifier": "^6.0.8",
-		"@vitest/coverage-v8": "^2.1.9",
-		"tsup": "^8.3.5",
-		"typescript": "^5.7.2",
-		"vitest": "^2.1.8"
+		"@vitest/coverage-v8": "^4.1.12",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
+		"vite": "^6.4.4",
+		"vitest": "^4.1.12"
 	},
 	"dependencies": {
 		"@clack/prompts": "^0.10.1",
-		"commander": "^13.0.0",
-		"conf": "^13.0.1",
-		"i18next": "^24.2.2",
-		"ink": "^5.1.0",
+		"commander": "^13.1.0",
+		"conf": "^13.1.0",
+		"i18next": "^24.2.3",
+		"ink": "^5.2.1",
 		"node-notifier": "^10.0.1",
-		"ora": "^8.1.1",
+		"ora": "^8.2.0",
 		"picocolors": "^1.1.1",
 		"react": "^18.3.1",
-		"string-width": "^8.2.0",
-		"update-notifier": "7",
-		"zod": "^3.24.1"
+		"string-width": "^8.3.0",
+		"update-notifier": "^7.3.1",
+		"zod": "^3.25.76"
 	},
 	"engines": {
 		"node": ">=20"
@@ -70,6 +71,10 @@
 		"onlyBuiltDependencies": [
 			"@biomejs/biome",
 			"esbuild"
-		]
+		],
+		"overrides": {
+			"node-notifier>uuid": "^11.1.1",
+			"esbuild@<0.28.1": "^0.28.1"
+		}
 	}
 }

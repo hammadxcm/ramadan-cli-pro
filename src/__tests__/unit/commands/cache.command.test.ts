@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CacheCommand } from "../../../commands/cache.command.js";
 import { CommandError } from "../../../errors/command.error.js";
 import type { CacheService } from "../../../services/cache.service.js";
@@ -14,7 +14,7 @@ describe("CacheCommand", () => {
 	};
 	let mockLocationService: { resolveQuery: ReturnType<typeof vi.fn> };
 	let mockPrayerTimeService: { fetchDay: ReturnType<typeof vi.fn> };
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		mockCacheService = {

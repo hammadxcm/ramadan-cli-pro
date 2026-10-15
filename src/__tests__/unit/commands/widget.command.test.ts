@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { WidgetCommand } from "../../../commands/widget.command.js";
 import { CommandError } from "../../../errors/command.error.js";
 import type { HighlightService } from "../../../services/highlight.service.js";
@@ -16,8 +16,8 @@ describe("WidgetCommand", () => {
 	let mockLocationService: { resolveQuery: ReturnType<typeof vi.fn> };
 	let mockPrayerTimeService: { fetchDay: ReturnType<typeof vi.fn> };
 	let mockHighlightService: { getHighlightState: ReturnType<typeof vi.fn> };
-	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
+	let errorSpy: MockInstance;
 	let exitSpy: ReturnType<typeof vi.fn>;
 	// biome-ignore lint/suspicious/noExplicitAny: mock type
 	let stdoutWriteSpy: any;

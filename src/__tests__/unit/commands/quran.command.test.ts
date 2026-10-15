@@ -1,10 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QuranCommand } from "../../../commands/quran.command.js";
 import { QURAN_VERSES } from "../../../data/quran-verses.js";
 
 describe("QuranCommand", () => {
 	let command: QuranCommand;
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		command = new QuranCommand();

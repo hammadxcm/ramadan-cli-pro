@@ -1,7 +1,7 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { TrackCommand } from "../../../commands/track.command.js";
 import { ConfigRepository } from "../../../repositories/config.repository.js";
 
@@ -10,8 +10,8 @@ describe("TrackCommand", () => {
 	let configDir: string;
 	let storeDir: string;
 	let configRepo: ConfigRepository;
-	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
+	let errorSpy: MockInstance;
 	let exitSpy: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {

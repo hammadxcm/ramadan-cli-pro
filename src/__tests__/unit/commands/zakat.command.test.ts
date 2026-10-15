@@ -1,9 +1,9 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ZakatCommand } from "../../../commands/zakat.command.js";
 
 describe("ZakatCommand", () => {
-	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
+	let errorSpy: MockInstance;
 	let exitSpy: ReturnType<typeof vi.fn>;
 
 	const mockZakatService = {

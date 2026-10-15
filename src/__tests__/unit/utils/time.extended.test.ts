@@ -68,8 +68,12 @@ describe("nowInTimezoneParts", () => {
 			formatToParts: vi.fn().mockReturnValue(mockParts),
 		};
 
-		vi.spyOn(Intl, "DateTimeFormat").mockReturnValue(
-			mockFormatter as unknown as Intl.DateTimeFormat,
+		// Called with `new`, so the mock implementation must be constructible.
+		vi.spyOn(Intl, "DateTimeFormat").mockImplementation(
+			// biome-ignore lint/complexity/useArrowFunction: arrow functions cannot be called with `new`
+			function () {
+				return mockFormatter as unknown as Intl.DateTimeFormat;
+			} as unknown as typeof Intl.DateTimeFormat,
 		);
 
 		const result = nowInTimezoneParts("UTC");
@@ -94,8 +98,11 @@ describe("nowInTimezoneParts", () => {
 			formatToParts: vi.fn().mockReturnValue(mockParts),
 		};
 
-		vi.spyOn(Intl, "DateTimeFormat").mockReturnValue(
-			mockFormatter as unknown as Intl.DateTimeFormat,
+		vi.spyOn(Intl, "DateTimeFormat").mockImplementation(
+			// biome-ignore lint/complexity/useArrowFunction: arrow functions cannot be called with `new`
+			function () {
+				return mockFormatter as unknown as Intl.DateTimeFormat;
+			} as unknown as typeof Intl.DateTimeFormat,
 		);
 
 		const result = nowInTimezoneParts("UTC");
@@ -115,8 +122,11 @@ describe("nowInTimezoneParts", () => {
 			formatToParts: vi.fn().mockReturnValue(mockParts),
 		};
 
-		vi.spyOn(Intl, "DateTimeFormat").mockReturnValue(
-			mockFormatter as unknown as Intl.DateTimeFormat,
+		vi.spyOn(Intl, "DateTimeFormat").mockImplementation(
+			// biome-ignore lint/complexity/useArrowFunction: arrow functions cannot be called with `new`
+			function () {
+				return mockFormatter as unknown as Intl.DateTimeFormat;
+			} as unknown as typeof Intl.DateTimeFormat,
 		);
 
 		const result = nowInTimezoneParts("UTC");
@@ -130,8 +140,11 @@ describe("nowInTimezoneParts", () => {
 			}),
 		};
 
-		vi.spyOn(Intl, "DateTimeFormat").mockReturnValue(
-			mockFormatter as unknown as Intl.DateTimeFormat,
+		vi.spyOn(Intl, "DateTimeFormat").mockImplementation(
+			// biome-ignore lint/complexity/useArrowFunction: arrow functions cannot be called with `new`
+			function () {
+				return mockFormatter as unknown as Intl.DateTimeFormat;
+			} as unknown as typeof Intl.DateTimeFormat,
 		);
 
 		const result = nowInTimezoneParts("UTC");

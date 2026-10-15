@@ -1,9 +1,9 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { StatsCommand } from "../../../commands/stats.command.js";
 
 describe("StatsCommand", () => {
-	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
+	let errorSpy: MockInstance;
 	let exitSpy: ReturnType<typeof vi.fn>;
 
 	const mockStatsService = {
