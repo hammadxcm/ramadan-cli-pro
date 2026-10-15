@@ -1,10 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { AdhkarCommand } from "../../../commands/adhkar.command.js";
 import { ADHKAR_COLLECTIONS } from "../../../data/adhkar.js";
 
 describe("AdhkarCommand", () => {
 	let command: AdhkarCommand;
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		command = new AdhkarCommand();

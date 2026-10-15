@@ -1,10 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DuaCommand } from "../../../commands/dua.command.js";
 import { RAMADAN_DUAS } from "../../../data/duas.js";
 
 describe("DuaCommand", () => {
 	let command: DuaCommand;
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		command = new DuaCommand();

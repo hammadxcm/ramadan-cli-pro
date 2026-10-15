@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ExportCommand } from "../../../commands/export.command.js";
 
 vi.mock("node:fs", () => ({ writeFileSync: vi.fn() }));
@@ -6,7 +6,7 @@ vi.mock("node:fs", () => ({ writeFileSync: vi.fn() }));
 import { writeFileSync } from "node:fs";
 
 describe("ExportCommand", () => {
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	const mockIcalService = {
 		generateIcal: vi.fn(),
@@ -27,6 +27,7 @@ describe("ExportCommand", () => {
 	});
 
 	afterEach(() => {
+		vi.clearAllMocks();
 		vi.restoreAllMocks();
 	});
 

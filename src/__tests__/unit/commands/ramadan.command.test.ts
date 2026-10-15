@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { RamadanCommand } from "../../../commands/ramadan.command.js";
 import { CommandError } from "../../../errors/command.error.js";
 import { PrayerTimeFetchError } from "../../../errors/prayer.error.js";
@@ -89,8 +89,8 @@ describe("RamadanCommand", () => {
 	let mockFirstRunSetup: {
 		run: ReturnType<typeof vi.fn>;
 	};
-	let logSpy: ReturnType<typeof vi.spyOn>;
-	let errorSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
+	let errorSpy: MockInstance;
 	let stderrSpy: ReturnType<typeof vi.fn>;
 	let exitSpy: ReturnType<typeof vi.fn>;
 

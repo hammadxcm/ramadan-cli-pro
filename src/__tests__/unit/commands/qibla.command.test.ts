@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QiblaCommand } from "../../../commands/qibla.command.js";
 import { CommandError } from "../../../errors/command.error.js";
 import type { PrayerApiRepository } from "../../../repositories/prayer-api.repository.js";
@@ -20,7 +20,7 @@ describe("QiblaCommand", () => {
 	let command: QiblaCommand;
 	let locationService: { [K in keyof LocationService]: ReturnType<typeof vi.fn> };
 	let prayerApiRepository: { [K in keyof PrayerApiRepository]: ReturnType<typeof vi.fn> };
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	const mockLocation = {
 		address: "Lahore, Pakistan",

@@ -1,7 +1,7 @@
 import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ConfigCommand } from "../../../commands/config.command.js";
 import { ConfigRepository } from "../../../repositories/config.repository.js";
 
@@ -9,7 +9,7 @@ describe("ConfigCommand", () => {
 	let tempDir: string;
 	let configRepo: ConfigRepository;
 	let command: ConfigCommand;
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		tempDir = mkdtempSync(join(tmpdir(), "config-cmd-test-"));

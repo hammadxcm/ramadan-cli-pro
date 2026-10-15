@@ -1,7 +1,7 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { type MockInstance, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ProfileCommand } from "../../../commands/profile.command.js";
 import { ConfigRepository } from "../../../repositories/config.repository.js";
 
@@ -10,7 +10,7 @@ describe("ProfileCommand", () => {
 	let configDir: string;
 	let storeDir: string;
 	let configRepo: ConfigRepository;
-	let logSpy: ReturnType<typeof vi.spyOn>;
+	let logSpy: MockInstance;
 
 	beforeEach(() => {
 		configDir = mkdtempSync(join(tmpdir(), "profile-test-"));
